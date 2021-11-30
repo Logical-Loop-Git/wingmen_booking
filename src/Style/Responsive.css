@@ -1,0 +1,12 @@
+@media only screen and (max-width: 768px) {
+    .booking_ride {
+        position: inherit;
+        width: 100%;
+        height: fit-content;
+        padding-bottom: 50px;
+    }
+
+    .booking_detail {
+        height: fit-content;
+    }
+}
