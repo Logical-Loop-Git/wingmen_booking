@@ -15,6 +15,15 @@ export const ContextProvider = ({ children }) => {
         latitude: 0,
         longitude: 0
     })
+    const [selectedVehical, setSelectedVehical] = useState({})
+    const [selectedServiceType, setSelectedServiceType] = useState({})
+    const [triType, setTriType] = useState('')
+    const [selectedCard, setSelectedCard] = useState('')
+    const [bookingAmount, setBookingAmount] = useState('')
+    const [promoCode, setPromoCode] = useState('')
+    const [paymentType, setPaymentType] = useState('')
+    const [estimateTime, setEstimateTime] = useState('')
+    const [distance, setDistance] = useState('')
 
     return (
         <Context.Provider
@@ -26,7 +35,25 @@ export const ContextProvider = ({ children }) => {
                 pickupLocation,
                 setPickupLocation,
                 dropLocation,
-                setDropLocation
+                setDropLocation,
+                selectedVehical,
+                setSelectedVehical,
+                selectedServiceType,
+                setSelectedServiceType,
+                triType,
+                setTriType,
+                selectedCard,
+                setSelectedCard,
+                bookingAmount,
+                setBookingAmount,
+                promoCode,
+                setPromoCode,
+                paymentType,
+                setPaymentType,
+                estimateTime,
+                setEstimateTime,
+                distance,
+                setDistance
             }}
         >
             {children}

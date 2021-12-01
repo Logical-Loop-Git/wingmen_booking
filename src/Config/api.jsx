@@ -1,7 +1,9 @@
 // localhost API
-// const api = "http://localhost:8000/"
+// const API = "http://localhost:8000/"
 
-// heroku server API
-const api = "https://carwashba.herokuapp.com/"
+// AWS server API
+const API = "http://18.219.159.1:3000/api/v1/user/"
 
-export default api;
+export const imageUrl = "http://18.219.159.1:3000/";
+
+export default API;

@@ -362,6 +362,8 @@ textarea:-webkit-autofill:active {
 
 .login_page {
     height: 100vh;
+    width: 45vh;
+    margin: auto;
     display: grid;
     align-items: center;
     justify-content: center;
@@ -369,6 +371,7 @@ textarea:-webkit-autofill:active {
 
 .login_part {
     text-align: center;
+    width: 45vh;
 }
 
 .login_heading img {
@@ -416,7 +419,7 @@ textarea:-webkit-autofill:active {
 }
 
 .signup h2 {
-    font-size: 30px;
+    font-size: 18px;
     color: var(--brand-gray);
     font-weight: 700;
     margin-bottom: 20px;
@@ -424,7 +427,9 @@ textarea:-webkit-autofill:active {
 }
 
 .signup h2 span {
+    font-size: 30px;
     color: var(--brand-blue);
+    padding-left: 10px;
 }
 
 /* LOGIN PAGE END */
@@ -503,13 +508,13 @@ textarea:-webkit-autofill:active {
     left: -9999px;
 }
 
-.display_service input[type=checkbox]:checked+label>img {
+.display_service input[type=radio]:checked+label>img {
     border: 1px solid var(--white);
     box-shadow: 0 0 3px 3px var(--brand-blue);
 }
 
 /* Stuff after this is only to make things more pretty */
-.display_service input[type=checkbox]+label>img {
+.display_service input[type=radio]+label>img {
     border: 1px dashed var(--brand-gray);
     width: 50px;
     height: 50px;
@@ -517,7 +522,7 @@ textarea:-webkit-autofill:active {
     opacity: 0.5;
 }
 
-.display_service input[type=checkbox]:checked+label>img {
+.display_service input[type=radio]:checked+label>img {
     opacity: 10;
 }
 
@@ -566,6 +571,8 @@ textarea:-webkit-autofill:active {
     margin: auto;
     display: block;
     position: relative;
+    margin-bottom: -45px;
+    margin-top: 15px;
 }
 
 .history-tl-container ul.tl {
@@ -667,6 +674,117 @@ ul.tl li .timestamp {
     padding: 10px;
     color: var(--black);
     width: 100%;
+}
+
+
+.display_payment {
+    width: 80%;
+    margin: auto;
+    display: grid;
+}
+
+.display_payment h2 {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 20px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.payment_wallet,
+.payment_card {
+    border: 1px solid var(--brand-blue);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.payment_wallet h3,
+.payment_card h3 {
+    font-size: 20px;
+    color: var(--brand-blue);
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.payment_option label {
+    font-size: 15px;
+    font-family: var(--paragraph-text);
+    font-weight: 700;
+    padding-left: 10px;
+}
+
+.display_user_card {
+    border: 1px solid var(--brand-blue);
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.display_user_card label p {
+    font-size: 15px;
+    font-family: var(--paragraph-text);
+    font-weight: 700;
+    padding-left: 10px;
+    margin-bottom: 0px;
+}
+
+.display_promo {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.display_promo input {
+    border: 2px solid var(--brand-blue);
+    font-family: var(--paragraph-text);
+    background-color: transparent;
+    color: var(--black);
+    border-radius: 50px;
+    padding: 10px;
+    width: 100%;
+}
+
+.display_promo button {
+    position: absolute;
+    border: none;
+    padding: 7px;
+    border-radius: 50px;
+    width: 70px;
+    right: 50px;
+    margin-top: 5px;
+    color: var(--white);
+    background-color: var(--brand-blue);
+}
+
+.display_total {
+    margin-bottom: 20px;
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+}
+
+.display_total h3 {
+    font-size: 20px;
+    color: var(--brand-blue);
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.display_total p {
+    font-size: 15px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 400px;
+    font-family: var(--paragraph-text);
 }
 
 /* BOOKING PAGE END */

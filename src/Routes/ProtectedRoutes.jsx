@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 
 
 const ProtectedRoutes = ({ children, ...rest }) => {
-    var authData = localStorage.getItem("carWashAuth");
+    const authData = localStorage.getItem("wingmen_booking");
 
     return (
         <Route
