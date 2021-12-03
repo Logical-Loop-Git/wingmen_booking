@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import DrawerToggleButton from './DrawerToggleButton'
 import logo from "../../Images/Footer/logo.png"
 import './header.css'
 import { NavLink } from 'react-router-dom';
+import { Context } from '../../Data/context';
 
 const toolbar = (props) => {
+
+    const { userData } = useContext(Context)
 
     return (
         <header className="toolbar">
@@ -44,9 +47,17 @@ const toolbar = (props) => {
                     </div>
                     <div className="toolbar_navigation-items">
                         <ul>
-                            <NavLink to="/login" exact activeClassName="nav_active">
-                                Sign In
-                            </NavLink>
+                            <li>
+                                {userData.name === '' || null || undefined ?
+                                    <NavLink to="/login" exact activeClassName="nav_active">
+                                        Sign In
+                                    </NavLink>
+                                    :
+                                    <NavLink to="/userprofile" exact activeClassName="nav_active">
+                                        {userData.firstName} {userData.lastName}
+                                    </NavLink>
+                                }
+                            </li>
                         </ul>
                     </div>
                 </div>

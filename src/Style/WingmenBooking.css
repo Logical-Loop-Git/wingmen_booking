@@ -44,7 +44,45 @@ textarea:-webkit-autofill:active {
 }
 
 /* PUBLIC DEFINE END  */
+/* POPUP */
+.popup_open {
+    padding: 40px;
+    position: absolute;
+    z-index: 99999;
+    width: 900px;
+    height: 50vh;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: hsl(0deg 0% 0% / 5%);
+    backdrop-filter: blur(14.5px);
+    -webkit-backdrop-filter: blur(14.5px);
+    padding: 20px;
+}
 
+.popup_close {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.popup_close button {
+    border: none;
+    background-color: transparent;
+    color: var(--brand-blue);
+}
+
+.popup_heading {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-family: var(--header-text);
+}
+
+/* POPUP END */
 
 /* HOME */
 
@@ -788,3 +826,468 @@ ul.tl li .timestamp {
 }
 
 /* BOOKING PAGE END */
+
+/* USER PROFILE  */
+
+.user_profile {
+    height: 100vh;
+    padding-top: 70px;
+}
+
+.profile_navigation {
+    background: hsl(0deg 0% 0% / 5%);
+    backdrop-filter: blur(14.5px);
+    -webkit-backdrop-filter: blur(14.5px);
+    padding: 20px;
+}
+
+.user_name {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.user_name_img img {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.user_name_cot {
+    padding-left: 30px;
+}
+
+.user_name_cot h2 {
+    font-size: 20px;
+    color: var(--brand-blue);
+    font-weight: 700;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.user_name_cot p {
+    font-size: 15px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 0px;
+    max-width: 400px;
+    font-family: var(--paragraph-text);
+}
+
+.profile_pages ul {
+    list-style: none;
+    padding: 0px;
+    border-top: 1px solid var(--brand-blue);
+    border-bottom: 1px solid var(--brand-blue);
+}
+
+.profile_pages ul li {
+    font-size: 20px;
+    color: var(--black);
+    font-weight: 700;
+    max-width: 400px;
+    font-family: var(--header-text);
+    padding: 12px 0px 12px 0px;
+    cursor: pointer;
+}
+
+.active_bar {
+    color: var(--brand-blue) !important;
+}
+
+.user_image {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.user_image img {
+    margin-right: 15px;
+    height: 110px;
+    width: 110px;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.user_image button {
+    border: none;
+    background-color: transparent;
+}
+
+.add_user_photo_btn {
+    position: absolute;
+    margin-top: -110px;
+    margin-left: -10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    border: none;
+    color: var(--white);
+    background-color: var(--brand-blue);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add_user_photo_btn input[type="file"] {
+    display: none;
+    cursor: pointer;
+}
+
+.user_date h2 {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 20px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.user_input {
+    display: grid;
+    margin-bottom: 20px;
+}
+
+.user_input label {
+    font-size: 15px;
+    color: var(--brand-blue);
+    margin-bottom: 0px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.user_input input,
+.user_input select {
+    border: 1px solid var(--brand-blue);
+    color: var(--black);
+    padding: 10px;
+    width: 80%;
+}
+
+.disp_vehical h2 {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 30px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+
+.vehical_list {
+    display: flex;
+    justify-content: space-between;
+    background: hsl(0deg 0% 0% / 5%);
+    backdrop-filter: blur(14.5px);
+    -webkit-backdrop-filter: blur(14.5px);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.vehical_info {
+    display: flex;
+}
+
+.vehical_info img {
+    height: 70px;
+    width: 70px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.vehical_list_name {
+    margin-left: 20px;
+}
+
+.vehical_list_name h2 {
+    font-size: 18px;
+    color: var(--black);
+    margin-bottom: 5px;
+    font-family: var(--header-text);
+    text-transform: uppercase;
+}
+
+.vehical_list_name p {
+    font-size: 15px;
+    color: var(--brand-blue);
+    font-weight: 700;
+    margin-bottom: 0px;
+    font-family: var(--paragraph-text);
+}
+
+.vedical_ed_de {
+    display: grid;
+    align-items: center;
+}
+
+.vedical_ed_de svg {
+    cursor: pointer;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link {
+    margin-bottom: 0px;
+    border: none;
+    color: var(--black);
+    font-family: var(--header-text);
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: var(--white);
+    background-color: var(--brand-blue);
+    border-color: transparent;
+}
+
+.user_info {
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 20px;
+}
+
+.booking_box {
+    background: hsl(0deg 0% 0% / 5%);
+    backdrop-filter: blur(14.5px);
+    -webkit-backdrop-filter: blur(14.5px);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.driver_booking {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.driver_img img {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.booking_status h2 {
+    font-size: 20px;
+    color: var(--black);
+    font-family: var(--header-text);
+    text-transform: uppercase;
+}
+
+.driver_content {
+    padding-left: 20px;
+}
+
+.driver_content h2 {
+    font-size: 18px;
+    color: var(--brand-blue);
+    margin-bottom: 5px;
+    font-family: var(--header-text);
+    text-transform: uppercase;
+}
+
+.star-ratings {
+    top: -10px;
+}
+
+.driver_content p {
+    font-size: 12px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 0px;
+    margin-top: -10px;
+    font-family: var(--paragraph-text);
+}
+
+.address_bookin {
+    display: flex;
+    align-items: center;
+}
+
+.address_map img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    padding-right: 20px;
+}
+
+.location_dot img {
+    height: 65px;
+    width: auto;
+}
+
+.address_both p {
+    font-size: 15px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-family: var(--paragraph-text);
+    padding-left: 10px;
+}
+
+.user_notification h2 {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 30px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.notifi_box {
+    background: hsl(0deg 0% 0% / 5%);
+    backdrop-filter: blur(14.5px);
+    -webkit-backdrop-filter: blur(14.5px);
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.notifi_box h3 {
+    font-size: 18px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 30px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.notifi_box h3 span {
+    color: var(--brand-blue);
+    text-transform: uppercase;
+}
+
+.notifi_conent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notifi_img {
+    display: flex;
+    align-items: center;
+}
+
+.notifi_img img {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.notifi_img h4 {
+    font-size: 15px;
+    color: var(--black);
+    margin-bottom: 5px;
+    font-family: var(--paragraph-text);
+}
+
+.notifi_img p {
+    font-size: 12px;
+    color: var(--brand-gray);
+    margin-bottom: 0px;
+    font-family: var(--paragraph-text);
+}
+
+.user_payment h2 {
+    font-size: 30px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 30px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.add_payment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add_payment h2 {
+    font-size: 20px;
+    color: var(--brand-blue);
+    font-weight: 700;
+    margin-bottom: 30px;
+    max-width: 400px;
+    font-family: var(--header-text);
+}
+
+.add_payment button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: none;
+    background-color: var(--brand-blue);
+    color: var(--white);
+    text-transform: uppercase;
+    font-size: var(--paragraph-text);
+    width: 130px;
+}
+
+.wallet_box {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    background: hsl(0deg 0% 0% / 5%);
+    backdrop-filter: blur(14.5px);
+    -webkit-backdrop-filter: blur(14.5px);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.wallet_box img {
+    height: 80px;
+    width: auto;
+}
+
+.wallet_box h2 {
+    margin-bottom: 0px;
+    padding-left: 15px;
+}
+
+.card_payment .display_user_card {
+    width: fit-content;
+}
+
+.card_payment .card_delete button {
+    border: none;
+    background-color: transparent;
+    margin-left: 20px;
+}
+
+.wallet_field h3 {
+    font-size: 20px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: var(--header-text);
+}
+
+.wallet_field .user_input {
+    display: block;
+}
+
+.wallet_field .user_input input {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.card_field h3 {
+    font-size: 20px;
+    color: var(--black);
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: var(--header-text);
+}
+
+/* USER PROFILE END */

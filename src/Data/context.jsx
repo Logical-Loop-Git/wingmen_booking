@@ -25,6 +25,10 @@ export const ContextProvider = ({ children }) => {
     const [estimateTime, setEstimateTime] = useState('')
     const [distance, setDistance] = useState('')
 
+    //POPUPS VIEW
+    const [walletMoney, setwalletMoney] = useState(false)
+    const [addCard, setAddCard] = useState(false)
+
     return (
         <Context.Provider
             value={{
@@ -53,7 +57,11 @@ export const ContextProvider = ({ children }) => {
                 estimateTime,
                 setEstimateTime,
                 distance,
-                setDistance
+                setDistance,
+                walletMoney,
+                setwalletMoney,
+                addCard,
+                setAddCard
             }}
         >
             {children}

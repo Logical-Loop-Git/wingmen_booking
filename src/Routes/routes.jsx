@@ -7,6 +7,7 @@ import { Context } from "../Data/context";
 import Booking from "../Pages/Booking";
 import Landing from "../Pages/Landing";
 import Login from "../Pages/Login";
+import UserProfile from "../Pages/UserProfile";
 
 const Routes = () => {
 
@@ -40,6 +41,7 @@ const Routes = () => {
             <Route exact path="/" component={Landing} />
             <Route exact path="/booking" component={Booking} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/userprofile" component={UserProfile} />
             <Redirect to="/" />
         </Switch>
     );
