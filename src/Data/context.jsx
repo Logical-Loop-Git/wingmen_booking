@@ -19,15 +19,19 @@ export const ContextProvider = ({ children }) => {
     const [selectedServiceType, setSelectedServiceType] = useState({})
     const [triType, setTriType] = useState('')
     const [selectedCard, setSelectedCard] = useState('')
+    const [bookingNote, setBookingNote] = useState('')
     const [bookingAmount, setBookingAmount] = useState('')
     const [promoCode, setPromoCode] = useState('')
     const [paymentType, setPaymentType] = useState('')
     const [estimateTime, setEstimateTime] = useState('')
     const [distance, setDistance] = useState('')
+    const [cardAddedStatus, setCardAddedStatus] = useState(false)
 
     //POPUPS VIEW
     const [walletMoney, setwalletMoney] = useState(false)
     const [addCard, setAddCard] = useState(false)
+    const [addVehical, setAddVehical] = useState(false)
+    const [addVehicalStatus, setAddVehicalStatus] = useState(false)
 
     return (
         <Context.Provider
@@ -50,6 +54,8 @@ export const ContextProvider = ({ children }) => {
                 setSelectedCard,
                 bookingAmount,
                 setBookingAmount,
+                bookingNote,
+                setBookingNote,
                 promoCode,
                 setPromoCode,
                 paymentType,
@@ -61,7 +67,13 @@ export const ContextProvider = ({ children }) => {
                 walletMoney,
                 setwalletMoney,
                 addCard,
-                setAddCard
+                setAddCard,
+                cardAddedStatus,
+                setCardAddedStatus,
+                addVehical,
+                setAddVehical,
+                addVehicalStatus,
+                setAddVehicalStatus
             }}
         >
             {children}

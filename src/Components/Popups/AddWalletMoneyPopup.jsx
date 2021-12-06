@@ -9,7 +9,11 @@ import { Context } from '../../Data/context'
 
 const AddWalletMoneyPopup = () => {
 
-    const { userData, walletMoney, setwalletMoney } = useContext(Context)
+    const { 
+        userData, 
+        walletMoney, 
+        setwalletMoney
+     } = useContext(Context)
     const [userCard, setUserCard] = useState([])
     const [selectedCardid, setSelectedCardid] = useState('')
     const [rechargeAmount, setRechargeAmount] = useState(0)
@@ -35,6 +39,7 @@ const AddWalletMoneyPopup = () => {
             });
     }, []);
 
+    //CLOSE POPUP
     const onClosePopup = () => {
         if (walletMoney === false) {
             setwalletMoney(true);
@@ -43,11 +48,13 @@ const AddWalletMoneyPopup = () => {
         }
     };
 
+    //SELECT USER CARD
     const onSelectCard = (id) => {
         console.log(id, `setSelectedCard`);
         setSelectedCardid(id)
     }
 
+    //API FOR ADD MONEY IN WALLET
     const onAddMoney = () => {
         const body = {
             "cardId": selectedCardid,

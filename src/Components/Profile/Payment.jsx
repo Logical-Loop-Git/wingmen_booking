@@ -3,27 +3,37 @@ import wallet from '../../Images/Icon/wallet.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
-import API from '../../Config/api'
+import API, { stripTestKey } from '../../Config/api'
 import { Context } from '../../Data/context'
 import useOnclickOutside from "react-cool-onclickoutside";
 import AddWalletMoneyPopup from '../Popups/AddWalletMoneyPopup'
-import AddCardPopup from '../Popups/AddCardPopup'
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CardForm from '../Stripe/CardForm';
+import { toast } from 'react-toastify'
 
 
 const Payment = () => {
 
-    const { walletMoney, setwalletMoney, addCard, setAddCard } = useContext(Context)
+    const {
+        userData,
+        walletMoney,
+        setwalletMoney,
+        cardAddedStatus
+    } = useContext(Context)
     const [userWallet, setUserWallet] = useState('')
     const [userCard, setUserCard] = useState([])
+    const stripePromise = loadStripe(stripTestKey);
+    const [addCreditCard, setAddCreditCard] = useState(false)
+
 
     //API CALL FOR USER PROFILE
     const fetchUserDetail = useCallback(() => {
-        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         // car getUserProfile List
         let url = API + `getUserProfile`;
         const config = {
             headers: {
-                Authorization: `${authData.token}`,
+                Authorization: `${userData.token}`,
             }
         };
         axios
@@ -44,12 +54,9 @@ const Payment = () => {
             fetchUserDetail()
             setwalletMoney(false);
         }
-        if (addCard) {
-            fetchUserDetail()
-            setAddCard(false);
-        }
     });
 
+    //OPEN WALLET POPUP
     const onWalletPopup = () => {
         if (walletMoney === false) {
             setwalletMoney(true);
@@ -58,17 +65,59 @@ const Payment = () => {
         }
     };
 
-    const onAddCardPopup = () => {
-        if (addCard === false) {
-            setAddCard(true);
-        } else {
-            setAddCard(false);
+    //ADD USER CARD
+    const onAddCard = () => {
+        //API FOR CARD CREATE INTENT
+        setAddCreditCard(true)
+        let url = API + `setUpIntent`;
+        const config = {
+            headers: {
+                Authorization: `${userData.token}`,
+            }
+        };
+        axios
+            .post(url, {}, config)
+            .then((response) => {
+                if (response.data.success === true) {
+                    console.log(response.data.data.setupIntent)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
+    }
+
+    //DELETE USER CARD
+    const onDeleteCard = (id) => {
+        //API FOR DELETE USER CARD
+        let url = API + `deleteCard`;
+        const config = {
+            headers: {
+                Authorization: `${userData.token}`,
+            }
+        };
+        const body = {
+            cardId: id
         }
-    };
+        axios
+            .post(url, body, config)
+            .then((response) => {
+                if (response.data.success === true) {
+                    toast.dark(`Your card deleted successfully.`)
+                    fetchUserDetail()
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
+    }
 
     useEffect(() => {
         fetchUserDetail()
-    }, [])
+        if (cardAddedStatus) {
+            fetchUserDetail()
+        }
+    }, [cardAddedStatus])
 
 
     return (
@@ -76,11 +125,6 @@ const Payment = () => {
             {walletMoney && (
                 <div className="popup_open" ref={ref}>
                     <AddWalletMoneyPopup />
-                </div>
-            )}
-            {addCard && (
-                <div className="popup_open" ref={ref}>
-                    <AddCardPopup />
                 </div>
             )}
             <div className="user_payment">
@@ -101,11 +145,18 @@ const Payment = () => {
                 <div className="card_payment">
                     <div className="add_payment">
                         <h2>Card</h2>
-                        <button onClick={() => onAddCardPopup()}>
+                        <button onClick={() => onAddCard()}>
                             add Card
                             <FontAwesomeIcon icon={faPlus} />
                         </button>
                     </div>
+                    {addCreditCard &&
+                        <div className="strip_add_card">
+                            <Elements stripe={stripePromise}>
+                                <CardForm />
+                            </Elements>
+                        </div>
+                    }
                     {userCard.length < 1
                         ? "No userCard found :("
                         : userCard.map((list, index) => {
@@ -116,7 +167,7 @@ const Payment = () => {
                                         <p>{list.brand} - {list.expiryDate}</p>
                                     </label>
                                     <div className="card_delete">
-                                        <button>
+                                        <button onClick={() => onDeleteCard(list._id)}>
                                             <FontAwesomeIcon icon={faTrash} />
                                         </button>
                                     </div>

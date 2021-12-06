@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import API, { imageUrl } from '../../Config/api';
+import { Context } from '../../Data/context';
+import axios from 'axios';
 //IMAGES
 import fare from '../../Images/Icon/fare.png'
 import time from '../../Images/Icon/time.png'
-import { Context } from '../../Data/context';
 import oneway from '../../Images/Icon/oneway.png'
 import returnjourney from '../../Images/Icon/returnjourney.png'
-import axios from 'axios';
 
 const BookingDetail = () => {
 
@@ -20,7 +20,9 @@ const BookingDetail = () => {
         triType,
         setBookingAmount,
         setEstimateTime,
-        setDistance
+        setDistance,
+        bookingNote,
+        setBookingNote
     } = useContext(Context)
     const [bookingCheck, setBookingCheck] = useState({})
 
@@ -30,6 +32,7 @@ const BookingDetail = () => {
         const deg2rad = (deg) => {
             return deg * (Math.PI / 180)
         }
+
         const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
             var R = 6371; // Radius of the earth in km
             var dLat = deg2rad(lat2 - lat1);  // deg2rad below
@@ -43,12 +46,16 @@ const BookingDetail = () => {
             var d = R * c; // Distance in km
             return d;
         }
+
         const distance = getDistanceFromLatLonInKm(pickupLocation.latitude, pickupLocation.longitude, dropLocation.latitude, dropLocation.longitude)
         const estimateTime = parseFloat((distance / 50) * 60).toFixed(2)
-        //SET CONTEXT
+        //CALCUTAE DISTANCE IN KM END
+
+        //SET VALUE IN CONTEXT
         setDistance(distance)
         setEstimateTime(estimateTime)
-        //API CALL FOR CREATE BOOKING CHECK
+
+        //API CALL FOR BOOKING CHECK
         const body = {
             "bookingDate": new Date(),
             "dropUpAddress": dropLocation.address,
@@ -92,6 +99,7 @@ const BookingDetail = () => {
         <div className="display_details">
             <h2>Preview Booking</h2>
             {/* SELECTED LOCATION  */}
+
             <div className="display_loc">
                 <div className="location">
                     <div className="pickup_icone">
@@ -123,6 +131,7 @@ const BookingDetail = () => {
                 </div>
             </div>
             {/* SELECTED SERVICE */}
+
             <h2>Selected Services</h2>
             <div className="display_sele_service">
                 <div className="history-tl-container">
@@ -149,6 +158,7 @@ const BookingDetail = () => {
                 </div>
             </div>
             {/* FARE ESTIMATE  */}
+
             <h2>Fare Estimate</h2>
             <div className="fare_estimate">
                 <div className="fare_estimate_icon">
@@ -160,10 +170,18 @@ const BookingDetail = () => {
                     <p>{bookingCheck.eta} min</p>
                 </div>
             </div>
-            {/* ADD FEEDBACK  */}
-            <h2>Add Feedback</h2>
+            {/* ADD NOTE  */}
+
+            <h2>Add Note</h2>
             <div className="feedback">
-                <input type="text" name="feedback" id="feedback" placeholder="Add Feedback" />
+                <input
+                    type="text"
+                    name="add_note"
+                    id="add_note"
+                    placeholder="Add Note"
+                    value={bookingNote}
+                    onChange={(e) => setBookingNote(e.target.value)}
+                />
             </div>
         </div>
     )

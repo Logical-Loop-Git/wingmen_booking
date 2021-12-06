@@ -3,7 +3,8 @@ import { Switch, Redirect, Route } from "react-router-dom";
 // import { toast } from "react-toastify";
 // import jwt from "jwt-decode";
 import { Context } from "../Data/context";
-// pages import
+import ProtectedRoutes from "./ProtectedRoutes";
+// PAGES IMPORT
 import Booking from "../Pages/Booking";
 import Landing from "../Pages/Landing";
 import Login from "../Pages/Login";
@@ -38,10 +39,21 @@ const Routes = () => {
 
     return (
         <Switch>
+            {/* NORMAL ROUTES */}
             <Route exact path="/" component={Landing} />
-            <Route exact path="/booking" component={Booking} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/userprofile" component={UserProfile} />
+            {/* NORMAL ROUTES END */}
+
+
+            {/* PROTECTED ROUTE */}
+            <ProtectedRoutes path="/userprofile">
+                <UserProfile />
+            </ProtectedRoutes>
+            <ProtectedRoutes path="/booking">
+                <Booking />
+            </ProtectedRoutes>
+            {/* PROTECTED ROUTE END */}
+
             <Redirect to="/" />
         </Switch>
     );

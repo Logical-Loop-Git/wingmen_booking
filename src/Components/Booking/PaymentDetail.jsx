@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Context } from '../../Data/context';
 import axios from 'axios';
-import API from '../../Config/api';
-
+import API, { stripTestKey } from '../../Config/api';
+import { toast } from 'react-toastify';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CardForm from '../Stripe/CardForm';
 
 const PaymentDetail = () => {
 
@@ -13,17 +16,39 @@ const PaymentDetail = () => {
         setSelectedCard,
         bookingAmount,
         setPromoCode,
-        setPaymentType
+        setPaymentType,
+        cardAddedStatus
     } = useContext(Context)
+    const stripePromise = loadStripe(stripTestKey);
     const [cardChecked, setCardChecked] = useState(true)
+    const [userProfileDetail, setUserProfileDetail] = useState({})
+    const [userCard, setUserCard] = useState([])
     const [promoC, setPromoC] = useState('')
     const [promoAmount, setPromoAmount] = useState(0)
 
-    const onSelectCard = (id) => {
-        console.log(id, `setSelectedCard`);
-        setSelectedCard(id)
-    }
+    //API CALL FOR USER PROFILE
+    const fetchUserProfile = useCallback(() => {
+        // car getUserProfile List
+        let url = API + `getUserProfile`;
+        const config = {
+            headers: {
+                Authorization: `${userData.token}`,
+            }
+        };
+        axios
+            .get(url, config)
+            .then((response) => {
+                if (response.data.success === true) {
+                    setUserProfileDetail(response.data.data)
+                    setUserCard(response.data.data.userCard)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
+    }, []);
 
+    //CHECK FOR PAYMENT METHOD
     const onSelectPaymentType = (checked) => {
         console.log(checked, 'onSelectPaymentType');
         setCardChecked(checked)
@@ -34,6 +59,13 @@ const PaymentDetail = () => {
         }
     }
 
+    //SELECT USER CARD ID
+    const onSelectCard = (id) => {
+        console.log(id, `setSelectedCard`);
+        setSelectedCard(id)
+    }
+
+    //APPLY FOR PROMO CODE
     const onPromoCheck = () => {
         //API CALL FOR PROMO CHECK
         const body = {
@@ -50,16 +82,26 @@ const PaymentDetail = () => {
         axios
             .post(url, body, config)
             .then((response) => {
+                console.log(response, 'applyPromCode');
                 if (response.data.success === true) {
-                    console.log(response, 'applyPromCode');
                     setPromoAmount(response.data.data.promoAmount)
                     setPromoCode(promoC)
+                    toast.success(`Your promo code applyed successfully.`)
+                } else {
+                    toast.warn(response.data.message)
                 }
             })
             .catch((err) => {
                 console.log("error here", err);
             });
     }
+
+    useEffect(() => {
+        fetchUserProfile()
+        if (cardAddedStatus) {
+            fetchUserProfile()
+        }
+    }, [cardAddedStatus])
 
     return (
         <div className="display_payment">
@@ -74,7 +116,7 @@ const PaymentDetail = () => {
                         onChange={() => onSelectPaymentType(false)}
                     />
                     <label for={'WALLET'}>
-                        Pay via Wallet (${userData.walletAmount})
+                        Pay via Wallet (${parseFloat(userProfileDetail.walletAmount, 0).toFixed(2)})
                     </label>
                 </div>
             </div>
@@ -94,25 +136,28 @@ const PaymentDetail = () => {
                 </div>
                 {cardChecked &&
                     <div>
-                        {
-                            userData.userCard.length < 1
-                                ? "No userCard found :("
-                                : userData.userCard.map((list, index) => {
-                                    return (
-                                        <div className="display_user_card" key={index}>
-                                            <input
-                                                type="radio"
-                                                name="card"
-                                                id={'CARD'}
-                                                onChange={(id) => onSelectCard(list._id)}
-                                            />
-                                            <label for={'CARD'}>
-                                                <p>•••• •••• •••• {list.last4Digits}</p>
-                                                <p>{list.brand} - {list.expiryDate}</p>
-                                            </label>
-                                        </div>
-                                    );
-                                })
+                        {userCard.length < 1
+                            ? (<div className="strip_add_card">
+                                <Elements stripe={stripePromise}>
+                                    <CardForm />
+                                </Elements>
+                            </div>)
+                            : (userCard.map((list, index) => {
+                                return (
+                                    <div className="display_user_card" key={index}>
+                                        <input
+                                            type="radio"
+                                            name="card"
+                                            id={'CARD'}
+                                            onChange={(id) => onSelectCard(list._id)}
+                                        />
+                                        <label for={'CARD'}>
+                                            <p>•••• •••• •••• {list.last4Digits}</p>
+                                            <p>{list.brand} - {list.expiryDate}</p>
+                                        </label>
+                                    </div>
+                                );
+                            }))
                         }
                     </div>
                 }

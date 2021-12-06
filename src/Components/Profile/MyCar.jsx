@@ -17,7 +17,7 @@ const MyCar = () => {
     const [vehicalTransmission, setVehicalTransmission] = useState([])
     const [viewCar, setViewCar] = useState(car)
     const [vehicalImage, setVehicalImage] = useState([])
-    //VEHICAL ADD
+    //VEHICAL ADD FORM
     const [vehicalName, setVehicalName] = useState('')
     const [plateNumber, setPlateNumber] = useState('')
     const [vehicalTypeId, setVehicalTypeId] = useState('')
@@ -143,7 +143,7 @@ const MyCar = () => {
 
     useEffect(() => {
         fetchVehical()
-        // car getVehicleType List
+        // API FOR USER VHICAL LIST
         let url = API + `getVehicleType`;
         const config = {
             headers: {

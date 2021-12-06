@@ -12,6 +12,7 @@ const UserDetails = (userDetail) => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
 
+    //UPDATE USER PROFILE
     const onUpdateProfile = () => {
         const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         const body = {

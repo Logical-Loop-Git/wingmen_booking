@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useHistory } from 'react-router';
 import UserDetails from '../Components/Profile/UserDetails';
 import MyCar from '../Components/Profile/MyCar';
@@ -10,10 +10,12 @@ import NavBar from '../Components/Header/NavBar'
 import { Col, Row } from 'reactstrap'
 import API, { imageUrl } from '../Config/api';
 import axios from 'axios';
+import { Context } from '../Data/context';
 
 const UserProfile = () => {
 
     const history = useHistory()
+    const {userData} = useContext(Context)
     const [userDetail, setUserDetail] = useState({})
     //USER DETAILS VIEW
     const [userDetails, setUserDetails] = useState(true)
@@ -25,12 +27,10 @@ const UserProfile = () => {
 
     //API CALL FOR USER PROFILE
     const fetchUserDetail = useCallback(() => {
-        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
-        // car getUserProfile List
         let url = API + `getUserProfile`;
         const config = {
             headers: {
-                Authorization: `${authData.token}`,
+                Authorization: `${userData.token}`,
             }
         };
         axios
@@ -98,7 +98,11 @@ const UserProfile = () => {
     const onRequestRide = () => {
         history.push(`/booking`)
     }
-
+    const onLogout = () => {
+        localStorage.removeItem("wingmen_booking")
+        window.location="/"
+    }
+    //VIEW OTHER COMPONENTS END
 
     useEffect(() => {
         fetchUserDetail()
@@ -142,7 +146,7 @@ const UserProfile = () => {
                                         <li onClick={() => onChangePassword()}>
                                             Change Password
                                         </li>
-                                        <li>
+                                        <li onClick={() => onLogout()}>
                                             Log Out
                                         </li>
                                     </ul>
@@ -155,7 +159,7 @@ const UserProfile = () => {
                                     <UserDetails userDetail={userDetail} />
                                 }
                                 {myCars &&
-                                    <MyCar id={userDetail._id} />
+                                    <MyCar />
                                 }
                                 {myBookings &&
                                     <MyBooking />

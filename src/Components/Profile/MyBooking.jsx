@@ -14,6 +14,7 @@ const MyBooking = () => {
     const [activeTab, setActiveTab] = useState('1');
     const [bookingList, setBookingList] = useState([])
 
+    //TOGGLE FOR PAST BOOKING AND ONGOIN BOOKING
     const toggle = (tab) => {
         if (activeTab !== tab) setActiveTab(tab);
     }

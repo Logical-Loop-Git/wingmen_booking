@@ -16,7 +16,7 @@ const HomeContent = () => {
                         ? "No homeData found :("
                         : homeData.map((list, index) => {
                             return (
-                                <Col md={4}>
+                                <Col md={4} key={index}>
                                     <div className="services">
                                         <img className="img-fluid" src={list.img} alt="" />
                                         <h3>{list.title}</h3>

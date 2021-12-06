@@ -5,9 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationArrow, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 import PickupLocation from '../Location/PickupLocation';
 import DropLocation from '../Location/DropLocation';
+import { useHistory } from 'react-router';
 
 
 const HomeBooking = () => {
+
+    const history = useHistory()
+
+    const onBooking = () => {
+        history.push(`/booking`)
+    }
+
 
     return (
         <div className="booking_section">
@@ -32,7 +40,12 @@ const HomeBooking = () => {
                             </div>
                             <DropLocation />
                         </div>
-                        <button className="btn_brand">book</button>
+                        <button
+                            className="btn_brand"
+                            onClick={() => onBooking()}
+                        >
+                            book
+                        </button>
                     </div>
                 </Col>
             </Row>

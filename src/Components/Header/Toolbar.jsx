@@ -48,7 +48,7 @@ const toolbar = (props) => {
                     <div className="toolbar_navigation-items">
                         <ul>
                             <li>
-                                {userData.name === '' || null || undefined ?
+                                {userData.firstName === undefined ?
                                     <NavLink to="/login" exact activeClassName="nav_active">
                                         Sign In
                                     </NavLink>
