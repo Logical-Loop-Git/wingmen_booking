@@ -15,7 +15,7 @@ import { Context } from '../Data/context';
 const UserProfile = () => {
 
     const history = useHistory()
-    const {userData} = useContext(Context)
+    const { userData } = useContext(Context)
     const [userDetail, setUserDetail] = useState({})
     //USER DETAILS VIEW
     const [userDetails, setUserDetails] = useState(true)
@@ -27,10 +27,11 @@ const UserProfile = () => {
 
     //API CALL FOR USER PROFILE
     const fetchUserDetail = useCallback(() => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         let url = API + `getUserProfile`;
         const config = {
             headers: {
-                Authorization: `${userData.token}`,
+                Authorization: `${authData.token}`,
             }
         };
         axios
@@ -39,6 +40,7 @@ const UserProfile = () => {
                 if (response.data.success === true) {
                     setUserDetail(response.data.data)
                     console.log(response.data.data)
+                    console.log(userData)
                 }
             })
             .catch((err) => {
@@ -100,7 +102,7 @@ const UserProfile = () => {
     }
     const onLogout = () => {
         localStorage.removeItem("wingmen_booking")
-        window.location="/"
+        window.location = "/"
     }
     //VIEW OTHER COMPONENTS END
 
@@ -128,22 +130,22 @@ const UserProfile = () => {
                                 </div>
                                 <div className="profile_pages">
                                     <ul>
-                                        <li onClick={() => onMyCar()}>
+                                        <li className={`${myCars ? 'active_bar' : ''}`} onClick={() => onMyCar()}>
                                             My Car
                                         </li>
-                                        <li onClick={() => onMyBooking()}>
+                                        <li className={`${myBookings ? 'active_bar' : ''}`} onClick={() => onMyBooking()}>
                                             My Bookings
                                         </li>
                                         <li onClick={() => onRequestRide()}>
                                             Request Ride
                                         </li>
-                                        <li onClick={() => onPayment()}>
+                                        <li className={`${payment ? 'active_bar' : ''}`} onClick={() => onPayment()}>
                                             Payment
                                         </li>
-                                        <li onClick={() => onNotification()}>
+                                        <li className={`${notification ? 'active_bar' : ''}`} onClick={() => onNotification()}>
                                             Notification
                                         </li>
-                                        <li onClick={() => onChangePassword()}>
+                                        <li className={`${changePassword ? 'active_bar' : ''}`} onClick={() => onChangePassword()}>
                                             Change Password
                                         </li>
                                         <li onClick={() => onLogout()}>

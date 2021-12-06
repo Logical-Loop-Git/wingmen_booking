@@ -670,6 +670,7 @@ textarea:-webkit-autofill:active {
     font-weight: 700;
     margin-bottom: 0px;
     padding-left: 10px;
+    text-transform: uppercase;
 }
 
 ul.tl li .item-detail {
@@ -711,6 +712,7 @@ ul.tl li .timestamp {
     font-weight: 700;
     margin-bottom: 0px;
     padding-left: 10px;
+    text-transform: capitalize;
 }
 
 .feedback input {
@@ -760,6 +762,7 @@ ul.tl li .timestamp {
     font-family: var(--paragraph-text);
     font-weight: 700;
     padding-left: 10px;
+    text-transform: uppercase;
 }
 
 .display_user_card {
@@ -778,6 +781,7 @@ ul.tl li .timestamp {
     font-weight: 700;
     padding-left: 10px;
     margin-bottom: 0px;
+    text-transform: uppercase;
 }
 
 .display_promo {
@@ -802,7 +806,7 @@ ul.tl li .timestamp {
     padding: 7px;
     border-radius: 50px;
     width: 70px;
-    right: 50px;
+    right: 55px;
     margin-top: 5px;
     color: var(--white);
     background-color: var(--brand-blue);
