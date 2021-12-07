@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
+import { Context } from '../../Data/context';
 
 import './header.css'
 
 const sideDrawer = (props) => {
+
+    const { userData } = useContext(Context)
 
     let drawerClasses = 'side-drawer';
     if (props.show) {
@@ -32,6 +35,17 @@ const sideDrawer = (props) => {
                     <NavLink to="/contact" exact activeClassName="nav_active">
                         Contact
                     </NavLink>
+                </li>
+                <li>
+                    {userData.firstName === undefined ?
+                        <NavLink to="/login" exact activeClassName="nav_active">
+                            Sign In
+                        </NavLink>
+                        :
+                        <NavLink to="/userprofile" exact activeClassName="nav_active">
+                            {userData.firstName} {userData.lastName}
+                        </NavLink>
+                    }
                 </li>
             </ul>
         </nav>

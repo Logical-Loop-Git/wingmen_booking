@@ -468,6 +468,7 @@ textarea:-webkit-autofill:active {
     font-size: 30px;
     color: var(--brand-blue);
     padding-left: 10px;
+    cursor: pointer;
 }
 
 /* LOGIN PAGE END */
@@ -1362,3 +1363,64 @@ ul.tl li .timestamp {
 }
 
 /* STRIP INPUT END */
+
+
+
+
+/* SIGNUP PAGE */
+.signup_form button {
+    margin-top: 30px;
+}
+
+.react-tel-input .form-control {
+    font-family: var(--paragraph-text);
+    background: var(--white) !important;
+    border: 1px solid var(--brand-blue) !important;
+    color: var(--black);
+    height: auto !important;
+    width: 100% !important;
+}
+
+.react-tel-input .selected-flag {
+    outline: none;
+    position: relative;
+    width: 38px;
+    height: 100%;
+    padding: 0 0 0 8px;
+    border-radius: 3px 0 0 3px;
+    background: var(--white) !important;
+    border: 1px solid var(--brand-blue) !important;
+}
+
+.signup_form_otp {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.signup_form_otp input {
+    font-family: var(--paragraph-text);
+    background: var(--white);
+    border: 1px solid var(--brand-blue);
+    color: var(--black);
+    height: 50px;
+    width: 50px !important;
+}
+
+.signup_form_otp span {
+    font-family: var(--header-text);
+    font-weight: 700;
+    color: var(--black);
+    padding: 5px;
+}
+
+.signup_user_detail {
+    text-align: initial;
+}
+
+.signup_user_detail .user_input input,
+.signup_user_detail .user_input select {
+    width: 100%;
+}
+
+/* SIGNUP PAGE END */

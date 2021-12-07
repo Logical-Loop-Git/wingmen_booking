@@ -11,6 +11,8 @@ import { Col, Row } from 'reactstrap'
 import API, { imageUrl } from '../Config/api';
 import axios from 'axios';
 import { Context } from '../Data/context';
+import user_pr from '../Images/Icon/user.png'
+
 
 const UserProfile = () => {
 
@@ -121,7 +123,7 @@ const UserProfile = () => {
                             <div className="profile_navigation">
                                 <div className="user_name">
                                     <div className="user_name_img">
-                                        <img className="img-fluid" src={`${imageUrl}${userDetail.image}`} alt="" />
+                                        <img className="img-fluid" src={userDetail.image === '' || null || undefined ? user_pr : `${imageUrl}${userDetail.image}`} alt="" />
                                     </div>
                                     <div className="user_name_cot" onClick={() => onUserDetail()}>
                                         <h2>{userDetail.firstName} {userDetail.lastName}</h2>

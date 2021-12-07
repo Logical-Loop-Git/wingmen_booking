@@ -44,7 +44,7 @@ const HomeBooking = () => {
                             className="btn_brand"
                             onClick={() => onBooking()}
                         >
-                            book
+                            book ride
                         </button>
                     </div>
                 </Col>

@@ -72,27 +72,39 @@ const Footer = () => {
                         </div>
                     </Col>
                     <Col md='2'>
-                        <div className='footer-col'>
+                        <div className='footer-col fo_mt'>
                             <div className='footer_cont'>
                                 <Link
-                                    to={{ pathname: "tel:8460339810" }}
+                                    to={{ pathname: "tel:+1 00000 00000" }}
                                     target="_blank"
                                 >
-                                    +91 84603 39810
+                                    +1 855-Mywngmn
                                 </Link>
                             </div>
                             <div className='footer_cont'>
                                 <Link
-                                    to={{ pathname: "mailto:chiragmehta900@gmail.com" }}
+                                    to={{ pathname: "mailto:support@mywngmn.com" }}
                                     target="_blank"
                                 >
-                                    chiragmehta900@gmail.com
+                                    support@mywngmn.com
                                 </Link>
-                                <p>2972 Westheimer Rd. Santa Ana, Illinois 85486 </p>
+                                <p>626 RexCorp Plaza 6th Floor Uniondale New York 11556.</p>
                                 <div className="social_media">
-                                    <FontAwesomeIcon icon={faInstagram} />
-                                    <FontAwesomeIcon icon={faFacebook} />
-                                    <FontAwesomeIcon icon={faTwitter} />
+                                    <FontAwesomeIcon
+                                        icon={faInstagram}
+                                        onClick={() => window.open('https://www.instagram.com/mywngmn')}
+                                        target="_blank"
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={faFacebook}
+                                        onClick={() => window.open('https://www.instagram.com/mywngmn')}
+                                        target="_blank"
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={faTwitter}
+                                        onClick={() => window.open('https://twitter.com/mywngmn')}
+                                        target="_blank"
+                                    />
                                 </div>
                             </div>
                         </div>

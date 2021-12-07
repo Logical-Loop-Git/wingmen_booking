@@ -9,6 +9,7 @@ import Booking from "../Pages/Booking";
 import Landing from "../Pages/Landing";
 import Login from "../Pages/Login";
 import UserProfile from "../Pages/UserProfile";
+import Signup from "../Pages/Signup";
 
 const Routes = () => {
 
@@ -42,6 +43,7 @@ const Routes = () => {
             {/* NORMAL ROUTES */}
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
             {/* NORMAL ROUTES END */}
 
 

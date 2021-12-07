@@ -16,6 +16,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    //API FOR USER LOGIN
     const onSubmit = () => {
         const body = {
             "deviceType": "web",
@@ -52,6 +53,11 @@ const Login = () => {
         }
     }
 
+    //REDIRECT TO SIGN UP PAGE
+    const onSignup = () => {
+        history.push(`/signup`)
+    }
+
 
     return (
         <section>
@@ -86,7 +92,7 @@ const Login = () => {
                             <button className="forget_btn">Forget Password?</button>
                         </div>
                         <div className="signup">
-                            <h2>Don't have an account?<span>sign up</span></h2>
+                            <h2>Don't have an account?<span onClick={() => onSignup()}>sign up</span></h2>
                         </div>
                     </div>
                 </div>

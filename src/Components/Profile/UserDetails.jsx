@@ -4,6 +4,7 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 import API, { imageUrl } from '../../Config/api'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import user_pr from '../../Images/Icon/user.png'
 
 const UserDetails = (userDetail) => {
     const [fname, setFname] = useState('')
@@ -53,7 +54,7 @@ const UserDetails = (userDetail) => {
     return (
         <div>
             <div className="user_image">
-                <img className="img-fluid" src={`${imageUrl}${userDetail.userDetail.image}`} alt="wingmen user profile" />
+                <img className="img-fluid" src={userDetail.userDetail.image === '' || null || undefined ? user_pr : `${imageUrl}${userDetail.userDetail.image}`} alt="wingmen user profile" />
                 <div className="add_user_photo_btn">
                     <label htmlFor="userphoto">
                         <FontAwesomeIcon icon={faPen} />

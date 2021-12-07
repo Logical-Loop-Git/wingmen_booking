@@ -3,11 +3,36 @@
         position: inherit;
         width: 100%;
         height: fit-content;
-        padding-bottom: 50px;
+        padding: 0px 20px 50px 20px;
+    }
+
+    .booking_proced {
+        width: 100%;
+        margin-top: 40px;
     }
 
     .booking_detail {
         height: fit-content;
+    }
+
+    .display_service {
+        width: 100%;
+    }
+
+    .display_details {
+        width: 100%;
+    }
+
+    .display_payment {
+        width: 100%;
+    }
+
+    .history-tl-container {
+        margin-left: 10px;
+    }
+
+    .display_promo button {
+        right: 25px;
     }
 
     .user_profile {
@@ -33,5 +58,85 @@
     .card_payment .display_user_card {
         width: initial;
         justify-content: space-between;
+    }
+
+    .signup_form_otp input {
+        height: 40px !important;
+        width: 40px !important;
+    }
+
+    .signup_form_otp span {
+        padding: 2px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .login_section {
+        margin-bottom: 40px;
+        height: fit-content;
+    }
+
+    .login_home h2 {
+        font-size: 30px;
+        max-width: 200px;
+    }
+
+    .login_home {
+        margin-bottom: 40px;
+    }
+
+    .booking_section {
+        height: fit-content;
+        margin-bottom: 40px;
+    }
+
+    .booking_home h2 {
+        margin-top: 30px;
+        font-size: 30px;
+        max-width: 200px;
+    }
+
+    .booking_home {
+        width: 100%;
+    }
+
+    .home_content {
+        height: fit-content;
+    }
+
+    .home_service h2 {
+        font-size: 30px;
+        max-width: 250px;
+    }
+
+    .home_download {
+        margin-top: 30px;
+    }
+
+    .app_download {
+        margin-bottom: 30px;
+    }
+
+    .app_download h2 {
+        font-size: 30px;
+        max-width: 250px;
+    }
+
+    .app_play_store button {
+        width: fit-content;
+    }
+
+    .login_part {
+        width: 100%;
+    }
+
+    .login_page {
+        height: fit-content;
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    .fo_mt {
+        margin-top: 30px;
     }
 }
