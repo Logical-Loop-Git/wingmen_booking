@@ -1,85 +1,85 @@
 /* PUBLIC DEFINE  */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700;900&display=swap");
 
 /* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: var(--black) !important;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--black) !important;
 }
 
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 textarea:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: var(--black) !important;
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--black) !important;
 }
 
 :root {
-    --white: #ffffff;
-    --black: #000000;
-    --brand-blue: #05a0e0;
-    --brand-gray: #6C6C6C;
-    --brand-red: #FF0000;
-    --header-text: 'Playfair Display', serif;
-    --paragraph-text: 'Roboto', sans-serif;
+  --white: #ffffff;
+  --black: #000000;
+  --brand-blue: #05a0e0;
+  --brand-gray: #6c6c6c;
+  --brand-red: #ff0000;
+  --header-text: "Playfair Display", serif;
+  --paragraph-text: "Roboto", sans-serif;
 }
 
 .header_padd {
-    padding-top: 50px;
+  padding-top: 50px;
 }
 
 .btn_brand {
-    border: none;
-    padding: 10px;
-    font-weight: 700;
-    border-radius: 5px;
-    text-transform: uppercase;
-    background-color: var(--brand-blue);
-    color: var(--white);
+  border: none;
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  color: var(--white);
 }
 
 /* PUBLIC DEFINE END  */
 /* POPUP */
 .popup_open {
-    padding: 40px;
-    position: absolute;
-    z-index: 99999;
-    width: 900px;
-    height: 50vh;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 20px;
+  padding: 40px;
+  position: absolute;
+  z-index: 99999;
+  width: 900px;
+  height: 50vh;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 20px;
 }
 
 .popup_close {
-    position: absolute;
-    right: 0%;
-    top: 0%;
-    margin-top: 20px;
-    margin-right: 20px;
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 .popup_close button {
-    border: none;
-    background-color: transparent;
-    color: var(--brand-blue);
+  border: none;
+  background-color: transparent;
+  color: var(--brand-blue);
 }
 
 .popup_heading {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 30px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-family: var(--header-text);
 }
 
 /* POPUP END */
@@ -87,754 +87,720 @@ textarea:-webkit-autofill:active {
 /* HOME */
 
 .login_section {
-    height: 50vh;
-    display: grid;
-    align-items: center;
+  height: 50vh;
+  display: grid;
+  align-items: center;
 }
 
 .login_home h2 {
-    font-size: 60px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 60px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .login_home h2 span {
-    color: var(--brand-blue);
+  color: var(--brand-blue);
 }
 
 .login_home p {
-    font-size: 20px;
-    font-family: var(--paragraph-text);
-    color: var(--brand-gray);
+  font-size: 20px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
 }
 
 .booking_section {
-    height: 50vh;
-    display: grid;
-    align-items: center;
+  height: 50vh;
+  display: grid;
+  align-items: center;
 }
 
 .booking_home {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 .booking_home h2 {
-    font-size: 50px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .booking_home h2 span {
-    color: var(--brand-blue);
+  color: var(--brand-blue);
 }
 
 .location {
-    display: flex;
-    border: 1px solid var(--brand-gray);
-    background: var(--white);
-    padding: 12px 14px;
-    margin-bottom: 20px;
+  display: flex;
+  border: 1px solid var(--brand-gray);
+  background: var(--white);
+  padding: 12px 14px;
+  margin-bottom: 20px;
 }
 
 .pickup_icone {
-    color: var(--brand-blue);
-    width: 30px;
+  color: var(--brand-blue);
+  width: 30px;
 }
 
 .drop_icone {
-    color: var(--brand-red);
-    width: 30px;
+  color: var(--brand-red);
+  width: 30px;
 }
 
 .location_input {
-    width: 100%;
+  width: 100%;
 }
 
 .location_input p {
-    font-size: 15px;
-    margin-bottom: 5px;
-    font-family: var(--paragraph-text);
-    color: var(--brand-gray);
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
 }
 
 .location_input input {
-    border: none;
-    width: 100%;
-    padding: 5px;
+  border: none;
+  width: 100%;
+  padding: 5px;
 }
 
 .location_suggestion_pickup {
-    position: absolute;
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 10px;
+  position: absolute;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 10px;
 }
 
 .location_suggestion_pickup ul {
-    list-style: none;
-    padding-left: 0px;
-    margin-bottom: 0px;
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
 }
 
 .location_suggestion_pickup ul li strong {
-    font-family: var(--header-text);
-    color: var(--brand-blue);
-    font-weight: 500;
+  font-family: var(--header-text);
+  color: var(--brand-blue);
+  font-weight: 500;
 }
 
 .location_suggestion_pickup ul li small {
-    font-family: var(--paragraph-text);
-    color: var(--black);
-    font-weight: 700;
+  font-family: var(--paragraph-text);
+  color: var(--black);
+  font-weight: 700;
 }
 
 .location_suggestion_drop {
-    position: absolute;
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 10px;
+  position: absolute;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 10px;
 }
 
 .location_suggestion_drop ul {
-    list-style: none;
-    padding-left: 0px;
-    margin-bottom: 0px;
+  list-style: none;
+  padding-left: 0px;
+  margin-bottom: 0px;
 }
 
 .location_suggestion_drop ul li strong {
-    font-family: var(--header-text);
-    color: var(--brand-red);
-    font-weight: 500;
+  font-family: var(--header-text);
+  color: var(--brand-red);
+  font-weight: 500;
 }
 
 .location_suggestion_drop ul li small {
-    font-family: var(--paragraph-text);
-    color: var(--black);
-    font-weight: 700;
+  font-family: var(--paragraph-text);
+  color: var(--black);
+  font-weight: 700;
 }
 
 .home_content {
-    height: 120vh;
-    display: grid;
-    align-items: center;
+  height: 120vh;
+  display: grid;
+  align-items: center;
 }
 
 .home_service h2 {
-    font-size: 50px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 35px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 35px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .home_service h2 span {
-    color: var(--brand-blue);
+  color: var(--brand-blue);
 }
 
 .services {
-    display: grid;
-    align-items: center;
-    height: 250px;
-    padding: 0px 20px;
+  display: grid;
+  align-items: center;
+  height: 250px;
+  padding: 0px 20px;
 }
 
 .services img {
-    height: 80px;
-    width: auto;
+  height: 80px;
+  width: auto;
 }
 
 .services h3 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: var(--header-text);
 }
 
 .services p {
-    font-size: 15px;
-    margin-bottom: 5px;
-    font-family: var(--paragraph-text);
-    color: var(--brand-gray);
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
 }
 
 .booking_home h2 {
-    font-size: 50px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .app_download h2 {
-    font-size: 50px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .app_download h2 span {
-    color: var(--brand-blue);
+  color: var(--brand-blue);
 }
 
 .app_download p {
-    font-size: 15px;
-    margin-bottom: 5px;
-    font-family: var(--paragraph-text);
-    color: var(--brand-gray);
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
 }
 
 .app_play_store {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
 }
 
 .app_play_store button {
-    border: none;
-    width: 200px;
+  border: none;
+  width: 200px;
 }
 
 /* HOME END */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* FOOTER  */
 .footer_bg {
-    /* background-color: var(--brand-blue); */
-    padding: 30px;
+  /* background-color: var(--brand-blue); */
+  padding: 30px;
 }
 
 .footer_heading {
-    font-size: 20px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: var(--header-text);
 }
 
 .footer_link {
-    font-family: var(--paragraph-text);
-    color: var(--brand-gray);
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
 }
 
 .footer_link a {
-    text-decoration: none;
-    color: var(--brand-gray);
+  text-decoration: none;
+  color: var(--brand-gray);
 }
 
 .footer_cont {
-    font-family: var(--paragraph-text);
-    color: var(--brand-gray);
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
 }
 
 .footer_cont a {
-    text-decoration: none;
-    color: var(--brand-gray);
+  text-decoration: none;
+  color: var(--brand-gray);
 }
 
 .social_media {
-    display: flex;
-    justify-content: space-between;
-    color: var(--brand-blue);
+  display: flex;
+  justify-content: space-between;
+  color: var(--brand-blue);
 }
 
 .subfooter {
-    margin-top: 20px;
-    font-size: 13px;
-    font-family: var(--paragraph-text);
-    font-weight: 700;
+  margin-top: 20px;
+  font-size: 13px;
+  font-family: var(--paragraph-text);
+  font-weight: 700;
 }
 
 .copy_right_content a {
-    font-family: var(--header-text);
-    font-weight: 700;
-    text-decoration: none;
-    color: var(--brand-blue);
+  font-family: var(--header-text);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--brand-blue);
 }
 
 /* FOOTER END */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* LOGIN PAGE  */
 
 .login_page {
-    height: 100vh;
-    width: 45vh;
-    margin: auto;
-    display: grid;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  width: 45vh;
+  margin: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 .login_part {
-    text-align: center;
-    width: 45vh;
+  text-align: center;
+  width: 45vh;
 }
 
 .login_heading img {
-    height: 70px;
-    width: auto;
-    margin-bottom: 30px;
+  height: 70px;
+  width: auto;
+  margin-bottom: 30px;
 }
 
 .login_heading h3 {
-    font-size: 35px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: var(--header-text);
+  font-size: 35px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--header-text);
 }
 
 .login_heading h3 span {
-    color: var(--brand-blue);
+  color: var(--brand-blue);
 }
 
 .login_form {
-    display: grid;
-    width: 100%;
-    margin-bottom: 20px;
+  display: grid;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .login_form input {
-    border: 1px solid var(--brand-blue);
-    margin-bottom: 20px;
-    padding: 10px;
-    color: var(--black);
+  border: 1px solid var(--brand-blue);
+  margin-bottom: 20px;
+  padding: 10px;
+  color: var(--black);
 }
 
 .login_forget {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .forget_btn {
-    border: none;
-    background-color: transparent;
-    font-family: var(--paragraph-text);
-    text-transform: uppercase;
+  border: none;
+  background-color: transparent;
+  font-family: var(--paragraph-text);
+  text-transform: uppercase;
 }
 
 .signup h2 {
-    font-size: 18px;
-    color: var(--brand-gray);
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: var(--paragraph-text);
+  font-size: 18px;
+  color: var(--brand-gray);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--paragraph-text);
 }
 
 .signup h2 span {
-    font-size: 30px;
-    color: var(--brand-blue);
-    padding-left: 10px;
-    cursor: pointer;
+  font-size: 30px;
+  color: var(--brand-blue);
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 /* LOGIN PAGE END */
 
-
-
 /* BOOKING PAGE  */
 .booking_header {
-    padding: 20px 0px 0px 20px;
-    margin-bottom: 30px;
+  padding: 20px 0px 0px 20px;
+  margin-bottom: 30px;
 }
 
 .booking_ride {
-    position: absolute;
-    top: 0;
-    height: 100vh;
-    width: 45vh;
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    z-index: 9999;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 45vh;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  z-index: 9999;
 }
 
 .booking_proced {
-    width: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .booking_next {
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    text-transform: uppercase;
-    background-color: var(--brand-blue);
-    font-family: var(--paragraph-text);
-    font-weight: 700;
-    color: var(--white);
-    padding: 10px;
-    width: 150px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  color: var(--white);
+  padding: 10px;
+  width: 150px;
 }
 
 .booking_back {
-    border: 1px solid var(--brand-blue);
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    text-transform: uppercase;
-    background-color: var(--white);
-    font-family: var(--paragraph-text);
-    font-weight: 700;
-    color: var(--brand-blue);
-    padding: 10px;
-    width: 150px;
+  border: 1px solid var(--brand-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  background-color: var(--white);
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  color: var(--brand-blue);
+  padding: 10px;
+  width: 150px;
 }
 
 .display_service {
-    width: 80%;
-    margin: auto;
-    display: grid;
+  width: 80%;
+  margin: auto;
+  display: grid;
 }
 
 .display_service h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .input-hidden {
-    position: absolute;
-    left: -9999px;
+  position: absolute;
+  left: -9999px;
 }
 
-.display_service input[type=radio]:checked+label>img {
-    border: 1px solid var(--white);
-    box-shadow: 0 0 3px 3px var(--brand-blue);
+.display_service input[type="radio"]:checked + label > img {
+  border: 1px solid var(--white);
+  box-shadow: 0 0 3px 3px var(--brand-blue);
 }
 
 /* Stuff after this is only to make things more pretty */
-.display_service input[type=radio]+label>img {
-    border: 1px dashed var(--brand-gray);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    opacity: 0.5;
+.display_service input[type="radio"] + label > img {
+  border: 1px dashed var(--brand-gray);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  opacity: 0.5;
 }
 
-.display_service input[type=radio]:checked+label>img {
-    opacity: 10;
+.display_service input[type="radio"]:checked + label > img {
+  opacity: 10;
 }
 
 .display_service label {
-    text-align: center;
-    margin-right: 25px;
+  text-align: center;
+  margin-right: 25px;
 }
 
 .display_service label p {
-    font-size: 12px;
-    font-family: var(--paragraph-text);
-    color: var(--black);
-    margin-bottom: 0px;
-    text-transform: uppercase;
+  font-size: 12px;
+  font-family: var(--paragraph-text);
+  color: var(--black);
+  margin-bottom: 0px;
+  text-transform: uppercase;
 }
 
 .trip_service,
 .car_service,
 .drive_service {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .add_vehical_btn label img {
-    height: 50px;
-    width: 50px;
-    cursor: pointer;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
 }
 
 .booking_detail {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 80vh;
 }
 
 .display_details {
-    width: 80%;
-    margin: auto;
-    display: grid;
+  width: 80%;
+  margin: auto;
+  display: grid;
 }
 
 .display_details h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
-
 .history-tl-container {
-    font-family: var(--paragraph-text);
-    margin: auto;
-    display: block;
-    position: relative;
-    margin-bottom: -45px;
-    margin-top: 15px;
+  font-family: var(--paragraph-text);
+  margin: auto;
+  display: block;
+  position: relative;
+  margin-bottom: -45px;
+  margin-top: 15px;
 }
 
 .history-tl-container ul.tl {
-    padding: 0;
-    display: inline-block;
+  padding: 0;
+  display: inline-block;
 }
 
 .history-tl-container ul.tl li {
-    list-style: none;
-    margin: auto;
-    min-height: 50px;
-    border-left: 1px dashed var(--brand-red);
-    padding: 0 0 30px 30px;
-    position: relative;
+  list-style: none;
+  margin: auto;
+  min-height: 50px;
+  border-left: 1px dashed var(--brand-red);
+  padding: 0 0 30px 30px;
+  position: relative;
 }
 
 .history-tl-container ul.tl li:last-child {
-    border-left: 0;
+  border-left: 0;
 }
 
 .history-tl-container ul.tl li::before {
-    position: absolute;
-    left: -10px;
-    top: -5px;
-    content: " ";
-    border: 8px solid rgba(255, 255, 255, 0.74);
-    border-radius: 500%;
-    background: var(--brand-blue);
-    height: 20px;
-    width: 20px;
-    transition: all 500ms ease-in-out;
+  position: absolute;
+  left: -10px;
+  top: -5px;
+  content: " ";
+  border: 8px solid rgba(255, 255, 255, 0.74);
+  border-radius: 500%;
+  background: var(--brand-blue);
+  height: 20px;
+  width: 20px;
+  transition: all 500ms ease-in-out;
 }
 
 .serv_content {
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: -20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -20px;
 }
 
 .tl-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .tl-item p {
-    font-size: 15px;
-    font-family: var(--paragraph-text);
-    font-weight: 700;
-    margin-bottom: 0px;
-    padding-left: 10px;
-    text-transform: uppercase;
+  font-size: 15px;
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  text-transform: uppercase;
 }
 
 ul.tl li .item-detail {
-    color: var(--black);
-    font-size: 12px;
+  color: var(--black);
+  font-size: 12px;
 }
 
 ul.tl li .timestamp {
-    color: var(--brand-gray);
-    position: absolute;
-    width: 100px;
-    left: -50%;
-    text-align: right;
-    font-size: 12px;
+  color: var(--brand-gray);
+  position: absolute;
+  width: 100px;
+  left: -50%;
+  text-align: right;
+  font-size: 12px;
 }
 
 .fare_estimate {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    border: 1px solid var(--black);
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid var(--black);
+  margin-bottom: 20px;
 }
 
 .fare_estimate_icon {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .fare_estimate_icon img {
-    height: 40px;
-    width: auto;
+  height: 40px;
+  width: auto;
 }
 
 .fare_estimate_icon p {
-    font-size: 15px;
-    font-family: var(--paragraph-text);
-    font-weight: 700;
-    margin-bottom: 0px;
-    padding-left: 10px;
-    text-transform: capitalize;
+  font-size: 15px;
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  text-transform: capitalize;
 }
 
 .feedback input {
-    border: 1px solid var(--brand-blue);
-    margin-bottom: 40px;
-    padding: 10px;
-    color: var(--black);
-    width: 100%;
+  border: 1px solid var(--brand-blue);
+  margin-bottom: 40px;
+  padding: 10px;
+  color: var(--black);
+  width: 100%;
 }
 
-
 .display_payment {
-    width: 80%;
-    margin: auto;
-    display: grid;
+  width: 80%;
+  margin: auto;
+  display: grid;
 }
 
 .display_payment h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .payment_wallet,
 .payment_card {
-    border: 1px solid var(--brand-blue);
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 20px;
+  border: 1px solid var(--brand-blue);
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
 }
 
 .payment_wallet h3,
 .payment_card h3 {
-    font-size: 20px;
-    color: var(--brand-blue);
-    font-weight: 700;
-    margin-bottom: 10px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--brand-blue);
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .payment_option label {
-    font-size: 15px;
-    font-family: var(--paragraph-text);
-    font-weight: 700;
-    padding-left: 10px;
-    text-transform: uppercase;
+  font-size: 15px;
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  padding-left: 10px;
+  text-transform: uppercase;
 }
 
 .display_user_card {
-    border: 1px solid var(--brand-blue);
-    border-radius: 5px;
-    padding: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
+  border: 1px solid var(--brand-blue);
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .display_user_card label p {
-    font-size: 15px;
-    font-family: var(--paragraph-text);
-    font-weight: 700;
-    padding-left: 10px;
-    margin-bottom: 0px;
-    text-transform: uppercase;
+  font-size: 15px;
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
 }
 
 .display_promo {
-    display: flex;
-    width: 100%;
-    margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .display_promo input {
-    border: 2px solid var(--brand-blue);
-    font-family: var(--paragraph-text);
-    background-color: transparent;
-    color: var(--black);
-    border-radius: 50px;
-    padding: 10px;
-    width: 100%;
+  border: 2px solid var(--brand-blue);
+  font-family: var(--paragraph-text);
+  background-color: transparent;
+  color: var(--black);
+  border-radius: 50px;
+  padding: 10px;
+  width: 100%;
 }
 
 .display_promo button {
-    position: absolute;
-    border: none;
-    padding: 7px;
-    border-radius: 50px;
-    width: 70px;
-    right: 55px;
-    margin-top: 5px;
-    color: var(--white);
-    background-color: var(--brand-blue);
+  position: absolute;
+  border: none;
+  padding: 7px;
+  border-radius: 50px;
+  width: 70px;
+  right: 55px;
+  margin-top: 5px;
+  color: var(--white);
+  background-color: var(--brand-blue);
 }
 
 .display_total {
-    margin-bottom: 20px;
-    border-top: 1px solid var(--black);
-    border-bottom: 1px solid var(--black);
+  margin-bottom: 20px;
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
 }
 
 .display_total h3 {
-    font-size: 20px;
-    color: var(--brand-blue);
-    font-weight: 700;
-    margin-bottom: 10px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--brand-blue);
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .display_total p {
-    font-size: 15px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 10px;
-    max-width: 400px;
-    font-family: var(--paragraph-text);
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 400px;
+  font-family: var(--paragraph-text);
 }
 
 /* BOOKING PAGE END */
@@ -842,585 +808,741 @@ ul.tl li .timestamp {
 /* USER PROFILE  */
 
 .user_profile {
-    height: 100vh;
-    padding-top: 70px;
+  height: 100vh;
+  padding-top: 70px;
 }
 
 .profile_navigation {
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 20px;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 20px;
 }
 
 .user_name {
-    display: flex;
-    margin-bottom: 40px;
+  display: flex;
+  margin-bottom: 40px;
 }
 
 .user_name_img img {
-    height: 70px;
-    width: 70px;
-    object-fit: cover;
-    border-radius: 5px;
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .user_name_cot {
-    padding-left: 30px;
+  padding-left: 30px;
 }
 
 .user_name_cot h2 {
-    font-size: 20px;
-    color: var(--brand-blue);
-    font-weight: 700;
-    margin-bottom: 0px;
-    margin-top: 10px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--brand-blue);
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .user_name_cot p {
-    font-size: 15px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 0px;
-    max-width: 400px;
-    font-family: var(--paragraph-text);
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 0px;
+  max-width: 400px;
+  font-family: var(--paragraph-text);
 }
 
 .profile_pages ul {
-    list-style: none;
-    padding: 0px;
-    border-top: 1px solid var(--brand-blue);
-    border-bottom: 1px solid var(--brand-blue);
+  list-style: none;
+  padding: 0px;
+  border-top: 1px solid var(--brand-blue);
+  border-bottom: 1px solid var(--brand-blue);
 }
 
 .profile_pages ul li {
-    font-size: 20px;
-    color: var(--black);
-    font-weight: 700;
-    max-width: 400px;
-    font-family: var(--header-text);
-    padding: 12px 0px 12px 0px;
-    cursor: pointer;
+  font-size: 20px;
+  color: var(--black);
+  font-weight: 700;
+  max-width: 400px;
+  font-family: var(--header-text);
+  padding: 12px 0px 12px 0px;
+  cursor: pointer;
 }
 
 .active_bar {
-    color: var(--brand-blue) !important;
+  color: var(--brand-blue) !important;
 }
 
 .user_image {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .user_image img {
-    margin-right: 15px;
-    height: 110px;
-    width: 110px;
-    border-radius: 7px;
-    object-fit: cover;
+  margin-right: 15px;
+  height: 110px;
+  width: 110px;
+  border-radius: 7px;
+  object-fit: cover;
 }
 
 .user_image button {
-    border: none;
-    background-color: transparent;
+  border: none;
+  background-color: transparent;
 }
 
 .add_user_photo_btn {
-    position: absolute;
-    margin-top: -110px;
-    margin-left: -10px;
-    height: 30px;
-    width: 30px;
-    border-radius: 50px;
-    border: none;
-    color: var(--white);
-    background-color: var(--brand-blue);
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
+  position: absolute;
+  margin-top: -110px;
+  margin-left: -10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  border: none;
+  color: var(--white);
+  background-color: var(--brand-blue);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .add_user_photo_btn input[type="file"] {
-    display: none;
-    cursor: pointer;
+  display: none;
+  cursor: pointer;
 }
 
 .user_date h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .user_input {
-    display: grid;
-    margin-bottom: 20px;
+  display: grid;
+  margin-bottom: 20px;
 }
 
 .user_input label {
-    font-size: 15px;
-    color: var(--brand-blue);
-    margin-bottom: 0px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 15px;
+  color: var(--brand-blue);
+  margin-bottom: 0px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .user_input input,
 .user_input select {
-    border: 1px solid var(--brand-blue);
-    color: var(--black);
-    padding: 10px;
-    width: 80%;
+  border: 1px solid var(--brand-blue);
+  color: var(--black);
+  padding: 10px;
+  width: 80%;
 }
 
 .disp_vehical h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 30px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
-
 .vehical_list {
-    display: flex;
-    justify-content: space-between;
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .vehical_info {
-    display: flex;
+  display: flex;
 }
 
 .vehical_info img {
-    height: 70px;
-    width: 70px;
-    border-radius: 5px;
-    object-fit: cover;
+  height: 70px;
+  width: 70px;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .vehical_list_name {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .vehical_list_name h2 {
-    font-size: 18px;
-    color: var(--black);
-    margin-bottom: 5px;
-    font-family: var(--header-text);
-    text-transform: uppercase;
+  font-size: 18px;
+  color: var(--black);
+  margin-bottom: 5px;
+  font-family: var(--header-text);
+  text-transform: uppercase;
 }
 
 .vehical_list_name p {
-    font-size: 15px;
-    color: var(--brand-blue);
-    font-weight: 700;
-    margin-bottom: 0px;
-    font-family: var(--paragraph-text);
+  font-size: 15px;
+  color: var(--brand-blue);
+  font-weight: 700;
+  margin-bottom: 0px;
+  font-family: var(--paragraph-text);
 }
 
 .vedical_ed_de {
-    display: grid;
-    align-items: center;
+  display: grid;
+  align-items: center;
 }
 
 .vedical_ed_de svg {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .nav-tabs {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .nav-tabs .nav-link {
-    margin-bottom: 0px;
-    border: none;
-    color: var(--black);
-    font-family: var(--header-text);
+  margin-bottom: 0px;
+  border: none;
+  color: var(--black);
+  font-family: var(--header-text);
 }
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
-    color: var(--white);
-    background-color: var(--brand-blue);
-    border-color: transparent;
+  color: var(--white);
+  background-color: var(--brand-blue);
+  border-color: transparent;
 }
 
 .user_info {
-    height: 80vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding-right: 20px;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 20px;
 }
 
 .booking_box {
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .driver_booking {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .driver_img img {
-    height: 50px;
-    width: 50px;
-    border-radius: 5px;
-    object-fit: cover;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  object-fit: cover;
 }
 
 .booking_status h2 {
-    font-size: 20px;
-    color: var(--black);
-    font-family: var(--header-text);
-    text-transform: uppercase;
+  font-size: 20px;
+  color: var(--black);
+  font-family: var(--header-text);
+  text-transform: uppercase;
 }
 
 .driver_content {
-    padding-left: 20px;
+  padding-left: 20px;
 }
 
 .driver_content h2 {
-    font-size: 18px;
-    color: var(--brand-blue);
-    margin-bottom: 5px;
-    font-family: var(--header-text);
-    text-transform: uppercase;
+  font-size: 18px;
+  color: var(--brand-blue);
+  margin-bottom: 5px;
+  font-family: var(--header-text);
+  text-transform: uppercase;
 }
 
 .star-ratings {
-    top: -10px;
+  top: -10px;
 }
 
 .driver_content p {
-    font-size: 12px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 0px;
-    margin-top: -10px;
-    font-family: var(--paragraph-text);
+  font-size: 12px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-top: -10px;
+  font-family: var(--paragraph-text);
 }
 
 .address_bookin {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .address_map img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-    padding-right: 20px;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  padding-right: 20px;
 }
 
 .location_dot img {
-    height: 65px;
-    width: auto;
+  height: 65px;
+  width: auto;
 }
 
 .address_both p {
-    font-size: 15px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 6px;
-    font-family: var(--paragraph-text);
-    padding-left: 10px;
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-family: var(--paragraph-text);
+  padding-left: 10px;
 }
 
 .user_notification h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 30px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .notifi_box {
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .notifi_box h3 {
-    font-size: 18px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 30px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 18px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .notifi_box h3 span {
-    color: var(--brand-blue);
-    text-transform: uppercase;
+  color: var(--brand-blue);
+  text-transform: uppercase;
 }
 
 .notifi_conent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .notifi_img {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .notifi_img img {
-    height: 70px;
-    width: 70px;
-    object-fit: cover;
-    margin-right: 15px;
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+  margin-right: 15px;
 }
 
 .notifi_img h4 {
-    font-size: 15px;
-    color: var(--black);
-    margin-bottom: 5px;
-    font-family: var(--paragraph-text);
+  font-size: 15px;
+  color: var(--black);
+  margin-bottom: 5px;
+  font-family: var(--paragraph-text);
 }
 
 .notifi_img p {
-    font-size: 12px;
-    color: var(--brand-gray);
-    margin-bottom: 0px;
-    font-family: var(--paragraph-text);
+  font-size: 12px;
+  color: var(--brand-gray);
+  margin-bottom: 0px;
+  font-family: var(--paragraph-text);
 }
 
 .user_payment h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 30px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .add_payment {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .add_payment h2 {
-    font-size: 20px;
-    color: var(--brand-blue);
-    font-weight: 700;
-    margin-bottom: 30px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--brand-blue);
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 .add_payment button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: none;
-    background-color: var(--brand-blue);
-    color: var(--white);
-    text-transform: uppercase;
-    font-size: var(--paragraph-text);
-    width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: none;
+  background-color: var(--brand-blue);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: var(--paragraph-text);
+  width: 130px;
 }
 
 .wallet_box {
-    display: flex;
-    width: fit-content;
-    align-items: center;
-    background: hsl(0deg 0% 0% / 5%);
-    backdrop-filter: blur(14.5px);
-    -webkit-backdrop-filter: blur(14.5px);
-    padding: 20px;
-    margin-bottom: 30px;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  background: hsl(0deg 0% 0% / 5%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  padding: 20px;
+  margin-bottom: 30px;
 }
 
 .wallet_box img {
-    height: 80px;
-    width: auto;
+  height: 80px;
+  width: auto;
 }
 
 .wallet_box h2 {
-    margin-bottom: 0px;
-    padding-left: 15px;
+  margin-bottom: 0px;
+  padding-left: 15px;
 }
 
 .card_payment .display_user_card {
-    width: fit-content;
+  width: fit-content;
 }
 
 .card_payment .card_delete button {
-    border: none;
-    background-color: transparent;
-    margin-left: 20px;
+  border: none;
+  background-color: transparent;
+  margin-left: 20px;
 }
 
 .wallet_field h3 {
-    font-size: 20px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--header-text);
 }
 
 .wallet_field .user_input {
-    display: block;
+  display: block;
 }
 
 .wallet_field .user_input input {
-    width: 100%;
-    margin: auto;
-    margin-bottom: 20px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .card_field h3 {
-    font-size: 20px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 20px;
-    font-family: var(--header-text);
+  font-size: 20px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--header-text);
 }
 
 .change_password h2 {
-    font-size: 30px;
-    color: var(--black);
-    font-weight: 700;
-    margin-bottom: 30px;
-    max-width: 400px;
-    font-family: var(--header-text);
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 400px;
+  font-family: var(--header-text);
 }
 
 /* USER PROFILE END */
 
-
-
 /* STRIP INPUT */
 
 .strip_add_card label {
-    font-family: var(--header-text);
-    color: var(--brand-blue);
-    font-weight: 300;
-    width: 100%;
+  font-family: var(--header-text);
+  color: var(--brand-blue);
+  font-weight: 300;
+  width: 100%;
 }
 
 .strip_add_card input,
 .StripeElement {
-    display: block;
-    margin: 10px 0 20px 0;
-    max-width: 500px;
-    padding: 10px 14px;
-    font-size: 1em;
-    font-family: var(--paragraph-text);
-    box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
-        rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
-    border: 0;
-    outline: 0;
-    border-radius: 4px;
-    background: var(--white);
+  display: block;
+  margin: 10px 0 20px 0;
+  max-width: 500px;
+  padding: 10px 14px;
+  font-size: 1em;
+  font-family: var(--paragraph-text);
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+  background: var(--white);
 }
 
 .strip_add_card input::placeholder {
-    color: var(--brand-gray);
+  color: var(--brand-gray);
 }
 
 .strip_add_card input:focus,
 .StripeElement--focus {
-    box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
-        rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
-    -webkit-transition: all 150ms ease;
-    transition: all 150ms ease;
+  box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
+    rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
 }
 
 .StripeElement.IdealBankElement,
 .StripeElement.FpxBankElement,
 .StripeElement.PaymentRequestButton {
-    padding: 0;
+  padding: 0;
 }
 
 .StripeElement.PaymentRequestButton {
-    height: 40px;
+  height: 40px;
 }
 
 /* STRIP INPUT END */
 
-
-
-
 /* SIGNUP PAGE */
 .signup_form button {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .react-tel-input .form-control {
-    font-family: var(--paragraph-text);
-    background: var(--white) !important;
-    border: 1px solid var(--brand-blue) !important;
-    color: var(--black);
-    height: auto !important;
-    width: 100% !important;
+  font-family: var(--paragraph-text);
+  background: var(--white) !important;
+  border: 1px solid var(--brand-blue) !important;
+  color: var(--black);
+  height: auto !important;
+  width: 100% !important;
 }
 
 .react-tel-input .selected-flag {
-    outline: none;
-    position: relative;
-    width: 38px;
-    height: 100%;
-    padding: 0 0 0 8px;
-    border-radius: 3px 0 0 3px;
-    background: var(--white) !important;
-    border: 1px solid var(--brand-blue) !important;
+  outline: none;
+  position: relative;
+  width: 38px;
+  height: 100%;
+  padding: 0 0 0 8px;
+  border-radius: 3px 0 0 3px;
+  background: var(--white) !important;
+  border: 1px solid var(--brand-blue) !important;
 }
 
 .signup_form_otp {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .signup_form_otp input {
-    font-family: var(--paragraph-text);
-    background: var(--white);
-    border: 1px solid var(--brand-blue);
-    color: var(--black);
-    height: 50px;
-    width: 50px !important;
+  font-family: var(--paragraph-text);
+  background: var(--white);
+  border: 1px solid var(--brand-blue);
+  color: var(--black);
+  height: 50px;
+  width: 50px !important;
 }
 
 .signup_form_otp span {
-    font-family: var(--header-text);
-    font-weight: 700;
-    color: var(--black);
-    padding: 5px;
+  font-family: var(--header-text);
+  font-weight: 700;
+  color: var(--black);
+  padding: 5px;
 }
 
 .signup_user_detail {
-    text-align: initial;
+  text-align: initial;
 }
 
 .signup_user_detail .user_input input,
 .signup_user_detail .user_input select {
-    width: 100%;
+  width: 100%;
 }
 
 /* SIGNUP PAGE END */
+
+/* Service */
+.service_img {
+  overflow: hidden;
+  height: 376px;
+  width: 100%;
+}
+.service_block {
+  margin-top: 80px;
+  width: 100%;
+}
+.service_row {
+  margin: 2rem 0px;
+  width: 100%;
+  align-items: center;
+}
+.service_detail {
+  align-items: center;
+}
+
+.service_detail h2 {
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 800px;
+  font-family: var(--header-text);
+}
+
+.service_detail p {
+  font-size: 15px;
+  margin-bottom: 5px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
+}
+
+.service_detail span {
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
+}
+/* Service END */
+
+/* AboutUs */
+
+.aboutus_block {
+  margin-top: 80px;
+  align-items: center;
+}
+
+.aboutus_detail h2 {
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--header-text);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.aboutus_detail p {
+  font-size: 15px;
+  margin-bottom: 30px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
+}
+
+/* AboutUs End*/
+
+/*Contact Us*/
+
+.contact_head {
+  padding: 30px;
+}
+
+.contact_block {
+  margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+.contact_form {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0px 30px 30px 30px;
+}
+
+.contact_form input,
+.contact_form select {
+  border: 1px solid var(--brand-blue);
+  margin-bottom: 10px;
+  padding: 10px;
+  color: var(--black);
+  width: 100%;
+}
+
+.contact_form select option {
+  font-size: 15px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
+}
+
+.contact_head h2 {
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--header-text);
+}
+
+.contact_head p,
+.contact_form p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  font-family: var(--paragraph-text);
+  color: var(--brand-gray);
+}
+
+.contact_img {
+  height: 100%;
+  width: 100%;
+  background: rgb(5 160 224 / 23%);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+}
+
+.contact_bg {
+  height: 100%;
+  width: 100%;
+}
+
+.contact_image1 {
+  height: 200px;
+  width: auto;
+  margin: 30px 20px 0px 50px;
+  box-shadow: 3px 3px 10px 0 gray;
+  border: 4px solid var(--white);
+  border-radius: 5px;
+}
+
+.contact_image2 {
+  margin-top: 20px;
+  height: 170px;
+  width: auto;
+  float: right;
+  box-shadow: 3px 3px 10px 0 gray;
+  border: 4px solid var(--white);
+  border-radius: 5px;
+}
+
+.contact_image3 {
+  align-items: center;
+  margin: 20px;
+  height: 150px;
+  float: left;
+  width: auto;
+  box-shadow: 3px 3px 10px 0 gray;
+  border: 4px solid var(--white);
+  border-radius: 5px;
+}
+
+/* Contact Us END */

@@ -27,8 +27,8 @@ const sideDrawer = (props) => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/about" exact activeClassName="nav_active">
-                        About Us
+                    <NavLink to="/service" exact activeClassName="nav_active">
+                        Service
                     </NavLink>
                 </li>
                 <li>
