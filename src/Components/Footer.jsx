@@ -34,7 +34,7 @@ const Footer = () => {
                                     </NavLink>
                                 </div>
                                 <div className='footer_link'>
-                                    <NavLink to="/about" exact activeClassName="nav_active">
+                                    <NavLink to="/aboutus" exact activeClassName="nav_active">
                                         About Us
                                     </NavLink>
                                 </div>
@@ -63,7 +63,7 @@ const Footer = () => {
                             <div className='footer_heading'>OUR SERVICE</div>
                             <div className='content'>
                                 <div className='footer_link'>
-                                    <NavLink to="/subscription" exact activeClassName="nav_active">
+                                    <NavLink to="/service" exact activeClassName="nav_active">
                                         Service
                                     </NavLink>
                                 </div>
