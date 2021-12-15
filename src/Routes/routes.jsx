@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
-// import { toast } from "react-toastify";
-// import jwt from "jwt-decode";
 import { Context } from "../Data/context";
 import ProtectedRoutes from "./ProtectedRoutes";
 // PAGES IMPORT
@@ -13,6 +11,8 @@ import Signup from "../Pages/Signup";
 import Service from "../Pages/Service";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
+import { imageUrl } from "../Config/api";
+
 
 const Routes = () => {
 
@@ -30,19 +30,38 @@ const Routes = () => {
         }
 
         // check for login time period
-        // try {
-        //     if (authData) {
-        //         const userToken = jwt(authData.token);
-        //         if (userToken.exp * 1000 < Date.now()) {
-        //             toast.warning("User token expire login again.");
-        //             localStorage.removeItem("wingmen_booking");
-        //         }
-        //     }
-        // } catch (error) {
-        //     console.log(error, "ERROR");
-        //     localStorage.removeItem("wingmen_booking");
-        // }
+        try {
+            if (authData) {
+                fetch(`${imageUrl}api/v1/admin/checkAdmin`, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: authData
+                    }
+                })
+                    .then(response => response.json())
+                    .then(res => {
+                        console.log(res);
+                        if (res.message === 'Session has been expired.') {
+                            localStorage.removeItem("wingmen_booking");
+                            window.location = '/'
+                        } else if (res.message === 'Token not found.') {
+                            localStorage.removeItem("wingmen_booking");
+                            window.location = '/'
+                        } else if (res.message === 'Access denied.') {
+                            localStorage.removeItem("wingmen_booking");
+                            window.location = '/'
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error)
+                    })
+            }
+        } catch (error) {
+            console.log(error, "ERROR");
+            localStorage.removeItem("wingmen_booking");
+        }
     }, [])
+
 
     return (
         <Switch>
@@ -61,9 +80,6 @@ const Routes = () => {
             <ProtectedRoutes path="/userprofile">
                 <UserProfile />
             </ProtectedRoutes>
-            {/* <ProtectedRoutes path="/booking">
-                <Booking />
-            </ProtectedRoutes> */}
             {/* PROTECTED ROUTE END */}
 
             <Redirect to="/" />

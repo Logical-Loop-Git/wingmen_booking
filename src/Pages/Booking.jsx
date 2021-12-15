@@ -120,8 +120,16 @@ const Booking = () => {
     }
     //VIEW SIGNIN & SIGNUP COMPONENT
     const onSelectLogin = () => {
-        setBookingView(false)
-        setLoginCheck(true)
+        if (pickupLocation.latitude === 0) {
+            toast.warning(`Pleace select pickup location.`)
+        } else {
+            if (dropLocation.latitude === 0) {
+                toast.warning(`Pleace select drop location.`)
+            } else {
+                setBookingView(false)
+                setLoginCheck(true)
+            }
+        }
     }
     //SIGNIN USER AND PASS TO OTHER COMPONENT
     const onSignin = () => {
@@ -164,6 +172,7 @@ const Booking = () => {
     const onBackLocation = () => {
         setBookingView(true)
         setServiceView(false)
+        setLoginCheck(false)
     }
     //VIEW BOOKING DETAILS COMPONENT
     const onBookingDetail = () => {

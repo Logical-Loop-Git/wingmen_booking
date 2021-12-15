@@ -11,7 +11,6 @@ import { Context } from '../../Data/context'
 const AddVehicalPopup = () => {
 
     const {
-        userData,
         addVehical,
         setAddVehical,
         setAddVehicalStatus
@@ -62,6 +61,7 @@ const AddVehicalPopup = () => {
 
     //ADD VEHICAL
     const onAddVehical = () => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         // IMAGE UPLOAD
         vehicalImage.forEach((file) => {
             formData.append("image", file)
@@ -70,7 +70,7 @@ const AddVehicalPopup = () => {
         let url = API + `uploadFile`;
         const config = {
             headers: {
-                Authorization: `${userData.token}`,
+                Authorization: `${authData.token}`,
             }
         };
         axios.post(url, formData, config)
@@ -94,6 +94,8 @@ const AddVehicalPopup = () => {
                                 toast.dark(`Vehiacl added successfully.`)
                                 onClosePopup()
                                 setAddVehicalStatus(true)
+                            } else{
+                                toast.warn(response.data.message)
                             }
                         })
                         .catch(err => {
@@ -111,10 +113,11 @@ const AddVehicalPopup = () => {
     useEffect(() => {
         // fetchVehical()
         // API FOR USER VHICAL LIST
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         let url = API + `getVehicleType`;
         const config = {
             headers: {
-                Authorization: `${userData.token}`,
+                Authorization: `${authData.token}`,
             }
         };
         axios

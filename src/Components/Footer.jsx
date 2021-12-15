@@ -15,11 +15,11 @@ const Footer = () => {
             <div className="container">
                 <Row>
                     <Col md='4'>
-                        <div className='footer-col'>
+                        <div className='footer-col mb-5 d-flex justify-content-center'>
                             <img src={logo} alt="logo" />
                         </div>
                     </Col>
-                    <Col md='2' >
+                    <Col md={2} sm={6} xs={6} >
                         <div className='footer-col'>
                             <div className='footer_heading'>PAGE</div>
                             <div className='content'>
@@ -46,7 +46,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </Col>
-                    <Col md='2'>
+                    <Col md={2} sm={6} xs={6}>
                         <div className='footer-col'>
                             <div className='footer_heading'>ABOUT US</div>
                             <div className='content'>

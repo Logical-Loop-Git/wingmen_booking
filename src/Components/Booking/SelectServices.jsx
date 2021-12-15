@@ -90,7 +90,7 @@ const SelectServices = () => {
         setTriType(e)
     }
 
-       //FOR FETCHING CALLBACK
+    //FOR FETCHING CALLBACK
     useEffect(() => {
         fetchServiceType()
         fetchVehical()
@@ -111,7 +111,7 @@ const SelectServices = () => {
                         ? "No serviceType found :("
                         : serviceType.map((list, index) => {
                             return (
-                                <Col md={2}>
+                                <Col md={2} sm={4} xs={4}>
                                     <div key={index}>
                                         <input
                                             className="input-hidden"
@@ -148,7 +148,7 @@ const SelectServices = () => {
                         </div>
                         : userVehical.map((list, index) => {
                             return (
-                                <Col md={2}>
+                                <Col md={2} sm={4} xs={4}>
                                     <div key={index}>
                                         <input
                                             className="input-hidden"
