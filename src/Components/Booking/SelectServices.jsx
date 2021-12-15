@@ -1,20 +1,67 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import oneway from '../../Images/Icon/oneway.png'
 import returnjourney from '../../Images/Icon/returnjourney.png'
-import { imageUrl } from '../../Config/api'
+import API, { imageUrl } from '../../Config/api'
 import { Context } from '../../Data/context'
 import car from '../../Images/Icon/selecrcar.png'
 import { Col, Row } from 'reactstrap'
+import { useEffect } from 'react'
+import axios from 'axios'
 
-const SelectServices = (serviceType) => {
+const SelectServices = () => {
 
     const {
         setSelectedVehical,
         setSelectedServiceType,
         setTriType,
         addVehical,
-        setAddVehical
+        setAddVehical,
+        addVehicalStatus
     } = useContext(Context)
+    const [serviceType, setServiceType] = useState([])
+    const [userVehical, setUserVehical] = useState([])
+
+    //API CALL FOR BOOKING RELATED
+    const fetchServiceType = useCallback(() => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+        let url = API + `getServiceType`;
+        const config = {
+            headers: {
+                Authorization: `${authData.token}`,
+            }
+        };
+        axios
+            .get(url, config)
+            .then((response) => {
+                if (response.data.success === true) {
+                    setServiceType(response.data.data)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
+    }, []);
+
+    //API CALL FOR USER VEHICAL
+    const fetchVehical = useCallback(() => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+        let url = API + `getVehicles`;
+        const config = {
+            headers: {
+                Authorization: `${authData.token}`,
+            }
+        };
+        axios
+            .get(url, config)
+            .then((response) => {
+                if (response.data.success === true) {
+                    setUserVehical(response.data.data)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
+    }, []);
 
     //OPEN VEHICAL POPUP
     const onVehicalPopup = () => {
@@ -43,6 +90,16 @@ const SelectServices = (serviceType) => {
         setTriType(e)
     }
 
+       //FOR FETCHING CALLBACK
+    useEffect(() => {
+        fetchServiceType()
+        fetchVehical()
+        if (addVehicalStatus) {
+            fetchServiceType()
+            fetchVehical()
+        }
+    }, [addVehicalStatus])
+
 
     return (
         <div className="display_service">
@@ -50,9 +107,9 @@ const SelectServices = (serviceType) => {
             <div className="drive_service">
                 <h2>Services</h2>
                 <Row>
-                    {serviceType.serviceType.length < 1
+                    {serviceType.length < 1
                         ? "No serviceType found :("
-                        : serviceType.serviceType.map((list, index) => {
+                        : serviceType.map((list, index) => {
                             return (
                                 <Col md={2}>
                                     <div key={index}>
@@ -80,16 +137,16 @@ const SelectServices = (serviceType) => {
             <div className="car_service">
                 <h2>Select Car</h2>
                 <Row>
-                    {serviceType.userVehical.length < 1
+                    {userVehical.length < 1
                         ? <div className="add_vehical_btn" onClick={() => onVehicalPopup()}>
                             <label>
                                 <img
                                     src={car}
                                     alt="I'm sad" />
-                                <p>Add Vehical</p>
+                                <p>Add Vehicle</p>
                             </label>
                         </div>
-                        : serviceType.userVehical.map((list, index) => {
+                        : userVehical.map((list, index) => {
                             return (
                                 <Col md={2}>
                                     <div key={index}>

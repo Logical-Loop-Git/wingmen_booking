@@ -5,6 +5,7 @@ export const Context = createContext();
 export const ContextProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [userData, setUserData] = useState({})
+    const [isAuthentication, setIsAuthentication] = useState(false)
     const [pickupLocation, setPickupLocation] = useState({
         address: '',
         latitude: 0,
@@ -26,12 +27,18 @@ export const ContextProvider = ({ children }) => {
     const [estimateTime, setEstimateTime] = useState('')
     const [distance, setDistance] = useState('')
     const [cardAddedStatus, setCardAddedStatus] = useState(false)
+    const [bookingSignin, setBookingSignin] = useState({
+        loginId: '',
+        loginPassword: ''
+    })
+    const [isBookingSignup, setIsBookingSignup] = useState(false)
 
     //POPUPS VIEW
     const [walletMoney, setwalletMoney] = useState(false)
     const [addCard, setAddCard] = useState(false)
     const [addVehical, setAddVehical] = useState(false)
     const [addVehicalStatus, setAddVehicalStatus] = useState(false)
+    const [onSignUp, setOnSignUp] = useState(true)
 
     return (
         <Context.Provider
@@ -40,6 +47,8 @@ export const ContextProvider = ({ children }) => {
                 setToken,
                 userData,
                 setUserData,
+                isAuthentication,
+                setIsAuthentication,
                 pickupLocation,
                 setPickupLocation,
                 dropLocation,
@@ -73,7 +82,12 @@ export const ContextProvider = ({ children }) => {
                 addVehical,
                 setAddVehical,
                 addVehicalStatus,
-                setAddVehicalStatus
+                setAddVehicalStatus,
+                bookingSignin,
+                setBookingSignin,
+                isBookingSignup,
+                setIsBookingSignup,
+                onSignUp, setOnSignUp
             }}
         >
             {children}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng
@@ -9,7 +9,7 @@ import { Context } from '../../Data/context';
 
 const DropLocation = () => {
 
-    const { setDropLocation } = useContext(Context)
+    const { setDropLocation, dropLocation } = useContext(Context)
 
     const { value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
@@ -24,12 +24,13 @@ const DropLocation = () => {
         clearSuggestions();
     });
 
-    // pickup location
+    // DROP LOCATION POINT
     const handleInputDrop = (e) => {
         // Update the keyword of the input element
         setValue(e.target.value);
     };
 
+    //GET LAT LNG FROM INPUT
     const handleSelectDrop = ({ description }) => () => {
         // When user selects a place, we can replace the keyword without request data from API
         // by setting the second parameter to "false"
@@ -52,6 +53,7 @@ const DropLocation = () => {
             });
     };
 
+    //SUGGESTION FOR DROP LOCATION
     const renderSuggestionsDrop = () =>
         data.map((suggestion) => {
             const {
@@ -65,6 +67,10 @@ const DropLocation = () => {
                 </li>
             );
         });
+
+    useEffect(() => {
+        setValue(dropLocation.address)
+    }, [])
 
 
     return (

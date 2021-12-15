@@ -133,7 +133,7 @@ const AddVehicalPopup = () => {
 
     return (
         <div className="disp_vehical">
-            <h2>Add Your Vehical</h2>
+            <h2>Add Your Vehicle</h2>
             <div className="popup_close">
                 <button onClick={() => onClosePopup()}>
                     <FontAwesomeIcon icon={faTimes} />
@@ -156,12 +156,12 @@ const AddVehicalPopup = () => {
                 </div>
                 <div className="vehical_form">
                     <div className="user_input">
-                        <label htmlFor="vehical_m">Vehical Name:</label>
+                        <label htmlFor="vehical_m">Vehicle Name:</label>
                         <input
                             type="text"
                             name="vehical_m"
                             id="vehical_m"
-                            placeholder="Vehical Name"
+                            placeholder="Vehicle Name"
                             value={vehicalName}
                             onChange={(e) => setVehicalName(e.target.value)}
                         />
@@ -178,7 +178,7 @@ const AddVehicalPopup = () => {
                         />
                     </div>
                     <div className="user_input">
-                        <label htmlFor="vehical_ty">Vehical Type:</label>
+                        <label htmlFor="vehical_ty">Vehicle Type:</label>
                         <select
                             name="vehical_ty"
                             id="vehical_ty"
@@ -195,7 +195,7 @@ const AddVehicalPopup = () => {
                         </select>
                     </div>
                     <div className="user_input">
-                        <label htmlFor="vehical_tr">Vehical Transmission:</label>
+                        <label htmlFor="vehical_tr">Vehicle Transmission:</label>
                         <select
                             name="vehical_tr"
                             id="vehical_tr"
@@ -211,7 +211,7 @@ const AddVehicalPopup = () => {
                             }
                         </select>
                     </div>
-                    <button className="btn_brand" onClick={() => onAddVehical()}>add vehical</button>
+                    <button className="btn_brand" onClick={() => onAddVehical()}>add Vehicle</button>
                 </div>
             </div>
         </div>

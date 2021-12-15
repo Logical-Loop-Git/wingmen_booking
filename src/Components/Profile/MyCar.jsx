@@ -167,7 +167,7 @@ const MyCar = () => {
     return (
         <div>
             <div className="disp_vehical">
-                <h2>Your Vehical</h2>
+                <h2>Your Vehicle</h2>
                 <Row>
                     <Col md={6}>
                         <div className="add_vehical">
@@ -187,12 +187,12 @@ const MyCar = () => {
                             </div>
                             <div className="vehical_form">
                                 <div className="user_input">
-                                    <label htmlFor="vehical_m">Vehical Name:</label>
+                                    <label htmlFor="vehical_m">Vehicle Name:</label>
                                     <input
                                         type="text"
                                         name="vehical_m"
                                         id="vehical_m"
-                                        placeholder="Vehical Name"
+                                        placeholder="Vehicle Name"
                                         value={vehicalName}
                                         onChange={(e) => setVehicalName(e.target.value)}
                                     />
@@ -209,7 +209,7 @@ const MyCar = () => {
                                     />
                                 </div>
                                 <div className="user_input">
-                                    <label htmlFor="vehical_ty">Vehical Type:</label>
+                                    <label htmlFor="vehical_ty">Vehicle Type:</label>
                                     <select
                                         name="vehical_ty"
                                         id="vehical_ty"
@@ -226,7 +226,7 @@ const MyCar = () => {
                                     </select>
                                 </div>
                                 <div className="user_input">
-                                    <label htmlFor="vehical_tr">Vehical Transmission:</label>
+                                    <label htmlFor="vehical_tr">Vehicle Transmission:</label>
                                     <select
                                         name="vehical_tr"
                                         id="vehical_tr"
@@ -242,7 +242,7 @@ const MyCar = () => {
                                         }
                                     </select>
                                 </div>
-                                <button className="btn_brand" onClick={() => onAddVehical()}>add vehical</button>
+                                <button className="btn_brand" onClick={() => onAddVehical()}>add Vehicle</button>
                             </div>
                         </div>
                     </Col>

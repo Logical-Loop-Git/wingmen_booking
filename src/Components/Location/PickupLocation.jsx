@@ -5,11 +5,12 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { Context } from '../../Data/context';
+import { useEffect } from 'react';
 
 
 const PickupLocation = () => {
 
-    const { setPickupLocation } = useContext(Context)
+    const { setPickupLocation, pickupLocation } = useContext(Context)
 
     const { value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
@@ -24,12 +25,13 @@ const PickupLocation = () => {
         clearSuggestions();
     });
 
-    // pickup location
+    //PICKUP LOCATION
     const handleInputPickup = (e) => {
         // Update the keyword of the input element
         setValue(e.target.value);
     };
 
+    //GET LAT LNG FROM INPUT
     const handleSelectPickup = ({ description }) => () => {
         // When user selects a place, we can replace the keyword without request data from API
         // by setting the second parameter to "false"
@@ -52,6 +54,7 @@ const PickupLocation = () => {
             });
     };
 
+    //SUGGESTION FOR PICKUP LOCATION
     const renderSuggestionsPickup = () =>
         data.map((suggestion) => {
             const {
@@ -65,6 +68,10 @@ const PickupLocation = () => {
                 </li>
             );
         });
+
+    useEffect(() => {
+        setValue(pickupLocation.address)
+    }, [])
 
 
     return (

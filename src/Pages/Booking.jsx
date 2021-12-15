@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     GoogleMap,
     withGoogleMap,
@@ -20,11 +20,13 @@ import { toast } from 'react-toastify';
 import { NavLink } from 'react-router-dom';
 import useOnclickOutside from "react-cool-onclickoutside";
 import AddVehicalPopup from '../Components/Popups/AddVehicalPopup'
+import BookingLogin from '../Components/Booking/BookingLogin';
 
 const Booking = () => {
 
     const {
         userData,
+        isAuthentication,
         pickupLocation,
         dropLocation,
         selectedServiceType,
@@ -38,18 +40,20 @@ const Booking = () => {
         bookingNote,
         addVehical,
         setAddVehical,
-        addVehicalStatus
+        bookingSignin,
+        setUserData,
+        setToken,
+        onSignUp,
+        isBookingSignup
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     //BOOKING LOCATION VIEW
     const [bookingView, setBookingView] = useState(true)
+    const [loginCheck, setLoginCheck] = useState(false)
     const [serviceView, setServiceView] = useState(false)
     const [displayBookingDetail, setDisplayBookingDetail] = useState(false)
     const [paymentView, setPaymentView] = useState(false)
-    //BOOKING RELATED DATA
-    const [serviceType, setServiceType] = useState([])
-    const [userVehical, setUserVehical] = useState([])
     const google = window.google
 
     //MAP VIEW
@@ -100,6 +104,7 @@ const Booking = () => {
     });
 
     //VIEW ALL COMPONENTS
+    //VIEW SERVICES COMPONENT
     const onSelectService = () => {
         if (pickupLocation.latitude === 0) {
             toast.warning(`Pleace select pickup location.`)
@@ -108,16 +113,59 @@ const Booking = () => {
                 toast.warning(`Pleace select drop location.`)
             } else {
                 setBookingView(false)
+                setLoginCheck(false)
                 setServiceView(true)
             }
         }
     }
-
+    //VIEW SIGNIN & SIGNUP COMPONENT
+    const onSelectLogin = () => {
+        setBookingView(false)
+        setLoginCheck(true)
+    }
+    //SIGNIN USER AND PASS TO OTHER COMPONENT
+    const onSignin = () => {
+        const body = {
+            "deviceType": "web",
+            "password": bookingSignin.loginPassword,
+            "phone": bookingSignin.loginId
+        }
+        console.log(body);
+        let url = API + `signIn`;
+        if (bookingSignin.loginPassword === '' || bookingSignin.loginId === '') {
+            toast.dark('Please fill phone number and password to login.')
+        } else {
+            axios
+                .post(url, body)
+                .then(response => {
+                    console.log(response);
+                    if (response.data.success === true) {
+                        console.log(response);
+                        toast.dark('Login done')
+                        localStorage.setItem(
+                            "wingmen_booking",
+                            JSON.stringify(response.data.data)
+                        );
+                        setUserData(response.data.data)
+                        setToken(response.data.data.token)
+                        onSelectService()
+                    } else if (response.data.message === 'User does not exist.' || response.data.success === false) {
+                        toast.dark(`User doesn't exist in our database you might enter wrong email.`)
+                    } else if (response.data.message === 'Password is invalid.' || response.data.success === false) {
+                        toast.dark(`You have entered wrong password.`)
+                    }
+                })
+                .catch(err => {
+                    console.log("error here", err.response)
+                })
+        }
+    }
+    //BACK TO PICKUP, DROP LOCATION SELECT
     const onBackLocation = () => {
         setBookingView(true)
         setServiceView(false)
     }
-
+    //VIEW BOOKING DETAILS COMPONENT
     const onBookingDetail = () => {
         if (selectedServiceType.id === undefined || null || '') {
             toast.warning(`Please select service type.`)
@@ -134,64 +182,22 @@ const Booking = () => {
             }
         }
     }
-
+    //BACK TO SERVICE VIEW PAGE
     const onBackServices = () => {
         setServiceView(true)
         setDisplayBookingDetail(false)
     }
-
+    //VIEW PAYMENT COMPONENT
     const onPayment = () => {
         setPaymentView(true)
         setDisplayBookingDetail(false)
     }
-
+    //BACK TO BOOKING DETAILS
     const onBackBookingDetail = () => {
         setDisplayBookingDetail(true)
         setPaymentView(false)
     }
     //VIEW ALL COMPONENTS END
-
-    //API CALL FOR BOOKING RELATED
-    const fetchServiceType = useCallback(() => {
-        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
-        let url = API + `getServiceType`;
-        const config = {
-            headers: {
-                Authorization: `${authData.token}`,
-            }
-        };
-        axios
-            .get(url, config)
-            .then((response) => {
-                if (response.data.success === true) {
-                    setServiceType(response.data.data)
-                }
-            })
-            .catch((err) => {
-                console.log("error here", err);
-            });
-    }, []);
-
-    //API CALL FOR USER VEHICAL
-    const fetchVehical = useCallback(() => {
-        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
-        let url = API + `getVehicles`;
-        const config = {
-            headers: {
-                Authorization: `${authData.token}`,
-            }
-        };
-        axios
-            .get(url, config)
-            .then((response) => {
-                if (response.data.success === true) {
-                    setUserVehical(response.data.data)
-                }
-            })
-            .catch((err) => {
-                console.log("error here", err);
-            });
-    }, []);
 
     //API FOR CREATE BOOKING RIDE
     const onBookingRide = () => {
@@ -254,22 +260,21 @@ const Booking = () => {
         }
     }
 
+    //FOR FETCHING FUNCTION AND GETING LAT LNG FROM GEOCODE
     useEffect(() => {
-        fetchServiceType()
-        fetchVehical()
         navigator.geolocation.getCurrentPosition(function (position) {
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
         });
-        if (addVehicalStatus) {
-            fetchServiceType()
-            fetchVehical()
+        if (isBookingSignup === true) {
+            onSelectService()
         }
-    }, [addVehicalStatus])
+    }, [isBookingSignup])
 
 
     return (
         <section>
+            {/* ADD VEHICLE POPUP */}
             {addVehical && (
                 <div className="popup_open" style={{ height: "fit-content" }} ref={ref}>
                     <AddVehicalPopup />
@@ -281,23 +286,45 @@ const Booking = () => {
                         <img src={logo} alt="" />
                     </NavLink>
                 </div>
+                {/* PICKUP, DROP LOCATION SELECT */}
                 {bookingView &&
                     <div className="select_location">
                         <SelectLocation />
                         <div className="booking_proced">
-                            <button className="booking_next" onClick={() => onSelectService()}>
+                            {isAuthentication ? <button className="booking_next" onClick={() => onSelectService()}>
                                 next
                                 <FontAwesomeIcon icon={faArrowRight} />
                             </button>
+                                : <button className="booking_next" onClick={() => onSelectLogin()}>
+                                    Sign
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>
+                            }
                         </div>
                     </div>
                 }
+                {/* SIGNIN, SIGNUP IS USSER NOT LOGIN */}
+                {loginCheck &&
+                    <div className='select_login'>
+                        <BookingLogin />
+                        {onSignUp &&
+                            <div className="booking_proced">
+                                <button className="booking_back" onClick={() => onBackLocation()}>
+                                    back
+                                    <FontAwesomeIcon icon={faArrowLeft} />
+                                </button>
+                                <button className="booking_next" onClick={() => onSignin()}>
+                                    next
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>
+                            </div>
+                        }
+                    </div>
+                }
+                {/* SERVICE TYPES */}
                 {serviceView &&
                     <div className="select_services">
-                        <SelectServices
-                            serviceType={serviceType}
-                            userVehical={userVehical}
-                        />
+                        <SelectServices />
                         <div className="booking_proced">
                             <button className="booking_back" onClick={() => onBackLocation()}>
                                 back
@@ -310,6 +337,7 @@ const Booking = () => {
                         </div>
                     </div>
                 }
+                {/* BOOKING DETAILS */}
                 {displayBookingDetail &&
                     <div className="booking_detail">
                         <BookingDetail />
@@ -325,6 +353,7 @@ const Booking = () => {
                         </div>
                     </div>
                 }
+                {/* PAYMENT SELECT & ADD */}
                 {paymentView &&
                     <div className="payment_detail">
                         <PaymentDetail />
@@ -341,6 +370,7 @@ const Booking = () => {
                     </div>
                 }
             </div>
+            {/* MAP */}
             <MapWithADirectionsRenderer />
         </section>
     )

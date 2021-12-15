@@ -17,13 +17,16 @@ import ContactUs from "../Pages/ContactUs";
 const Routes = () => {
 
     const { setToken,
-        setUserData, } = useContext(Context)
+        setUserData,
+        setIsAuthentication
+    } = useContext(Context)
 
     useEffect(() => {
-        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"))
         if (authData) {
-            setToken(authData.token);
+            setToken(authData.token)
             setUserData(authData)
+            setIsAuthentication(true)
         }
 
         // check for login time period
@@ -45,6 +48,7 @@ const Routes = () => {
         <Switch>
             {/* NORMAL ROUTES */}
             <Route exact path="/" component={Landing} />
+            <Route exact path="/booking" component={Booking} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/service" component={Service} />
@@ -57,9 +61,9 @@ const Routes = () => {
             <ProtectedRoutes path="/userprofile">
                 <UserProfile />
             </ProtectedRoutes>
-            <ProtectedRoutes path="/booking">
+            {/* <ProtectedRoutes path="/booking">
                 <Booking />
-            </ProtectedRoutes>
+            </ProtectedRoutes> */}
             {/* PROTECTED ROUTE END */}
 
             <Redirect to="/" />

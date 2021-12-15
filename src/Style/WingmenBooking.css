@@ -35,9 +35,8 @@ textarea:-webkit-autofill:active {
 
 .btn_brand {
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
   font-weight: 700;
-  border-radius: 5px;
   text-transform: uppercase;
   background-color: var(--brand-blue);
   color: var(--white);
@@ -495,6 +494,45 @@ textarea:-webkit-autofill:active {
   width: 150px;
 }
 
+.booking_login {
+  width: 80%;
+  margin: auto;
+}
+
+.booking_login h2 {
+  font-size: 50px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
+}
+
+.booking_login h2 span {
+  color: var(--brand-blue);
+}
+
+.bookig_signup h3 {
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
+}
+
+.bookig_signup h3 span {
+  padding-left: 7px;
+  color: var(--brand-blue);
+  cursor: pointer;
+}
+
+.booking_login .signup_form_otp input {
+  margin-bottom: 0px;
+  height: 40px !important;
+  width: 40px !important;
+}
+
 .display_service {
   width: 80%;
   margin: auto;
@@ -515,13 +553,13 @@ textarea:-webkit-autofill:active {
   left: -9999px;
 }
 
-.display_service input[type="radio"]:checked + label > img {
+.display_service input[type="radio"]:checked+label>img {
   border: 1px solid var(--white);
   box-shadow: 0 0 3px 3px var(--brand-blue);
 }
 
 /* Stuff after this is only to make things more pretty */
-.display_service input[type="radio"] + label > img {
+.display_service input[type="radio"]+label>img {
   border: 1px dashed var(--brand-gray);
   width: 50px;
   height: 50px;
@@ -529,7 +567,7 @@ textarea:-webkit-autofill:active {
   opacity: 0.5;
 }
 
-.display_service input[type="radio"]:checked + label > img {
+.display_service input[type="radio"]:checked+label>img {
   opacity: 10;
 }
 
@@ -1391,15 +1429,18 @@ ul.tl li .timestamp {
   height: 376px;
   width: 100%;
 }
+
 .service_block {
   margin-top: 80px;
   width: 100%;
 }
+
 .service_row {
   margin: 2rem 0px;
   width: 100%;
   align-items: center;
 }
+
 .service_detail {
   align-items: center;
 }
@@ -1426,6 +1467,7 @@ ul.tl li .timestamp {
   font-family: var(--paragraph-text);
   color: var(--brand-gray);
 }
+
 /* Service END */
 
 /* AboutUs */
