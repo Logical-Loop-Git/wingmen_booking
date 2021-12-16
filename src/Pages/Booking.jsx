@@ -21,6 +21,7 @@ import { NavLink } from 'react-router-dom';
 import useOnclickOutside from "react-cool-onclickoutside";
 import AddVehicalPopup from '../Components/Popups/AddVehicalPopup'
 import BookingLogin from '../Components/Booking/BookingLogin';
+import BookingDriver from '../Components/Booking/BookingDriver';
 
 const Booking = () => {
 
@@ -53,12 +54,14 @@ const Booking = () => {
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
+    const [createdBookingId, setCreatedBookingId] = useState('')
     //BOOKING LOCATION VIEW
     const [bookingView, setBookingView] = useState(true)
     const [loginCheck, setLoginCheck] = useState(false)
     const [serviceView, setServiceView] = useState(false)
     const [displayBookingDetail, setDisplayBookingDetail] = useState(false)
     const [paymentView, setPaymentView] = useState(false)
+    const [bookingDriverView, setBookingDriverView] = useState(false)
     const [userCreateStatusBtn, setUserCreateStatusBtn] = useState(true)
     const google = window.google
 
@@ -314,8 +317,35 @@ const Booking = () => {
                     console.log(response, 'createBooking');
                     if (response.data.success === true) {
                         console.log(response, 'createBooking');
-                        // setBookingCheck(response.data.data)
+                        console.log(response.data.data._id, 'createBooking');
                         toast.dark(`Your ride create successfully.`)
+                        setCreatedBookingId(response.data.data._id)
+                        setDisplayBookingDetail(false)
+                        setPaymentView(false)
+                        setBookingDriverView(true)
+                        let url = API + `generateOtpForRide`;
+                        const config = {
+                            headers: {
+                                Authorization: `${userData.token}`,
+                            }
+                        };
+                        const body = {
+                            "phoneNo": userData.phone,
+                            "countryCode": userData.countryCode
+                        }
+                        axios
+                            .post(url, body, config)
+                            .then((response) => {
+                                console.log(response, 'createBooking');
+                                if (response.data.success === true) {
+                                    toast.success(`Your ride is in the way. A wingmen code is send on your register number user for ride.`)
+                                } else {
+                                    toast.warn(response.data.message)
+                                }
+                            })
+                            .catch((err) => {
+                                console.log("error here", err);
+                            });
                     } else {
                         toast.warn(response.data.message)
                     }
@@ -437,6 +467,11 @@ const Booking = () => {
                                 <FontAwesomeIcon icon={faArrowRight} />
                             </button>
                         </div>
+                    </div>
+                }
+                {bookingDriverView &&
+                    <div className='booking_driver'>
+                        <BookingDriver createdBookingId={createdBookingId} />
                     </div>
                 }
             </div>

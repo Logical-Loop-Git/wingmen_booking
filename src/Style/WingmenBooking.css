@@ -745,6 +745,44 @@ ul.tl li .timestamp {
   font-family: var(--header-text);
 }
 
+.driver_display {
+  width: 80%;
+  margin: auto;
+  display: grid;
+}
+
+.driver_display h2 {
+  font-size: 30px;
+  color: var(--black);
+  font-weight: 700;
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: var(--header-text);
+}
+
+.driver_data {
+  display: grid;
+  justify-content: center;
+}
+
+.driver_data img {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.driver_data h2 {
+  margin-bottom: 5px;
+}
+
+.driver_data p {
+  font-family: var(--paragraph-text);
+  text-align: center;
+}
+
 .payment_wallet,
 .payment_card {
   border: 1px solid var(--brand-blue);

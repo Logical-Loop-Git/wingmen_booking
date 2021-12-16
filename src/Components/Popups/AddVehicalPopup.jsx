@@ -94,7 +94,7 @@ const AddVehicalPopup = () => {
                                 toast.dark(`Vehiacl added successfully.`)
                                 onClosePopup()
                                 setAddVehicalStatus(true)
-                            } else{
+                            } else {
                                 toast.warn(response.data.message)
                             }
                         })

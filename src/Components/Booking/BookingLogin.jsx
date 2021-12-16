@@ -186,7 +186,6 @@ const BookingLogin = () => {
             }
             {userProfileView &&
                 <div className="user_date signup_user_detail">
-                    <h2>User Profile</h2>
                     <div className="user_input mb-0">
                         <label htmlFor="fname">First Name:</label>
                         <input
@@ -214,6 +213,7 @@ const BookingLogin = () => {
                         <select
                             name="gender"
                             id="gender"
+                            defaultValue={"MALE"}
                             value={gender}
                             onChange={(e) => setGender(e.target.value)}
                         >

@@ -39,6 +39,7 @@ const Routes = () => {
             })
                 .then(response => response.json())
                 .then(res => {
+                    console.log(res);
                     if (res.message === 'Session has been expired.') {
                         localStorage.removeItem("wingmen_booking");
                         window.location = '/'
