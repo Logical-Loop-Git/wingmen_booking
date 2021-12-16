@@ -113,10 +113,10 @@ const Booking = () => {
     //VIEW SERVICES COMPONENT
     const onSelectService = () => {
         if (pickupLocation.latitude === 0) {
-            toast.warning(`Pleace select pickup location.`)
+            toast.warning(`Please select pickup location.`)
         } else {
             if (dropLocation.latitude === 0) {
-                toast.warning(`Pleace select drop location.`)
+                toast.warning(`Please select drop location.`)
             } else {
                 setBookingView(false)
                 setLoginCheck(false)
@@ -127,10 +127,10 @@ const Booking = () => {
     //VIEW SIGNIN & SIGNUP COMPONENT
     const onSelectLogin = () => {
         if (pickupLocation.latitude === 0) {
-            toast.warning(`Pleace select pickup location.`)
+            toast.warning(`Please select pickup location.`)
         } else {
             if (dropLocation.latitude === 0) {
-                toast.warning(`Pleace select drop location.`)
+                toast.warning(`Please select drop location.`)
             } else {
                 setBookingView(false)
                 setLoginCheck(true)
