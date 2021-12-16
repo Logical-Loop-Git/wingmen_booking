@@ -303,6 +303,7 @@ textarea:-webkit-autofill:active {
 }
 
 .app_play_store button {
+  background-color: transparent;
   border: none;
   width: 200px;
 }

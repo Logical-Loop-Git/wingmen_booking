@@ -111,7 +111,7 @@ const SelectServices = () => {
                         ? "No serviceType found :("
                         : serviceType.map((list, index) => {
                             return (
-                                <Col md={2} sm={4} xs={4}>
+                                <Col md={4} sm={4} xs={4}>
                                     <div key={index}>
                                         <input
                                             className="input-hidden"
@@ -148,7 +148,7 @@ const SelectServices = () => {
                         </div>
                         : userVehical.map((list, index) => {
                             return (
-                                <Col md={2} sm={4} xs={4}>
+                                <Col md={4} sm={4} xs={4}>
                                     <div key={index}>
                                         <input
                                             className="input-hidden"

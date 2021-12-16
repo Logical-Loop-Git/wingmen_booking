@@ -1,5 +1,5 @@
 @media only screen and (max-width: 1024px) {
-  .popup_open{
+  .popup_open {
     height: fit-content;
     width: 90%;
   }
@@ -75,6 +75,7 @@
   .signup_form_otp span {
     padding: 2px;
   }
+
   .service_block {
     margin-top: 0px;
     width: 100%;
@@ -83,6 +84,7 @@
   .service_detail {
     order: 1;
   }
+
   .service_img {
     padding-top: 10px;
     order: 2;
@@ -188,7 +190,7 @@
     height: 170px;
     width: auto;
     margin: 30px 20px 20px 50px;
-    box-shadow: 3px 3px 10px 0 gray; 
+    box-shadow: 3px 3px 10px 0 gray;
     border: 4px solid var(--white);
     border-radius: 5px;
   }
@@ -206,7 +208,7 @@
   .contact_image3 {
     align-items: center;
     margin: 20px;
-    margin-top:30px;
+    margin-top: 30px;
     height: 120px;
     float: left;
     width: auto;
@@ -214,39 +216,39 @@
     border: 4px solid var(--white);
     border-radius: 5px;
   }
-  .disp_vehical h2{
+
+  .disp_vehical h2 {
     font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 840px) {
-    .contact_image1 {
-        height: 130px;
-        width: auto;
-        margin: 30px 0px 30px 30px;
-        box-shadow: 3px 3px 10px 0 gray;
-        border: 4px solid var(--white);
-        border-radius: 5px;
-      }
-    
-      .contact_image2 {
-        margin-top: 30px;
-        height: 130px;
-        width: auto;
-        box-shadow: 3px 3px 10px 0 gray;
-        border: 4px solid var(--white);
-        border-radius: 5px;
-      }
-    
-      .contact_image3 {
-        align-items: center;
-        margin-top: 60px;
-        height: 130px;
-        float: left;
-        width: auto;
-        box-shadow: 3px 3px 10px 0 gray;
-        border: 4px solid var(--white);
-        border-radius: 5px;
-      }
-}
+  .contact_image1 {
+    height: 130px;
+    width: auto;
+    margin: 30px 0px 30px 30px;
+    box-shadow: 3px 3px 10px 0 gray;
+    border: 4px solid var(--white);
+    border-radius: 5px;
+  }
 
+  .contact_image2 {
+    margin-top: 30px;
+    height: 130px;
+    width: auto;
+    box-shadow: 3px 3px 10px 0 gray;
+    border: 4px solid var(--white);
+    border-radius: 5px;
+  }
+
+  .contact_image3 {
+    align-items: center;
+    margin-top: 60px;
+    height: 130px;
+    float: left;
+    width: auto;
+    box-shadow: 3px 3px 10px 0 gray;
+    border: 4px solid var(--white);
+    border-radius: 5px;
+  }
+}

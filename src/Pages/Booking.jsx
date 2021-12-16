@@ -40,11 +40,16 @@ const Booking = () => {
         bookingNote,
         addVehical,
         setAddVehical,
+        setBookingSignin,
         bookingSignin,
         setUserData,
         setToken,
         onSignUp,
-        isBookingSignup
+        isBookingSignup,
+        setCheckUserAccountStatus,
+        checkUserAccountStatus,
+        setCheckPhone,
+        setUserOtpView
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
@@ -54,6 +59,7 @@ const Booking = () => {
     const [serviceView, setServiceView] = useState(false)
     const [displayBookingDetail, setDisplayBookingDetail] = useState(false)
     const [paymentView, setPaymentView] = useState(false)
+    const [userCreateStatusBtn, setUserCreateStatusBtn] = useState(true)
     const google = window.google
 
     //MAP VIEW
@@ -131,20 +137,31 @@ const Booking = () => {
             }
         }
     }
+    
     //SIGNIN USER AND PASS TO OTHER COMPONENT
     const onSignin = () => {
+        //APIS ROUTES
+        let signIn = API + `signIn`;
+        let checkUser = API + `checkUser`;
+        let signUp = API + `signUp`;
+        //CREATE BODY FOR APIS
         const body = {
             "deviceType": "web",
             "password": bookingSignin.loginPassword,
-            "phone": bookingSignin.loginId
+            "phone": bookingSignin.loginId,
+            "countryCode": bookingSignin.loginCountryCode
         }
-        console.log(body);
-        let url = API + `signIn`;
-        if (bookingSignin.loginPassword === '' || bookingSignin.loginId === '') {
-            toast.dark('Please fill phone number and password to login.')
-        } else {
+        const otpBody = {
+            "countryCode": bookingSignin.loginCountryCode,
+            "phone": bookingSignin.loginId,
+            "type": "mobile",
+        }
+
+        //CHECK SIGNN || SIGNUP CONDITION
+        if (checkUserAccountStatus) {
+            //IF USER REGISTER THEN SIGNIN
             axios
-                .post(url, body)
+                .post(signIn, body)
                 .then(response => {
                     console.log(response);
                     if (response.data.success === true) {
@@ -156,6 +173,7 @@ const Booking = () => {
                         );
                         setUserData(response.data.data)
                         setToken(response.data.data.token)
+                        setCheckPhone(false)
                         onSelectService()
                     } else if (response.data.message === 'User does not exist.' || response.data.success === false) {
                         toast.dark(`User doesn't exist in our database you might enter wrong email.`)
@@ -166,8 +184,47 @@ const Booking = () => {
                 .catch(err => {
                     console.log("error here", err.response)
                 })
+        } else {
+            //IF USER IS NOT REGISTER THEN SINGUP
+            if (bookingSignin.loginPassword === '' || bookingSignin.loginId === '') {
+                toast.dark('Please fill phone number and password to login.')
+            } else {
+                //CHECK USER IF REGISTER
+                axios
+                    .post(checkUser, body)
+                    .then(response => {
+                        console.log(response);
+                        if (response.data.status === 1) {
+                            //USER IS REGISTER ASKED FOR PASSWORD
+                            setCheckUserAccountStatus(true)
+                        } else if (response.data.status === 0) {
+                            //USER IS NOT REGISTER SEND HIM OTP FOR REGISTERING
+                            axios
+                                .post(signUp, otpBody)
+                                .then((response) => {
+                                    console.log(response, 'signUp');
+                                    if (response.data.success === true) {
+                                        console.log(response, 'signUp');
+                                        setBookingSignin({ loginOtpId: response.data.data.otpId })
+                                        setCheckPhone(false)
+                                        setUserOtpView(true)
+                                        setUserCreateStatusBtn(false)
+                                    } else {
+                                        toast.warn(response.data.message)
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log("error here", err);
+                                });
+                        }
+                    })
+                    .catch(err => {
+                        console.log("error here", err.response)
+                    })
+            }
         }
     }
+
     //BACK TO PICKUP, DROP LOCATION SELECT
     const onBackLocation = () => {
         setBookingView(true)
@@ -305,7 +362,7 @@ const Booking = () => {
                                 <FontAwesomeIcon icon={faArrowRight} />
                             </button>
                                 : <button className="booking_next" onClick={() => onSelectLogin()}>
-                                    Sign
+                                    next
                                     <FontAwesomeIcon icon={faArrowRight} />
                                 </button>
                             }
@@ -318,14 +375,18 @@ const Booking = () => {
                         <BookingLogin />
                         {onSignUp &&
                             <div className="booking_proced">
-                                <button className="booking_back" onClick={() => onBackLocation()}>
-                                    back
-                                    <FontAwesomeIcon icon={faArrowLeft} />
-                                </button>
-                                <button className="booking_next" onClick={() => onSignin()}>
-                                    next
-                                    <FontAwesomeIcon icon={faArrowRight} />
-                                </button>
+                                {userCreateStatusBtn &&
+                                    <div className='d-flex justify-content-between w-100'>
+                                        <button className="booking_back" onClick={() => onBackLocation()}>
+                                            back
+                                            <FontAwesomeIcon icon={faArrowLeft} />
+                                        </button>
+                                        <button className="booking_next" onClick={() => onSignin()}>
+                                            next
+                                            <FontAwesomeIcon icon={faArrowRight} />
+                                        </button>
+                                    </div>
+                                }
                             </div>
                         }
                     </div>

@@ -11,7 +11,7 @@ import Signup from "../Pages/Signup";
 import Service from "../Pages/Service";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
-import { imageUrl } from "../Config/api";
+import API from "../Config/api";
 
 
 const Routes = () => {
@@ -30,35 +30,29 @@ const Routes = () => {
         }
 
         // check for login time period
-        try {
-            if (authData) {
-                fetch(`${imageUrl}api/v1/admin/checkAdmin`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: authData
+        if (authData) {
+            fetch(`${API}checkUserAuth`, {
+                method: 'GET',
+                headers: {
+                    Authorization: authData
+                }
+            })
+                .then(response => response.json())
+                .then(res => {
+                    if (res.message === 'Session has been expired.') {
+                        localStorage.removeItem("wingmen_booking");
+                        window.location = '/'
+                    } else if (res.message === 'Token not found.') {
+                        localStorage.removeItem("wingmen_booking");
+                        window.location = '/'
+                    } else if (res.message === 'Access denied.') {
+                        localStorage.removeItem("wingmen_booking");
+                        window.location = '/'
                     }
                 })
-                    .then(response => response.json())
-                    .then(res => {
-                        console.log(res);
-                        if (res.message === 'Session has been expired.') {
-                            localStorage.removeItem("wingmen_booking");
-                            window.location = '/'
-                        } else if (res.message === 'Token not found.') {
-                            localStorage.removeItem("wingmen_booking");
-                            window.location = '/'
-                        } else if (res.message === 'Access denied.') {
-                            localStorage.removeItem("wingmen_booking");
-                            window.location = '/'
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error)
-                    })
-            }
-        } catch (error) {
-            console.log(error, "ERROR");
-            localStorage.removeItem("wingmen_booking");
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
         }
     }, [])
 
