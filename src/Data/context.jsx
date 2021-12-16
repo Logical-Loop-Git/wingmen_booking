@@ -44,6 +44,7 @@ export const ContextProvider = ({ children }) => {
     const [addCard, setAddCard] = useState(false)
     const [addVehical, setAddVehical] = useState(false)
     const [addVehicalStatus, setAddVehicalStatus] = useState(false)
+    const [onSignUp, setOnSignUp] = useState(true)
 
     return (
         <Context.Provider
@@ -92,6 +93,8 @@ export const ContextProvider = ({ children }) => {
                 setBookingSignin,
                 isBookingSignup,
                 setIsBookingSignup,
+                onSignUp,
+                setOnSignUp,
                 checkUserAccountStatus,
                 setCheckUserAccountStatus,
                 checkPhone,
