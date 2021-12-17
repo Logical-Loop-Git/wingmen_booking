@@ -17,9 +17,9 @@ const toolbar = (props) => {
                 </div>
                 <div className="logo_content">
                     <div className="toolbar__logo">
-                        <a href="/">
+                        <NavLink to="/">
                             <img className="img-fluid" src={logo} alt="wingmen" />
-                        </a>
+                        </NavLink>
                     </div>
                     <div className="toolbar_navigation-items">
                         <ul>
