@@ -227,6 +227,10 @@ textarea:-webkit-autofill:active {
   align-items: center;
 }
 
+.home_service {
+  margin-bottom: 30px;
+}
+
 .home_service h2 {
   font-size: 50px;
   color: var(--black);
@@ -597,11 +601,17 @@ textarea:-webkit-autofill:active {
   cursor: pointer;
 }
 
-.booking_detail {
+.select_location,
+.select_login,
+.select_services,
+.booking_detail,
+.payment_detail,
+.booking_driver {
   overflow-y: scroll;
   overflow-x: hidden;
   height: 80vh;
 }
+
 
 .display_details {
   width: 80%;
@@ -829,6 +839,7 @@ ul.tl li .timestamp {
 }
 
 .display_promo {
+  position: relative;
   display: flex;
   width: 100%;
   margin-bottom: 20px;
@@ -850,7 +861,7 @@ ul.tl li .timestamp {
   padding: 7px;
   border-radius: 50px;
   width: 70px;
-  right: 55px;
+  right: 7px;
   margin-top: 5px;
   color: var(--white);
   background-color: var(--brand-blue);
@@ -1070,6 +1081,7 @@ ul.tl li .timestamp {
   font-weight: 700;
   margin-bottom: 0px;
   font-family: var(--paragraph-text);
+  text-transform: uppercase;
 }
 
 .vedical_ed_de {
@@ -1137,6 +1149,7 @@ ul.tl li .timestamp {
 
 .driver_content {
   padding-left: 20px;
+  width: 80%;
 }
 
 .driver_content h2 {
@@ -1175,6 +1188,10 @@ ul.tl li .timestamp {
 .location_dot img {
   height: 65px;
   width: auto;
+}
+
+.address_both {
+  width: 80%;
 }
 
 .address_both p {

@@ -3,9 +3,21 @@
     height: fit-content;
     width: 90%;
   }
+
+  .login_section,
+  .booking_section,
+  .home_content {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: fit-content;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  .header_padd {
+    padding-top: 0px;
+  }
+
   .booking_ride {
     position: inherit;
     width: 100%;
@@ -18,7 +30,12 @@
     margin-top: 40px;
   }
 
-  .booking_detail {
+  .select_location,
+  .select_login,
+  .select_services,
+  .booking_detail,
+  .payment_detail,
+  .booking_driver {
     height: fit-content;
   }
 
@@ -43,7 +60,7 @@
   }
 
   .display_promo button {
-    right: 25px;
+    right: 7px;
   }
 
   .user_profile {
@@ -186,6 +203,40 @@
 
   .fo_mt {
     margin-top: 30px;
+  }
+
+  .driver_booking {
+    display: grid;
+    justify-content: center;
+  }
+
+  .driver_content h2 {
+    font-size: 13px;
+  }
+
+  .booking_status {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .booking_status h2 {
+    font-size: 15px;
+  }
+
+  .address_bookin {
+    display: grid;
+    justify-content: center;
+  }
+
+  .address_map {
+    display: flex;
+  }
+
+  .location_dot {
+    transform: rotate(90deg);
+    width: fit-content;
+    margin: auto;
+    display: none;
   }
 }
 

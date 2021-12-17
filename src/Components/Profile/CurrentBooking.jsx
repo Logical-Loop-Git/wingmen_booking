@@ -4,7 +4,7 @@ import StarRatings from 'react-star-ratings';
 import location_dot from '../../Images/Icon/blue_yellow_circle.svg'
 import user_icon from '../../Images/Icon/user.png'
 import location_icon from '../../Images/Icon/location.png'
-import { imageUrl } from '../../Config/api';
+// import { imageUrl } from '../../Config/api';
 
 
 const CurrentBooking = (bookingList) => {
@@ -18,10 +18,11 @@ const CurrentBooking = (bookingList) => {
                             <div className="driver_booking">
                                 <div className="d-flex">
                                     <div className="driver_img">
-                                        <img className="img-fluid" src={`${imageUrl}${list.driverData.image}` || user_icon} alt="" />
+                                        <img className="img-fluid" src={user_icon} alt="" />
+                                        {/* <img className="img-fluid" src={list.driverData === undefined || null || '' ? `${imageUrl}${list.driverData.image}` : user_icon} alt="" /> */}
                                     </div>
                                     <div className="driver_content">
-                                        <h2>{list.driverData.firstName} {list.driverData.lastName}</h2>
+                                        {/* <h2>{list.driverData === undefined || null || '' ? 'Your Ride Cancle Before Accept.' : `${list.driverData.firstName} ${list.driverData.lastName}`}</h2> */}
                                         <StarRatings
                                             rating={list.driverRating}
                                             starDimension="15px"
