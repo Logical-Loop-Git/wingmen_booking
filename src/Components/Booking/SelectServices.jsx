@@ -20,6 +20,8 @@ const SelectServices = () => {
     } = useContext(Context)
     const [serviceType, setServiceType] = useState([])
     const [userVehical, setUserVehical] = useState([])
+    const [adminVehicle, setAdminVehicle] = useState([])
+
 
     //API CALL FOR BOOKING RELATED
     const fetchServiceType = useCallback(() => {
@@ -40,6 +42,28 @@ const SelectServices = () => {
             .catch((err) => {
                 console.log("error here", err);
             });
+    }, []);
+
+    // API CALL FOR DEFAULT VEHICLE
+    const fetchAdminVehicle = useCallback(() => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+        let url = API + `getAdminVehicle`;
+        const config = {
+            headers: {
+                Authorization: `${authData.token}`,
+            }
+        };
+        axios
+            .get(url, config)
+            .then((response) => {
+                if (response.data.status === 200) {
+                    setAdminVehicle(response.data.data)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
+        console.log(adminVehicle)
     }, []);
 
     //API CALL FOR USER VEHICAL
@@ -94,9 +118,11 @@ const SelectServices = () => {
     useEffect(() => {
         fetchServiceType()
         fetchVehical()
+        fetchAdminVehicle()
         if (addVehicalStatus) {
             fetchServiceType()
             fetchVehical()
+            fetchAdminVehicle()
         }
     }, [addVehicalStatus])
 
@@ -138,14 +164,38 @@ const SelectServices = () => {
                 <h2>Select Car</h2>
                 <Row>
                     {userVehical.length < 1
-                        ? <div className="add_vehical_btn" onClick={() => onVehicalPopup()}>
-                            <label>
-                                <img
-                                    src={car}
-                                    alt="I'm sad" />
-                                <p>Add Vehicle</p>
-                            </label>
-                        </div>
+                        ? adminVehicle.map((list, index) => {
+                            return (
+                                [<Col md={4} sm={4} xs={4}>
+                                    <div key={index}>
+                                        <input
+                                            className="input-hidden"
+                                            type="radio"
+                                            name="vehical"
+                                            id={list._id}
+                                            onChange={(id) => onSelectVehical(list)}
+                                        />
+                                        <label for={list._id}>
+                                            <img
+                                                src={`${imageUrl}${list.vehicleImage}`}
+                                                alt="I'm sad" />
+                                            <p>{list.plateNumber}</p>
+                                        </label>
+                                    </div>
+                                </Col>,
+                                <Col md={4} sm={4} xs={4}>
+                                    <div className="add_vehical_btn" onClick={() => onVehicalPopup()}>
+                                        <label>
+                                            <img
+                                                src={car}
+                                                alt="I'm sad" />
+                                            <p>Add Vehicle</p>
+                                        </label>
+                                    </div>
+                                </Col>]
+                            )
+                        })
+
                         : userVehical.map((list, index) => {
                             return (
                                 <Col md={4} sm={4} xs={4}>

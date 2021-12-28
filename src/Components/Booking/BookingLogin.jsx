@@ -35,9 +35,7 @@ const BookingLogin = () => {
     //USER PROFILE DATA
     const [fname, setFname] = useState('')
     const [lName, setLName] = useState('')
-    const [gender, setGender] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     const [address, setAddress] = useState('')
@@ -83,14 +81,14 @@ const BookingLogin = () => {
             firstName: fname,
             lastName: lName,
             email: email,
-            password: password,
+            password: 'wingmenrandompassword',
             phone: parseInt(phoneNumber, 0),
             countryCode: countryCode,
             latitude: latitude,
             longitude: longitude,
             address: address,
-            gender: gender,
-            genderType: gender,
+            gender: 'MALE',
+            genderType: 'MALE',
             singUpType: "mobile",
             deviceType: "web"
         }
@@ -208,20 +206,6 @@ const BookingLogin = () => {
                             onChange={(e) => setLName(e.target.value)}
                         />
                     </div>
-                    <div className="user_input">
-                        <label htmlFor="gender">Gender:</label>
-                        <select
-                            name="gender"
-                            id="gender"
-                            defaultValue={"MALE"}
-                            value={gender}
-                            onChange={(e) => setGender(e.target.value)}
-                        >
-                            <option value="MALE">MALE</option>
-                            <option value="FEMALE">FEMALE</option>
-                            <option value="NO_PREFRENCE">NO_PREFRENCE</option>
-                        </select>
-                    </div>
                     <div className="user_input mb-0">
                         <label htmlFor="email">Email:</label>
                         <input
@@ -231,17 +215,6 @@ const BookingLogin = () => {
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="user_input mb-0">
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="login_forget float-end mt-4">
