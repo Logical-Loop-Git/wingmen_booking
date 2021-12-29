@@ -270,7 +270,7 @@ const Booking = () => {
 
     //API FOR CREATE BOOKING RIDE
     const onBookingRide = () => {
-        if (paymentType === '' || paymentType === 'CARD') {
+        if (paymentType === '') {
             toast.warning(`Please select payment type.`)
         } else {
             const body = {

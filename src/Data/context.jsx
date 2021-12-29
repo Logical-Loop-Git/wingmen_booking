@@ -23,7 +23,7 @@ export const ContextProvider = ({ children }) => {
     const [bookingNote, setBookingNote] = useState('')
     const [bookingAmount, setBookingAmount] = useState('')
     const [promoCode, setPromoCode] = useState('')
-    const [paymentType, setPaymentType] = useState('')
+    const [paymentType, setPaymentType] = useState('CARD')
     const [estimateTime, setEstimateTime] = useState('')
     const [distance, setDistance] = useState('')
     const [cardAddedStatus, setCardAddedStatus] = useState(false)

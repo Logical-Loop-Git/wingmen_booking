@@ -5,9 +5,11 @@ import user_pr from '../../Images/Icon/user.png'
 import Lottie from 'react-lottie';
 import car from '../../Images/Animation/lf30_editor_qssfdpmp.json'
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const BookingDriver = ({ createdBookingId }) => {
 
+    const history = useHistory()
     const [driverDetails, setDriverDetails] = useState({})
     const [showDriver, setShowDriver] = useState(false)
     const [stopWhenDataGet, setStopWhenDataGet] = useState(6000)
@@ -26,6 +28,31 @@ const BookingDriver = ({ createdBookingId }) => {
     const onLogout = () => {
         localStorage.removeItem("wingmen_booking")
         window.location = "/"
+    }
+
+    //CANCLE BOOKING
+    const onCancleBooking = () => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+        let url = API + `cancelBooking`;
+        const config = {
+            headers: {
+                Authorization: `${authData.token}`,
+            }
+        };
+        const body = {
+            bookingId: createdBookingId
+        }
+        axios
+            .post(url, body, config)
+            .then((response) => {
+                if (response.data.success === true) {
+                    console.log(response, 'createBookingPaymentCheck');
+                    history.push(`/`)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            });
     }
 
     //API CALL FOR BOOKING DETAILS
@@ -87,6 +114,9 @@ const BookingDriver = ({ createdBookingId }) => {
                         height={250}
                         width={250}
                     />
+                    <div className='m-auto'>
+                        <button className='btn_brand' onClick={() => onCancleBooking()}>Cancle Booking</button>
+                    </div>
                 </div>
             }
         </div>

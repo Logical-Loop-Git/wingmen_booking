@@ -54,7 +54,7 @@ const PaymentDetail = () => {
         setCardChecked(checked)
         if (checked === false) {
             setPaymentType('WALLET')
-        } else {
+        } else if (checked === true) {
             setPaymentType('CARD')
         }
     }
@@ -183,7 +183,7 @@ const PaymentDetail = () => {
                     <p>$ {bookingAmount}</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <h3>PromoCode</h3>
+                    <h3>Promo Code</h3>
                     <p>-$ {promoAmount}</p>
                 </div>
                 <div className="d-flex justify-content-between">
