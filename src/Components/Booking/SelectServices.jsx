@@ -166,7 +166,7 @@ const SelectServices = () => {
                     {userVehical.length < 1
                         ? adminVehicle.map((list, index) => {
                             return (
-                                [<Col md={4} sm={4} xs={4}>
+                                <Col md={4} sm={4} xs={4}>
                                     <div key={index}>
                                         <input
                                             className="input-hidden"
@@ -182,20 +182,10 @@ const SelectServices = () => {
                                             <p>{list.plateNumber}</p>
                                         </label>
                                     </div>
-                                </Col>,
-                                <Col md={4} sm={4} xs={4}>
-                                    <div className="add_vehical_btn" onClick={() => onVehicalPopup()}>
-                                        <label>
-                                            <img
-                                                src={car}
-                                                alt="I'm sad" />
-                                            <p>Add Vehicle</p>
-                                        </label>
-                                    </div>
-                                </Col>]
+                                </Col>
+
                             )
                         })
-
                         : userVehical.map((list, index) => {
                             return (
                                 <Col md={4} sm={4} xs={4}>
@@ -217,6 +207,18 @@ const SelectServices = () => {
                                 </Col>
                             );
                         })
+                    }
+                    {
+                        userVehical.length > 0 ? null : <Col md={4} sm={4} xs={4}>
+                            <div className="add_vehical_btn" onClick={() => onVehicalPopup()}>
+                                <label>
+                                    <img
+                                        src={car}
+                                        alt="I'm sad" />
+                                    <p>Add Vehicle</p>
+                                </label>
+                            </div>
+                        </Col>
                     }
                 </Row>
             </div>

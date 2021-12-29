@@ -86,7 +86,7 @@ const PaymentDetail = () => {
                 if (response.data.success === true) {
                     setPromoAmount(response.data.data.promoAmount)
                     setPromoCode(promoC)
-                    toast.success(`Your promo code applyed successfully.`)
+                    toast.success(`Your promo code applied successfully.`)
                 } else {
                     toast.warn(response.data.message)
                 }
@@ -167,7 +167,7 @@ const PaymentDetail = () => {
                     type="text"
                     name="promo"
                     id="promo"
-                    placeholder="Reedom Promo Code"
+                    placeholder="Redeem Promo Code"
                     value={promoC}
                     onChange={(e) => setPromoC(e.target.value)}
                 />
@@ -179,7 +179,7 @@ const PaymentDetail = () => {
             </div>
             <div className="display_total">
                 <div className="d-flex justify-content-between">
-                    <h3>Tolal</h3>
+                    <h3>Total</h3>
                     <p>$ {bookingAmount}</p>
                 </div>
                 <div className="d-flex justify-content-between">
