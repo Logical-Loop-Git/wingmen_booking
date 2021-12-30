@@ -20,7 +20,7 @@ const HomeLogin = () => {
                     <div className="login_home">
                         <h2><span>Ride Always</span> How you want</h2>
                         <p>Request a driver, hop into your car, and relax.</p>
-                        <button className="btn_brand" onClick={() => onSignin()}>login as customer</button>
+                        <button className="btn_brand_home" onClick={() => onSignin()}>login as customer</button>
                     </div>
                 </Col>
                 <Col md={6}>

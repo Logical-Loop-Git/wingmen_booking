@@ -35,13 +35,16 @@ const CardForm = () => {
 
     const {
         userData,
-        setCardAddedStatus
+        setCardAddedStatus,
+        isLoading,
+        setIsLoading
     } = useContext(Context)
     const stripe = useStripe();
     const elements = useElements();
     const options = useOptions();
 
     const handleSubmit = async event => {
+        setIsLoading(true)
         event.preventDefault();
 
         if (!stripe || !elements) {
@@ -70,13 +73,18 @@ const CardForm = () => {
                     if (response.data.success === true) {
                         toast.dark(`Your card added successfully.`)
                         setCardAddedStatus(true)
+                        setIsLoading(false)
                     } else {
                         toast.dark(`Having some trouble to add card.`)
+                        setIsLoading(false)
                     }
                 })
                 .catch((err) => {
                     console.log("error here", err);
-                });
+                })
+                .finally(() => {
+                    setIsLoading(false)
+                })
         }
     };
 
@@ -100,8 +108,7 @@ const CardForm = () => {
                         console.log("CardElement [focus]");
                     }}
                 />
-            </label>
-            <button
+            </label> <button
                 className="btn_brand"
                 type="submit"
                 disabled={!stripe}

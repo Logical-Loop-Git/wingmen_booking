@@ -23,7 +23,9 @@ const BookingLogin = () => {
         checkUserAccountStatus,
         checkPhone,
         UserOtpView,
-        setUserOtpView
+        setUserOtpView,
+        isLoading,
+        setIsLoading
     } = useContext(Context)
 
     //USER REGIS 
@@ -76,6 +78,7 @@ const BookingLogin = () => {
 
     //API FOR USER PROFILE DETAIL SAVE
     const onUserData = () => {
+        setIsLoading(true)
         const body = {
             image: '',
             firstName: fname,
@@ -115,7 +118,10 @@ const BookingLogin = () => {
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     //FOR FETCHING CALLBACK AND GETING LAT LNG FROM GEOCODE
@@ -218,12 +224,20 @@ const BookingLogin = () => {
                         />
                     </div>
                     <div className="login_forget float-end mt-4">
-                        <button
-                            className="btn_brand"
-                            onClick={() => onUserData()}
-                        >
-                            next
-                        </button>
+                        {
+                            isLoading === true ? <button className="btn_brand">
+                                <div class="spinner-border text-white" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </button> :
+                                <button
+                                    className="btn_brand"
+                                    onClick={() => onUserData()}
+                                >
+                                    next
+                                </button>
+
+                        }
                     </div>
                 </div>
             }

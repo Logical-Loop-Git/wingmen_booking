@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PhoneInput from "react-phone-input-2";
 import { Col, Row } from "reactstrap";
 import Footer from "../Components/Footer";
@@ -6,8 +6,15 @@ import NavBar from "../Components/Header/NavBar";
 import wing from "../Images/Service/wing.jpg";
 import care from "../Images/Service/care.jpg";
 import Events from "../Images/Service/Events.jpg";
+import { Context } from "../Data/context";
 
 const ContactUs = () => {
+
+  const {
+    isLoading,
+    //setIsLoading
+  } = useContext(Context)
+
   return (
     <section>
       <NavBar />
@@ -101,7 +108,13 @@ const ContactUs = () => {
                   Service.
                 </p>
                 <div>
-                  <button className="btn_brand">Get in touch</button>
+                  {
+                    isLoading === true ? <button className="btn_brand">
+                      <div class="spinner-border text-white" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </button> : <button className="btn_brand">Get in touch</button>
+                  }
                 </div>
               </div>
             </Col>

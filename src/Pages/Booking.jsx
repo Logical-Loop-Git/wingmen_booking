@@ -50,7 +50,9 @@ const Booking = () => {
         setCheckUserAccountStatus,
         checkUserAccountStatus,
         setCheckPhone,
-        setUserOtpView
+        setUserOtpView,
+        isLoading,
+        setIsLoading
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
@@ -115,34 +117,44 @@ const Booking = () => {
     //VIEW ALL COMPONENTS
     //VIEW SERVICES COMPONENT
     const onSelectService = () => {
+        setIsLoading(true)
         if (pickupLocation.latitude === 0) {
             toast.warning(`Please select pickup location.`)
+            setIsLoading(false)
+
         } else {
             if (dropLocation.latitude === 0) {
                 toast.warning(`Please select drop location.`)
+                setIsLoading(false)
             } else {
                 setBookingView(false)
                 setLoginCheck(false)
                 setServiceView(true)
+                setIsLoading(false)
             }
         }
     }
     //VIEW SIGNIN & SIGNUP COMPONENT
     const onSelectLogin = () => {
+        setIsLoading(true)
         if (pickupLocation.latitude === 0) {
             toast.warning(`Please select pickup location.`)
+            setIsLoading(false)
         } else {
             if (dropLocation.latitude === 0) {
                 toast.warning(`Please select drop location.`)
+                setIsLoading(false)
             } else {
                 setBookingView(false)
                 setLoginCheck(true)
+                setIsLoading(false)
             }
         }
     }
 
     //SIGNIN USER AND PASS TO OTHER COMPONENT
     const onSignin = () => {
+        setIsLoading(true)
         //APIS ROUTES
         let signIn = API + `signIn`;
         let checkUser = API + `checkUser`;
@@ -187,6 +199,9 @@ const Booking = () => {
                 .catch(err => {
                     console.log("error here", err.response)
                 })
+                .finally(() => {
+                    setIsLoading(false)
+                })
         } else {
             //IF USER IS NOT REGISTER THEN SINGUP
             if (bookingSignin.loginPassword === '' || bookingSignin.loginId === '') {
@@ -218,11 +233,17 @@ const Booking = () => {
                                 })
                                 .catch((err) => {
                                     console.log("error here", err);
-                                });
+                                })
+                                .finally(() => {
+                                    setIsLoading(false)
+                                })
                         }
                     })
                     .catch(err => {
                         console.log("error here", err.response)
+                    })
+                    .finally(() => {
+                        setIsLoading(false)
                     })
             }
         }
@@ -236,17 +257,22 @@ const Booking = () => {
     }
     //VIEW BOOKING DETAILS COMPONENT
     const onBookingDetail = () => {
+        setIsLoading(true)
         if (selectedServiceType.id === undefined || null || '') {
             toast.warning(`Please select service type.`)
+            setIsLoading(false)
         } else {
             if (selectedVehical._id === undefined || null || '') {
                 toast.warning(`Please select your vehical type.`)
+                setIsLoading(false)
             } else {
                 if (triType === '') {
                     toast.warning(`Please select your trip type.`)
+                    setIsLoading(false)
                 } else {
                     setServiceView(false)
                     setDisplayBookingDetail(true)
+                    setIsLoading(false)
                 }
             }
         }
@@ -258,8 +284,10 @@ const Booking = () => {
     }
     //VIEW PAYMENT COMPONENT
     const onPayment = () => {
+        setIsLoading(true)
         setPaymentView(true)
         setDisplayBookingDetail(false)
+        setIsLoading(false)
     }
     //BACK TO BOOKING DETAILS
     const onBackBookingDetail = () => {
@@ -270,6 +298,7 @@ const Booking = () => {
 
     //API FOR CREATE BOOKING RIDE
     const onBookingRide = () => {
+        setIsLoading(true)
         if (paymentType === '') {
             toast.warning(`Please select payment type.`)
         } else {
@@ -345,14 +374,20 @@ const Booking = () => {
                             })
                             .catch((err) => {
                                 console.log("error here", err);
-                            });
+                            })
+                            .finally(() => {
+                                setIsLoading(false)
+                            })
                     } else {
                         toast.warn(response.data.message)
                     }
                 })
                 .catch((err) => {
                     console.log("error here", err);
-                });
+                })
+                .finally(() => {
+                    setIsLoading(false)
+                })
         }
     }
 
@@ -387,14 +422,24 @@ const Booking = () => {
                     <div className="select_location">
                         <SelectLocation />
                         <div className="booking_proced">
-                            {isAuthentication ? <button className="booking_next" onClick={() => onSelectService()}>
-                                next
-                                <FontAwesomeIcon icon={faArrowRight} />
-                            </button>
-                                : <button className="booking_next" onClick={() => onSelectLogin()}>
+                            {isAuthentication ?
+                                (isLoading === true ? <button className="booking_next">
+                                    <div class="spinner-border text-white" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button> : <button className="booking_next" onClick={() => onSelectService()}>
                                     next
                                     <FontAwesomeIcon icon={faArrowRight} />
-                                </button>
+                                </button>)
+
+                                : (isLoading === true ? <button className="booking_next">
+                                    <div class="spinner-border text-white" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button> : <button className="booking_next" onClick={() => onSelectLogin()}>
+                                    next
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>)
                             }
                         </div>
                     </div>
@@ -411,10 +456,17 @@ const Booking = () => {
                                             back
                                             <FontAwesomeIcon icon={faArrowLeft} />
                                         </button>
-                                        <button className="booking_next" onClick={() => onSignin()}>
-                                            next
-                                            <FontAwesomeIcon icon={faArrowRight} />
-                                        </button>
+                                        {
+                                            isLoading === true ? <button className="booking_next">
+                                                <div class="spinner-border text-white" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </button> : <button className="booking_next" onClick={() => onSignin()}>
+                                                next
+                                                <FontAwesomeIcon icon={faArrowRight} />
+                                            </button>
+                                        }
+
                                     </div>
                                 }
                             </div>
@@ -430,10 +482,17 @@ const Booking = () => {
                                 back
                                 <FontAwesomeIcon icon={faArrowLeft} />
                             </button>
-                            <button className="booking_next" onClick={() => onBookingDetail()}>
-                                next
-                                <FontAwesomeIcon icon={faArrowRight} />
-                            </button>
+                            {
+                                isLoading === true ? <button className="booking_next">
+                                    <div class="spinner-border text-white" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button> : <button className="booking_next" onClick={() => onBookingDetail()}>
+                                    next
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>
+                            }
+
                         </div>
                     </div>
                 }
@@ -446,10 +505,17 @@ const Booking = () => {
                                 back
                                 <FontAwesomeIcon icon={faArrowLeft} />
                             </button>
-                            <button className="booking_next" onClick={() => onPayment()}>
-                                next
-                                <FontAwesomeIcon icon={faArrowRight} />
-                            </button>
+                            {
+                                isLoading === true ? <button className="booking_next">
+                                    <div class="spinner-border text-white" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button> : <button className="booking_next" onClick={() => onPayment()}>
+                                    next
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>
+                            }
+
                         </div>
                     </div>
                 }
@@ -462,10 +528,17 @@ const Booking = () => {
                                 back
                                 <FontAwesomeIcon icon={faArrowLeft} />
                             </button>
-                            <button className="booking_next" onClick={() => onBookingRide()}>
-                                book ride
-                                <FontAwesomeIcon icon={faArrowRight} />
-                            </button>
+                            {
+                                isLoading === true ? <button className="booking_next">
+                                    <div class="spinner-border text-white" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button> : <button className="booking_next" onClick={() => onBookingRide()}>
+                                    book ride
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </button>
+                            }
+
                         </div>
                     </div>
                 }

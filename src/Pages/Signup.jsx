@@ -19,7 +19,7 @@ import logo from '../Images/Footer/logo.png'
 const Signup = () => {
 
     const history = useHistory()
-    const { setToken, setUserData } = useContext(Context)
+    const { setToken, setUserData, isLoading, setIsLoading } = useContext(Context)
     //USER REGIS 
     const [phoneNumber, setPhoneNumber] = useState('')
     const [countryCode, setCountryCode] = useState('')
@@ -32,7 +32,7 @@ const Signup = () => {
     //USER PROFILE DATA
     const [fname, setFname] = useState('')
     const [lName, setLName] = useState('')
-    const [gender, setGender] = useState('')
+    const [gender, setGender] = useState('MALE')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [latitude, setLatitude] = useState(0)
@@ -57,6 +57,7 @@ const Signup = () => {
 
     //API CALL FOR USER REGISTER
     const onSubmit = () => {
+        setIsLoading(true)
         const body = {
             countryCode: countryCode,
             phone: phoneNumber,
@@ -78,11 +79,15 @@ const Signup = () => {
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     //API FOR USER OTP VERIFICATION
     const onRegister = () => {
+        setIsLoading(true)
         const body = {
             otp: opt,
             otpId: otpId
@@ -102,11 +107,15 @@ const Signup = () => {
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     //API FOR USER PROFILE DETAIL SAVE
     const onUserData = () => {
+        setIsLoading(true)
         const body = {
             image: '',
             firstName: fname,
@@ -146,7 +155,10 @@ const Signup = () => {
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     useEffect(() => {
@@ -187,7 +199,14 @@ const Signup = () => {
                                     onChange={onPhoneNumber}
                                 />
                                 <div className="login_forget">
-                                    <button className="btn_brand" onClick={() => onSubmit()}>login</button>
+                                    {
+                                        isLoading === true ? <button className="btn_brand">
+                                            <div class="spinner-border text-white" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </button> : <button className="btn_brand" onClick={() => onSubmit()}>login</button>
+                                    }
+
                                 </div>
                             </div>
                         }
@@ -202,7 +221,13 @@ const Signup = () => {
                                     />
                                 </div>
                                 <div className="login_forget">
-                                    <button className="btn_brand" onClick={() => onRegister()}>create account</button>
+                                    {
+                                        isLoading === true ? <button className="btn_brand">
+                                            <div class="spinner-border text-white" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </button> : <button className="btn_brand" onClick={() => onRegister()}>create account</button>
+                                    }
                                     <button className="btn_brand" onClick={() => onBackPhone()}>back</button>
                                 </div>
                             </div>
@@ -267,12 +292,19 @@ const Signup = () => {
                                         onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <button
-                                    className="btn_brand"
-                                    onClick={() => onUserData()}
-                                >
-                                    save profile
-                                </button>
+                                {
+                                    isLoading === true ? <button className="btn_brand">
+                                        <div class="spinner-border text-white" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </button> : <button
+                                        className="btn_brand"
+                                        onClick={() => onUserData()}
+                                    >
+                                        save profile
+                                    </button>
+                                }
+
                             </div>
                         }
                         <div className="signup">

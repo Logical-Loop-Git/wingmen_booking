@@ -40,6 +40,17 @@ textarea:-webkit-autofill:active {
   text-transform: uppercase;
   background-color: var(--brand-blue);
   color: var(--white);
+  width: 150px;
+}
+
+.btn_brand_home {
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  color: var(--white);
+  width: 250px;
 }
 
 /* PUBLIC DEFINE END  */

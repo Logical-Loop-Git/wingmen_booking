@@ -11,7 +11,7 @@ import { Context } from '../../Data/context'
 
 const MyCar = () => {
 
-    const { userData } = useContext(Context)
+    const { userData, isLoading, setIsLoading } = useContext(Context)
     const [userVehical, setUserVehical] = useState([])
     const [vehicaltype, setVehicaltype] = useState([])
     const [vehicalTransmission, setVehicalTransmission] = useState([])
@@ -23,7 +23,6 @@ const MyCar = () => {
     const [vehicalTypeId, setVehicalTypeId] = useState('')
     const [vehicalTransm, setVehicalTransm] = useState('')
     const formData = new FormData()
-
 
     //API CALL FOR VEHICAL LIST
     const fetchVehical = useCallback(() => {
@@ -63,12 +62,12 @@ const MyCar = () => {
             .then((response) => {
                 if (response.data.success === true) {
                     fetchVehical()
-                    toast.dark(`Vehiacl deleted successfully.`)
+                    toast.dark(`Vehicle deleted successfully.`)
                 }
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
     }
 
     //FETCH IMAGE
@@ -96,49 +95,61 @@ const MyCar = () => {
 
     //ADD VEHICAL
     const onAddVehical = () => {
-        // IMAGE UPLOAD
-        vehicalImage.forEach((file) => {
-            formData.append("image", file)
-        })
-        // UPLOAD IMAGE API
-        let url = API + `uploadFile`;
-        const config = {
-            headers: {
-                Authorization: `${userData.token}`,
-            }
-        };
-        axios.post(url, formData, config)
-            .then(response => {
-                console.log(response, 'imageupload');
-                const imageUrl = response.data.data
-                if (response.data.success === true) {
-                    // ADD NEW VEHICAL API
-                    const body = {
-                        "vehicleName": vehicalName,
-                        "plateNumber": plateNumber,
-                        "vehicleImage": imageUrl,
-                        "vehicleTypeId": vehicalTypeId,
-                        "transmissionTypeId": vehicalTransm,
-                    }
-                    console.log(body);
-                    let url2 = API + `addVehicle`;
-                    axios.post(url2, body, config)
-                        .then(response => {
-                            if (response.data.success === true) {
-                                fetchVehical()
-                                toast.dark(`Vehiacl added successfully.`)
-                            }
-                        })
-                        .catch(err => {
-                            console.log("error here", err)
-                            toast.error(`Vehical addeding fail.`)
-                        })
+        setIsLoading(true)
+        if (vehicalName === '' || plateNumber === '' || vehicalTypeId === '' || vehicalTransm === '') {
+            toast.warn(`Some fiels are missing.`)
+            setIsLoading(false)
+        } else {
+            // IMAGE UPLOAD
+            vehicalImage.forEach((file) => {
+                formData.append("image", file)
+            })
+            // UPLOAD IMAGE API
+            let url = API + `uploadFile`;
+            const config = {
+                headers: {
+                    Authorization: `${userData.token}`,
                 }
-            })
-            .catch(err => {
-                console.log("error here", err)
-                toast.error(`Image uploading fail.`)
-            })
+            };
+            axios.post(url, formData, config)
+                .then(response => {
+                    console.log(response, 'imageupload');
+                    const imageUrl = response.data.data
+                    if (response.data.success === true) {
+                        // ADD NEW VEHICAL API
+                        const body = {
+                            "vehicleName": vehicalName,
+                            "plateNumber": plateNumber,
+                            "vehicleImage": imageUrl,
+                            "vehicleTypeId": vehicalTypeId,
+                            "transmissionTypeId": vehicalTransm,
+                        }
+                        console.log(body);
+                        let url2 = API + `addVehicle`;
+                        axios.post(url2, body, config)
+                            .then(response => {
+                                if (response.data.success === true) {
+                                    fetchVehical()
+                                    toast.dark(`Vehicle added successfully.`)
+                                }
+                            })
+                            .catch(err => {
+                                console.log("error here", err)
+                                toast.error(`Vehicle adding fail.`)
+                            })
+                            .finally(() => {
+                                setIsLoading(false)
+                            })
+                    }
+                })
+                .catch(err => {
+                    console.log("error here", err)
+                    toast.error(`Image uploading fail.`)
+                })
+                .finally(() => {
+                    setIsLoading(false)
+                })
+        }
     }
 
     useEffect(() => {
@@ -156,6 +167,8 @@ const MyCar = () => {
                 if (response.data.success === true) {
                     setVehicaltype(response.data.data.vehicleTypeData)
                     setVehicalTransmission(response.data.data.trannsmissionTypeData)
+                    setVehicalTypeId(response.data.data.vehicleTypeData[0]._id)
+                    setVehicalTransm(response.data.data.trannsmissionTypeData[0]._id)
                 }
             })
             .catch((err) => {
@@ -216,10 +229,10 @@ const MyCar = () => {
                                         onChange={(e) => setVehicalTypeId(e.target.value)}
                                     >
                                         {vehicaltype.length < 1
-                                            ? "No vehicaltype found :("
+                                            ? "No vehicletype found :("
                                             : vehicaltype.map((list, index) => {
                                                 return (
-                                                    <option value={list._id} key={index}>{list.vehicleTypeName}</option>
+                                                    <option defaultValue={list._id} value={list._id} key={index}>{list.vehicleTypeName}</option>
                                                 );
                                             })
                                         }
@@ -233,7 +246,7 @@ const MyCar = () => {
                                         onChange={(e) => setVehicalTransm(e.target.value)}
                                     >
                                         {vehicalTransmission.length < 1
-                                            ? "No vehicalTransmission found :("
+                                            ? "No vehicle Transmission found :("
                                             : vehicalTransmission.map((list, index) => {
                                                 return (
                                                     <option value={list._id} key={index}>{list.transmissionTypeName}</option>
@@ -242,14 +255,20 @@ const MyCar = () => {
                                         }
                                     </select>
                                 </div>
-                                <button className="btn_brand" onClick={() => onAddVehical()}>add Vehicle</button>
+                                {
+                                    isLoading === true ? <button className="btn_brand">
+                                        <div class="spinner-border text-white" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </button> : <button className="btn_brand" onClick={() => onAddVehical()}>add Vehicle</button>
+                                }
                             </div>
                         </div>
                     </Col>
                     <Col md={6}>
                         <div className="view_vehical">
                             {userVehical.length < 1
-                                ? "No userVehical found :("
+                                ? "No userVehicle found :("
                                 : userVehical.map((list, index) => {
                                     return (
                                         <div className="vehical_list" key={index}>
@@ -262,7 +281,7 @@ const MyCar = () => {
                                             </div>
                                             <div className="vedical_ed_de">
                                                 <FontAwesomeIcon icon={faPen} />
-                                                <FontAwesomeIcon icon={faTrash} onClick={(id) => onDeleteVehical(list._id)} />
+                                                <FontAwesomeIcon icon={faTrash} onClick={(id) => onDeleteVehical(list._id)} />                                                                                          
                                             </div>
                                         </div>
                                     );

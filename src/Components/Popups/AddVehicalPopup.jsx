@@ -13,7 +13,9 @@ const AddVehicalPopup = () => {
     const {
         addVehical,
         setAddVehical,
-        setAddVehicalStatus
+        setAddVehicalStatus,
+        isLoading,
+        setIsLoading
     } = useContext(Context)
     const [vehicaltype, setVehicaltype] = useState([])
     const [vehicalTransmission, setVehicalTransmission] = useState([])
@@ -61,6 +63,7 @@ const AddVehicalPopup = () => {
 
     //ADD VEHICAL
     const onAddVehical = () => {
+        setIsLoading(true)
         const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         // IMAGE UPLOAD
         vehicalImage.forEach((file) => {
@@ -91,7 +94,7 @@ const AddVehicalPopup = () => {
                     axios.post(url2, body, config)
                         .then(response => {
                             if (response.data.success === true) {
-                                toast.dark(`Vehiacl added successfully.`)
+                                toast.dark(`Vehicle added successfully.`)
                                 onClosePopup()
                                 setAddVehicalStatus(true)
                             } else {
@@ -100,13 +103,19 @@ const AddVehicalPopup = () => {
                         })
                         .catch(err => {
                             console.log("error here", err)
-                            toast.error(`Vehical addeding fail.`)
+                            toast.error(`Vehicle adding fail.`)
+                        })
+                        .finally(() => {
+                            setIsLoading(false)
                         })
                 }
             })
             .catch(err => {
                 console.log("error here", err)
                 toast.error(`Image uploading fail.`)
+            })
+            .finally(() => {
+                setIsLoading(false)
             })
     }
 
@@ -125,7 +134,9 @@ const AddVehicalPopup = () => {
             .then((response) => {
                 if (response.data.success === true) {
                     setVehicaltype(response.data.data.vehicleTypeData)
-                    setVehicalTransmission(response.data.data.trannsmissionTypeData)
+                    setVehicalTransmission(response.data.data.trannsmissionTypeData)                   
+                    setVehicalTypeId(response.data.data.vehicleTypeData[0]._id)
+                    setVehicalTransm(response.data.data.trannsmissionTypeData[0]._id)
                 }
             })
             .catch((err) => {
@@ -214,7 +225,14 @@ const AddVehicalPopup = () => {
                             }
                         </select>
                     </div>
-                    <button className="btn_brand" onClick={() => onAddVehical()}>add Vehicle</button>
+                    {
+                        isLoading === true ? <button className="btn_brand">
+                            <div class="spinner-border text-white" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button> : <button className="btn_brand" onClick={() => onAddVehical()}>add Vehicle</button>
+                    }
+
                 </div>
             </div>
         </div>

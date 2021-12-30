@@ -19,7 +19,9 @@ const Payment = () => {
         userData,
         walletMoney,
         setwalletMoney,
-        cardAddedStatus
+        cardAddedStatus,
+        setIsLoading,
+        isLoading
     } = useContext(Context)
     const [userWallet, setUserWallet] = useState('')
     const [userCard, setUserCard] = useState([])
@@ -84,11 +86,12 @@ const Payment = () => {
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
     }
 
     //DELETE USER CARD
     const onDeleteCard = (id) => {
+        setIsLoading(true)
         //API FOR DELETE USER CARD
         let url = API + `deleteCard`;
         const config = {
@@ -109,7 +112,10 @@ const Payment = () => {
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     useEffect(() => {
@@ -166,11 +172,18 @@ const Payment = () => {
                                         <p>•••• •••• •••• {list.last4Digits}</p>
                                         <p>{list.brand} - {list.expiryDate}</p>
                                     </label>
-                                    <div className="card_delete">
-                                        <button onClick={() => onDeleteCard(list._id)}>
-                                            <FontAwesomeIcon icon={faTrash} />
-                                        </button>
-                                    </div>
+                                    {
+                                        isLoading === true ? <button className="btn_brand">
+                                            <div class="spinner-border text-white" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </button> : <div className="card_delete">
+                                            <button onClick={() => onDeleteCard(list._id)}>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </button>
+                                        </div>
+                                    }
+
                                 </div>
                             );
                         })
