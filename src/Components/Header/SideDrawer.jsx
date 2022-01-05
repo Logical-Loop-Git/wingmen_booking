@@ -38,7 +38,7 @@ const sideDrawer = (props) => {
                 </li>
                 <li>
                     {userData.firstName === undefined ?
-                        <NavLink to="/login" exact activeClassName="nav_active">
+                        <NavLink to="/booking" exact activeClassName="nav_active">
                             Sign In
                         </NavLink>
                         :
