@@ -5,13 +5,13 @@ import ProtectedRoutes from "./ProtectedRoutes";
 // PAGES IMPORT
 import Booking from "../Pages/Booking";
 import Landing from "../Pages/Landing";
-import Login from "../Pages/Login";
 import UserProfile from "../Pages/UserProfile";
 import Signup from "../Pages/Signup";
 import Service from "../Pages/Service";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
 import API from "../Config/api";
+import Tips from "../Pages/Tips";
 
 
 const Routes = () => {
@@ -67,11 +67,12 @@ const Routes = () => {
             {/* NORMAL ROUTES */}
             <Route exact path="/" component={Landing} />
             <Route exact path="/booking" component={Booking} />
-            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/login" component={Login} /> */}
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/service" component={Service} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={ContactUs} />
+            <Route exact path="/tips/:bookingid/:userid/:cardid" component={Tips} />
             {/* NORMAL ROUTES END */}
 
 

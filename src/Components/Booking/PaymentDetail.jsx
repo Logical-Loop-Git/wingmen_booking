@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Context } from '../../Data/context';
 import axios from 'axios';
-import API, { stripTestKey } from '../../Config/api';
+import API, { stripLiveKey } from '../../Config/api';
 import { toast } from 'react-toastify';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -19,7 +19,7 @@ const PaymentDetail = () => {
         setPaymentType,
         cardAddedStatus
     } = useContext(Context)
-    const stripePromise = loadStripe(stripTestKey);
+    const stripePromise = loadStripe(stripLiveKey);
     const [cardChecked, setCardChecked] = useState(true)
     const [userProfileDetail, setUserProfileDetail] = useState({})
     const [userCard, setUserCard] = useState([])

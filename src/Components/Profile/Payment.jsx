@@ -3,7 +3,7 @@ import wallet from '../../Images/Icon/wallet.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
-import API, { stripTestKey } from '../../Config/api'
+import API, { stripLiveKey } from '../../Config/api'
 import { Context } from '../../Data/context'
 import useOnclickOutside from "react-cool-onclickoutside";
 import AddWalletMoneyPopup from '../Popups/AddWalletMoneyPopup'
@@ -25,7 +25,7 @@ const Payment = () => {
     } = useContext(Context)
     const [userWallet, setUserWallet] = useState('')
     const [userCard, setUserCard] = useState([])
-    const stripePromise = loadStripe(stripTestKey);
+    const stripePromise = loadStripe(stripLiveKey);
     const [addCreditCard, setAddCreditCard] = useState(false)
 
 

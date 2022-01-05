@@ -27,6 +27,7 @@ const Booking = () => {
 
     const {
         userData,
+        setIsAuthentication,
         isAuthentication,
         pickupLocation,
         dropLocation,
@@ -47,24 +48,40 @@ const Booking = () => {
         setToken,
         onSignUp,
         isBookingSignup,
-        setCheckUserAccountStatus,
         checkUserAccountStatus,
         setCheckPhone,
         setUserOtpView,
         isLoading,
-        setIsLoading
+        setIsLoading,
+        setGuestUser,
+        setGuestOtpId,
+        UserOtpView,       
+        serviceView, 
+        setServiceView,
+        loginCheck, 
+        setLoginCheck
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     const [createdBookingId, setCreatedBookingId] = useState('')
     //BOOKING LOCATION VIEW
     const [bookingView, setBookingView] = useState(true)
-    const [loginCheck, setLoginCheck] = useState(false)
-    const [serviceView, setServiceView] = useState(false)
+    //const [loginCheck, setLoginCheck] = useState(false)
+    //const [serviceView, setServiceView] = useState(false)
     const [displayBookingDetail, setDisplayBookingDetail] = useState(false)
     const [paymentView, setPaymentView] = useState(false)
     const [bookingDriverView, setBookingDriverView] = useState(false)
     const [userCreateStatusBtn, setUserCreateStatusBtn] = useState(true)
+
+    const onOnlyLocationView= () => {
+        setBookingView(true)
+        setDisplayBookingDetail(false)
+        setPaymentView(false)
+        setBookingDriverView(false)
+        setServiceView(false)
+        setLoginCheck(false)
+    }
+
     const google = window.google
 
     //MAP VIEW
@@ -117,20 +134,15 @@ const Booking = () => {
     //VIEW ALL COMPONENTS
     //VIEW SERVICES COMPONENT
     const onSelectService = () => {
-        setIsLoading(true)
         if (pickupLocation.latitude === 0) {
             toast.warning(`Please select pickup location.`)
-            setIsLoading(false)
-
         } else {
             if (dropLocation.latitude === 0) {
                 toast.warning(`Please select drop location.`)
-                setIsLoading(false)
             } else {
                 setBookingView(false)
                 setLoginCheck(false)
                 setServiceView(true)
-                setIsLoading(false)
             }
         }
     }
@@ -157,8 +169,8 @@ const Booking = () => {
         setIsLoading(true)
         //APIS ROUTES
         let signIn = API + `signIn`;
-        let checkUser = API + `checkUser`;
         let signUp = API + `signUp`;
+        let checkGuestUser = API + `checkGuestUser`;
         //CREATE BODY FOR APIS
         const body = {
             "deviceType": "web",
@@ -169,9 +181,17 @@ const Booking = () => {
         const otpBody = {
             "countryCode": bookingSignin.loginCountryCode,
             "phone": bookingSignin.loginId,
-            "type": "mobile",
+            "type": "web",
         }
-
+        const guestOtpBody = {
+            "countryCode": bookingSignin.loginCountryCode,
+            "phone": bookingSignin.loginId,
+            "type": "web",
+        }
+        const guestBody = {
+            "phone": bookingSignin.loginId
+        }
+        console.log(guestBody)
         //CHECK SIGNN || SIGNUP CONDITION
         if (checkUserAccountStatus) {
             //IF USER REGISTER THEN SIGNIN
@@ -209,12 +229,30 @@ const Booking = () => {
             } else {
                 //CHECK USER IF REGISTER
                 axios
-                    .post(checkUser, body)
-                    .then(response => {
-                        console.log(response);
+                    .post(checkGuestUser, guestBody)
+                    .then((response) => {
+                        console.log(response, 'guestUser');
+                        // CHECK IF USER IS GUEST USER
                         if (response.data.status === 1) {
-                            //USER IS REGISTER ASKED FOR PASSWORD
-                            setCheckUserAccountStatus(true)
+                            let url = API + `sendOtp`;
+                            //SEND OTP TO USER PHONE NUMBER
+                            axios
+                                .post(url, guestOtpBody)
+                                .then((response) => {
+                                    console.log(response, 'Otp');
+                                    if (response.data.success === true) {
+                                        setGuestOtpId(response.data.data.otpId)
+                                        setGuestUser(true)
+                                        setUserOtpView(true)
+                                        console.log(response, 'Otp');
+                                    } else {
+                                        toast.warn(response.data.message)
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log("error here", err);
+                                })
+                            //setCheckUserAccountStatus(true)
                         } else if (response.data.status === 0) {
                             //USER IS NOT REGISTER SEND HIM OTP FOR REGISTERING
                             axios
@@ -227,6 +265,7 @@ const Booking = () => {
                                         setCheckPhone(false)
                                         setUserOtpView(true)
                                         setUserCreateStatusBtn(false)
+                                        setBookingView(false)
                                     } else {
                                         toast.warn(response.data.message)
                                     }
@@ -248,6 +287,8 @@ const Booking = () => {
             }
         }
     }
+
+
 
     //BACK TO PICKUP, DROP LOCATION SELECT
     const onBackLocation = () => {
@@ -393,12 +434,21 @@ const Booking = () => {
 
     //FOR FETCHING FUNCTION AND GETING LAT LNG FROM GEOCODE
     useEffect(() => {
+        const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+        console.log(authData)
+        if (authData) {
+            setBookingView(true)
+            setIsAuthentication(true)
+            setServiceView(false)
+        }
         navigator.geolocation.getCurrentPosition(function (position) {
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
+
         });
         if (isBookingSignup === true) {
-            onSelectService()
+            // onSelectService()
+            onOnlyLocationView()
         }
     }, [isBookingSignup])
 
@@ -451,23 +501,47 @@ const Booking = () => {
                         {onSignUp &&
                             <div className="booking_proced">
                                 {userCreateStatusBtn &&
+                                    //     guestUser ? <div>
+                                    //     <div className="signup_form_otp">
+                                    //         <OtpInput
+                                    //             value={opt}
+                                    //             onChange={(e) => setOpt(e)}
+                                    //             numInputs={6}
+                                    //             separator={<span> - </span>}
+                                    //         />
+                                    //     </div>
+                                    //     <div className="login_forget float-end">
+                                    //         {
+                                    //             isLoading === true ? <button className="booking_next">
+                                    //                 <div class="spinner-border text-white" role="status">
+                                    //                     <span class="visually-hidden">Loading...</span>
+                                    //                 </div>
+                                    //             </button> : <button className="btn_brand" onClick={() => onRegister()}>Verified Otp</button>
+                                    //         }
+                                    //     </div>
+                                    // </div> :
+                                    //     // UserOtpView === true ? null :
+                                    //     <div>
+                                    //         {guestUser ? null 
+                                    //             :
                                     <div className='d-flex justify-content-between w-100'>
-                                        <button className="booking_back" onClick={() => onBackLocation()}>
-                                            back
-                                            <FontAwesomeIcon icon={faArrowLeft} />
-                                        </button>
                                         {
-                                            isLoading === true ? <button className="booking_next">
-                                                <div class="spinner-border text-white" role="status">
-                                                    <span class="visually-hidden">Loading...</span>
-                                                </div>
-                                            </button> : <button className="booking_next" onClick={() => onSignin()}>
-                                                next
-                                                <FontAwesomeIcon icon={faArrowRight} />
-                                            </button>
+                                            UserOtpView === true ? null : [<button className="booking_back" onClick={() => onBackLocation()}>
+                                                back
+                                                <FontAwesomeIcon icon={faArrowLeft} />
+                                            </button>,
+                                                isLoading === true ? <button className="booking_next">
+                                            <div class="spinner-border text-white" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </button> : <button className="booking_next" onClick={() => onSignin()}>
+                                            next
+                                            <FontAwesomeIcon icon={faArrowRight} />
+                                        </button>]                                        
                                         }
-
                                     </div>
+                                    //     }
+                                    // </div>
                                 }
                             </div>
                         }
@@ -492,7 +566,6 @@ const Booking = () => {
                                     <FontAwesomeIcon icon={faArrowRight} />
                                 </button>
                             }
-
                         </div>
                     </div>
                 }

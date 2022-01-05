@@ -5,24 +5,23 @@ import axios from "axios";
 import API from "../../Config/api";
 import { toast } from "react-toastify";
 
-
 const useOptions = () => {
     const options = useMemo(
         () => ({
             style: {
                 base: {
-                    fontSize: '15px',
+                    fontSize: "15px",
                     color: "#424770",
                     letterSpacing: "0.025em",
                     fontFamily: "Source Code Pro, monospace",
                     "::placeholder": {
-                        color: "#aab7c4"
-                    }
+                        color: "#aab7c4",
+                    },
                 },
                 invalid: {
-                    color: "#9e2146"
-                }
-            }
+                    color: "#9e2146",
+                },
+            },
         }),
         []
     );
@@ -30,21 +29,13 @@ const useOptions = () => {
     return options;
 };
 
-
 const CardForm = () => {
-
-    const {
-        userData,
-        setCardAddedStatus,
-        isLoading,
-        setIsLoading
-    } = useContext(Context)
+    const { userData, setCardAddedStatus } = useContext(Context);
     const stripe = useStripe();
     const elements = useElements();
     const options = useOptions();
 
-    const handleSubmit = async event => {
-        setIsLoading(true)
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (!stripe || !elements) {
@@ -52,7 +43,7 @@ const CardForm = () => {
         }
         const payload = await stripe.createPaymentMethod({
             type: "card",
-            card: elements.getElement(CardElement)
+            card: elements.getElement(CardElement),
         });
         console.log("[PaymentMethod]", payload);
 
@@ -61,33 +52,27 @@ const CardForm = () => {
             const config = {
                 headers: {
                     Authorization: `${userData.token}`,
-                }
-            }
+                },
+            };
             const body = {
-                "stripePaymentMethod": payload.paymentMethod.id
-            }
+                stripePaymentMethod: payload.paymentMethod.id,
+            };
             axios
                 .post(url, body, config)
                 .then((response) => {
-                    console.log(response.data.data)
+                    console.log(response.data.data);
                     if (response.data.success === true) {
-                        toast.dark(`Your card added successfully.`)
-                        setCardAddedStatus(true)
-                        setIsLoading(false)
+                        toast.dark(`Your card added successfully.`);
+                        setCardAddedStatus(true);
                     } else {
-                        toast.dark(`Having some trouble to add card.`)
-                        setIsLoading(false)
+                        toast.dark(`Having some trouble to add card.`);
                     }
                 })
                 .catch((err) => {
                     console.log("error here", err);
-                })
-                .finally(() => {
-                    setIsLoading(false)
-                })
+                });
         }
     };
-
 
     return (
         <form onSubmit={handleSubmit}>
@@ -98,7 +83,7 @@ const CardForm = () => {
                     onReady={() => {
                         console.log("CardElement [ready]");
                     }}
-                    onChange={event => {
+                    onChange={(event) => {
                         console.log("CardElement [change]", event);
                     }}
                     onBlur={() => {
@@ -108,11 +93,8 @@ const CardForm = () => {
                         console.log("CardElement [focus]");
                     }}
                 />
-            </label> <button
-                className="btn_brand"
-                type="submit"
-                disabled={!stripe}
-            >
+            </label>{" "}
+            <button className="btn_brand" type="submit" disabled={!stripe}>
                 Add
             </button>
         </form>

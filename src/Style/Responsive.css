@@ -123,6 +123,9 @@
   .contact_block {
     margin-top: 0px;
   }
+  .tips_block{
+    margin-top: 10px;
+  }
 }
 
 @media only screen and (max-width: 425px) {
@@ -237,6 +240,9 @@
     width: fit-content;
     margin: auto;
     display: none;
+  }
+  .tips_block{
+    margin-top: 10px;
   }
 }
 

@@ -25,7 +25,12 @@ const BookingLogin = () => {
         UserOtpView,
         setUserOtpView,
         isLoading,
-        setIsLoading
+        setIsLoading,
+        guestUser,
+        guestOtpId,
+        setCheckPhone,
+        setLoginCheck, 
+        setServiceView,
     } = useContext(Context)
 
     //USER REGIS 
@@ -93,7 +98,8 @@ const BookingLogin = () => {
             gender: 'MALE',
             genderType: 'MALE',
             singUpType: "mobile",
-            deviceType: "web"
+            deviceType: "web",
+            guestUser: true
         }
         console.log(body, "user body");
         let url = API + `complete`;
@@ -124,6 +130,65 @@ const BookingLogin = () => {
             })
     }
 
+    const onGuestRegister = () => {
+        setIsLoading(true)
+        const body = {
+            otp: opt,
+            otpId: guestOtpId
+        }
+        console.log(body)
+        let url = API + `verifyOtp`;
+        axios
+            .post(url, body)
+            .then((response) => {
+                console.log(response, 'verifyOtp');
+                if (response.data.success === true) {
+                    console.log(response, 'verifyOtp');
+                    const body2 = {
+                        "deviceType": "web",
+                        "password": 'wingmenrandompassword',
+                        "phone": bookingSignin.loginId,
+                        "countryCode": bookingSignin.loginCountryCode
+                    }
+                    console.log(body2);
+                    let url = API + `signIn`;
+                    axios
+                        .post(url, body2)
+                        .then((response) => {
+                            console.log(response, 'signin');
+                            if (response.data.success === true) {
+                                console.log(response, 'signin');
+                                toast.dark('Login done')
+                                //SAVE USER DATA IN LOCALSTORAGE
+                                localStorage.setItem(
+                                    "wingmen_booking",
+                                    JSON.stringify(response.data.data)
+                                );
+                                setUserData(response.data.data)
+                                setToken(response.data.data.token)
+                                setCheckPhone(false)
+                                setUserOtpView(false)
+                                setServiceView(true)
+                                // setUserCreateStatusBtn(false)
+                                 setLoginCheck(false)
+                            } else {
+                                toast.warn(response.data.message)
+                            }
+                        })
+                        .catch((err) => {
+                            console.log("error here", err);
+                        })
+                } else {
+                    toast.warn(response.data.message)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }
     //FOR FETCHING CALLBACK AND GETING LAT LNG FROM GEOCODE
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -183,9 +248,15 @@ const BookingLogin = () => {
                             separator={<span> - </span>}
                         />
                     </div>
+                    {
+                        guestUser === true ? 
+                        <div className="login_forget float-end">
+                            <button className="btn_brand" onClick={() => onGuestRegister()}>Verified Otp</button>
+                        </div> : 
                     <div className="login_forget float-end">
                         <button className="btn_brand" onClick={() => onRegister()}>Verified Otp</button>
                     </div>
+                    }
                 </div>
             }
             {userProfileView &&

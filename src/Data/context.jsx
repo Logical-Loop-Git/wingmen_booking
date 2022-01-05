@@ -46,6 +46,12 @@ export const ContextProvider = ({ children }) => {
   const [addVehical, setAddVehical] = useState(false);
   const [addVehicalStatus, setAddVehicalStatus] = useState(false);
   const [onSignUp, setOnSignUp] = useState(true);
+  const [guestUser, setGuestUser] = useState(false);
+  const [guestOtpId, setGuestOtpId] = useState("")
+  const [serviceView, setServiceView] = useState(false)
+  const [loginCheck, setLoginCheck] = useState(false)
+
+
 
   return (
     <Context.Provider
@@ -104,6 +110,14 @@ export const ContextProvider = ({ children }) => {
         setCheckPhone,
         UserOtpView,
         setUserOtpView,
+        guestUser,
+        setGuestUser,
+        guestOtpId, 
+        setGuestOtpId,
+        serviceView, 
+        setServiceView,
+        loginCheck, 
+        setLoginCheck
       }}
     >
       {children}
