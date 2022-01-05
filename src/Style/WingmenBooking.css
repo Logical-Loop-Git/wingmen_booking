@@ -1740,3 +1740,10 @@ ul.tl li .timestamp {
 .tip_btn Input {
   width:50px
 }
+
+.tip_image {
+  margin-top: 60px;
+  align-items: center;
+}
+
+/* TIP END */

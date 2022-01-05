@@ -6,6 +6,7 @@ import { Button, ButtonGroup, Card, Col, Input, Row } from 'reactstrap'
 import NavBar from '../Components/Header/NavBar'
 import API from '../Config/api'
 import { Context } from '../Data/context'
+import tips from '../Images/tip.png'
 
 const Tips = () => {
 
@@ -70,7 +71,9 @@ const Tips = () => {
                                         />
                                     </Button>
                                 </ButtonGroup>
-
+                                <div className="tip_image">
+                                    <img src={tips} alt="tips_iamge"/>
+                                </div>
                             </div>
                             <div style={{ padding: 10 }}>
                                 {
