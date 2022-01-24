@@ -12,6 +12,7 @@ import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
 import API from "../Config/api";
 import Tips from "../Pages/Tips";
+import ScheduleBooking from "../Pages/ScheduleBooking";
 
 
 const Routes = () => {
@@ -73,6 +74,7 @@ const Routes = () => {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={ContactUs} />
             <Route exact path="/tips/:bookingid/:userid/:cardid" component={Tips} />
+            <Route exact path="/schedulebooking" component={ScheduleBooking} />
             {/* NORMAL ROUTES END */}
 
 

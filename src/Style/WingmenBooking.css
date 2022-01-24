@@ -1747,3 +1747,62 @@ ul.tl li .timestamp {
 }
 
 /* TIP END */
+
+/* SCHEDULE BOOKING*/
+
+.schedule_card {
+  background-color: #05a0e0;
+  padding:20px
+}
+
+.schedule_card h3{
+  margin-top:20px;
+  color: white;
+  font-family: var(--paragraph-text);
+}
+
+.schedule_booking_phone_btn {
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  color: var(--white);
+  border-radius: 30px;
+  width: 150px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.booking_form_otp {
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.booking_form_otp input {
+  font-family: var(--paragraph-text);
+  background: var(--white);
+  border: 1px solid var(--brand-blue);
+  color: var(--black);
+  height: 40px;
+  width: 40px !important;
+}
+
+.schedule_booking_footer{
+  background-color: #e1ecf0;
+  padding: 10px
+}
+
+.schedule_btn {
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  color: var(--white);
+  border-radius: 30px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
