@@ -1806,3 +1806,23 @@ ul.tl li .timestamp {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.schedule_info h6 span {
+  font-weight: 400;
+}
+
+.user_info h6 span {
+  font-weight: 400;
+}
+
+.schedule_driver_info {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.schedule_codriver_btn {
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  color: var(--white);
+}

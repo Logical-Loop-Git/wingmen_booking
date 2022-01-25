@@ -74,7 +74,7 @@ const Routes = () => {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={ContactUs} />
             <Route exact path="/tips/:bookingid/:userid/:cardid" component={Tips} />
-            <Route exact path="/schedulebooking" component={ScheduleBooking} />
+            <Route exact path="/schedulebooking/:bookingId" component={ScheduleBooking} />
             {/* NORMAL ROUTES END */}
 
 
