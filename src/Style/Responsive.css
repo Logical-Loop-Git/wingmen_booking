@@ -244,6 +244,9 @@
   .tips_block{
     margin-top: 10px;
   }
+  .user_info{
+    margin-bottom: 0px;
+  }
 }
 
 @media only screen and (max-width: 1024px) {

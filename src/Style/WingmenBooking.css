@@ -575,13 +575,13 @@ textarea:-webkit-autofill:active {
   left: -9999px;
 }
 
-.display_service input[type="radio"]:checked+label>img {
+.display_service input[type="radio"]:checked + label > img {
   border: 1px solid var(--white);
   box-shadow: 0 0 3px 3px var(--brand-blue);
 }
 
 /* Stuff after this is only to make things more pretty */
-.display_service input[type="radio"]+label>img {
+.display_service input[type="radio"] + label > img {
   border: 1px dashed var(--brand-gray);
   width: 50px;
   height: 50px;
@@ -589,7 +589,7 @@ textarea:-webkit-autofill:active {
   opacity: 0.5;
 }
 
-.display_service input[type="radio"]:checked+label>img {
+.display_service input[type="radio"]:checked + label > img {
   opacity: 10;
 }
 
@@ -628,7 +628,6 @@ textarea:-webkit-autofill:active {
   overflow-x: hidden;
   height: 80vh;
 }
-
 
 .display_details {
   width: 80%;
@@ -1665,11 +1664,11 @@ ul.tl li .timestamp {
 /* Tips */
 .tips_block {
   width: auto;
-  height:100%;
-  margin-top : 80px;
-  margin-bottom : 30px;
+  height: 100%;
+  margin-top: 80px;
+  margin-bottom: 30px;
   align-items: center;
-  padding:10px
+  padding: 10px;
 }
 
 .tips_card {
@@ -1689,18 +1688,18 @@ ul.tl li .timestamp {
   font-family: var(--paragraph-text);
 }
 
-.tips_card h6{
-  margin-top:20px;
+.tips_card h6 {
+  margin-top: 20px;
   color: white;
   font-family: var(--paragraph-text);
 }
 .tips_body {
   background-color: #e1ecf0;
-  height:400px;
-  width:100%;
+  height: 400px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: center
+  justify-content: center;
 }
 .tips_btn_brand {
   border: none;
@@ -1731,14 +1730,14 @@ ul.tl li .timestamp {
 .tip_btn {
   position: absolute;
   height: 62px;
-  top:130px;
-  background: #FFFFFF;
+  top: 130px;
+  background: #ffffff;
   border-radius: 8px;
   align-items: center;
 }
 
 .tip_btn Input {
-  width:50px
+  width: 50px;
 }
 
 .tip_image {
@@ -1752,11 +1751,11 @@ ul.tl li .timestamp {
 
 .schedule_card {
   background-color: #05a0e0;
-  padding:20px
+  padding: 20px;
 }
 
-.schedule_card h3{
-  margin-top:20px;
+.schedule_card h3 {
+  margin-top: 20px;
   color: white;
   font-family: var(--paragraph-text);
 }
@@ -1789,9 +1788,9 @@ ul.tl li .timestamp {
   width: 40px !important;
 }
 
-.schedule_booking_footer{
+.schedule_booking_footer {
   background-color: #e1ecf0;
-  padding: 10px
+  padding: 10px;
 }
 
 .schedule_btn {
@@ -1815,6 +1814,12 @@ ul.tl li .timestamp {
   font-weight: 400;
 }
 
+.user_info {
+  height: 100%;
+  margin-bottom: 20px;
+  overflow-y: hidden;
+}
+
 .schedule_driver_info {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -1826,3 +1831,5 @@ ul.tl li .timestamp {
   background-color: var(--brand-blue);
   color: var(--white);
 }
+
+/* SCHEDULE BOOKING END */

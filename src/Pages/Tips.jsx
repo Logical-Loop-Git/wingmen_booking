@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Button, ButtonGroup, Card, Col, Input, Row } from 'reactstrap'
 import NavBar from '../Components/Header/NavBar'
 import API from '../Config/api'
@@ -29,8 +30,10 @@ const Tips = () => {
             .then((response) => {
                 console.log(response, 'tip');
                 if (response.data.success === true) {
+                    toast.success(response.data.message)
                     console.log(response)
                 } else {
+                    toast.warn(response.data.message)
                 }
             })
             .catch((err) => {
@@ -72,7 +75,7 @@ const Tips = () => {
                                     </Button>
                                 </ButtonGroup>
                                 <div className="tip_image">
-                                    <img src={tips} alt="tips_iamge"/>
+                                    <img src={tips} alt="tips_iamge" />
                                 </div>
                             </div>
                             <div style={{ padding: 10 }}>
