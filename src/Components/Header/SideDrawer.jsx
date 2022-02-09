@@ -17,7 +17,7 @@ const sideDrawer = (props) => {
         <nav className={drawerClasses}>
             <ul>
                 <li>
-                    <NavLink to="/" exact activeClassName="nav_active">
+                    <NavLink to="/home" exact activeClassName="nav_active">
                         Home
                     </NavLink>
                 </li>

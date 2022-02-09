@@ -66,8 +66,9 @@ const Routes = () => {
     return (
         <Switch>
             {/* NORMAL ROUTES */}
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/home" component={Landing} />
             <Route exact path="/booking" component={Booking} />
+            <Route exact path="/" component={Booking} />
             {/* <Route exact path="/login" component={Login} /> */}
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/service" component={Service} />

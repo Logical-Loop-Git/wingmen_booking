@@ -463,7 +463,7 @@ const Booking = () => {
             )}
             <div className="booking_ride">
                 <div className="booking_header">
-                    <NavLink to="/">
+                    <NavLink to="/home">
                         <img src={logo} alt="" />
                     </NavLink>
                 </div>
