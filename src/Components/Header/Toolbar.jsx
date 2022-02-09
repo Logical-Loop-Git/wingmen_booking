@@ -17,14 +17,14 @@ const toolbar = (props) => {
                 </div>
                 <div className="logo_content">
                     <div className="toolbar__logo">
-                        <NavLink to="/home">
+                        <NavLink to="/">
                             <img className="img-fluid" src={logo} alt="wingmen" />
                         </NavLink>
                     </div>
                     <div className="toolbar_navigation-items">
                         <ul>
                             <li>
-                                <NavLink to="/home" exact activeClassName="nav_active">
+                                <NavLink to="/" exact activeClassName="nav_active">
                                     Home
                                 </NavLink>
                             </li>

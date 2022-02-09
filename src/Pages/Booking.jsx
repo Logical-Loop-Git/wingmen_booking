@@ -17,7 +17,6 @@ import API from '../Config/api';
 import axios from 'axios';
 import PaymentDetail from '../Components/Booking/PaymentDetail';
 import { toast } from 'react-toastify';
-import { NavLink } from 'react-router-dom';
 import useOnclickOutside from "react-cool-onclickoutside";
 import AddVehicalPopup from '../Components/Popups/AddVehicalPopup'
 import BookingLogin from '../Components/Booking/BookingLogin';
@@ -55,10 +54,10 @@ const Booking = () => {
         setIsLoading,
         setGuestUser,
         setGuestOtpId,
-        UserOtpView,       
-        serviceView, 
+        UserOtpView,
+        serviceView,
         setServiceView,
-        loginCheck, 
+        loginCheck,
         setLoginCheck
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
@@ -73,7 +72,7 @@ const Booking = () => {
     const [bookingDriverView, setBookingDriverView] = useState(false)
     const [userCreateStatusBtn, setUserCreateStatusBtn] = useState(true)
 
-    const onOnlyLocationView= () => {
+    const onOnlyLocationView = () => {
         setBookingView(true)
         setDisplayBookingDetail(false)
         setPaymentView(false)
@@ -463,9 +462,7 @@ const Booking = () => {
             )}
             <div className="booking_ride">
                 <div className="booking_header">
-                    <NavLink to="/home">
-                        <img src={logo} alt="" />
-                    </NavLink>
+                    <a href="https://mywngmn.com/"><img src={logo} alt="" /></a>
                 </div>
                 {/* PICKUP, DROP LOCATION SELECT */}
                 {bookingView &&
@@ -530,14 +527,14 @@ const Booking = () => {
                                                 back
                                                 <FontAwesomeIcon icon={faArrowLeft} />
                                             </button>,
-                                                isLoading === true ? <button className="booking_next">
-                                            <div class="spinner-border text-white" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </button> : <button className="booking_next" onClick={() => onSignin()}>
-                                            next
-                                            <FontAwesomeIcon icon={faArrowRight} />
-                                        </button>]                                        
+                                            isLoading === true ? <button className="booking_next">
+                                                <div class="spinner-border text-white" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </button> : <button className="booking_next" onClick={() => onSignin()}>
+                                                next
+                                                <FontAwesomeIcon icon={faArrowRight} />
+                                            </button>]
                                         }
                                     </div>
                                     //     }
