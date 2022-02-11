@@ -194,8 +194,8 @@ const Signup = () => {
                         {checkPhone &&
                             <div className="signup_form">
                                 <PhoneInput
-                                    country={'in'}
-                                    // country={'us'}
+                                    // country={'in'}
+                                    country={'us'}
                                     onChange={onPhoneNumber}
                                 />
                                 <div className="login_forget">

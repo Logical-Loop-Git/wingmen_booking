@@ -29,7 +29,7 @@ const BookingLogin = () => {
         guestUser,
         guestOtpId,
         setCheckPhone,
-        setLoginCheck, 
+        setLoginCheck,
         setServiceView,
     } = useContext(Context)
 
@@ -170,7 +170,7 @@ const BookingLogin = () => {
                                 setUserOtpView(false)
                                 setServiceView(true)
                                 // setUserCreateStatusBtn(false)
-                                 setLoginCheck(false)
+                                setLoginCheck(false)
                             } else {
                                 toast.warn(response.data.message)
                             }
@@ -216,8 +216,8 @@ const BookingLogin = () => {
             {checkPhone &&
                 <div className="login_form">
                     <PhoneInput
-                        country={'in'}
-                        // country={'us'}
+                        // country={'in'}
+                        country={'us'}
                         onChange={onPhoneNumberSignIn}
                     />
                     {checkUserAccountStatus &&
@@ -249,13 +249,13 @@ const BookingLogin = () => {
                         />
                     </div>
                     {
-                        guestUser === true ? 
-                        <div className="login_forget float-end">
-                            <button className="btn_brand" onClick={() => onGuestRegister()}>Verified Otp</button>
-                        </div> : 
-                    <div className="login_forget float-end">
-                        <button className="btn_brand" onClick={() => onRegister()}>Verified Otp</button>
-                    </div>
+                        guestUser === true ?
+                            <div className="login_forget float-end">
+                                <button className="btn_brand" onClick={() => onGuestRegister()}>Verified Otp</button>
+                            </div> :
+                            <div className="login_forget float-end">
+                                <button className="btn_brand" onClick={() => onRegister()}>Verified Otp</button>
+                            </div>
                     }
                 </div>
             }

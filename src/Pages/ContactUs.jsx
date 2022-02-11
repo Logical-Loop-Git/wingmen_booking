@@ -68,7 +68,7 @@ const ContactUs = () => {
                     />
                   </Col>
                   <Col md={6} className="phone_input">
-                    <PhoneInput country={"in"} />
+                    <PhoneInput country={"us"} />
                   </Col>
                 </Row>
                 <Row>

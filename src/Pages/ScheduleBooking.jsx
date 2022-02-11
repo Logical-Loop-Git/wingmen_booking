@@ -259,8 +259,8 @@ const ScheduleBooking = () => {
                                                             <Row>
                                                                 <Col >
                                                                     <PhoneInput
-                                                                        country={"in"}
-                                                                        // country={'us'}
+                                                                        // country={"in"}
+                                                                        country={'us'}
                                                                         onChange={onPhoneNumberSignIn}
                                                                     />
                                                                 </Col>
@@ -331,8 +331,8 @@ const ScheduleBooking = () => {
                                                                     <Row>
                                                                         <Col >
                                                                             <PhoneInput
-                                                                                country={"in"}
-                                                                                // country={'us'}
+                                                                                // country={"in"}
+                                                                                country={'us'}
                                                                                 onChange={onPhoneNumberSignIn}
                                                                             />
                                                                         </Col>
