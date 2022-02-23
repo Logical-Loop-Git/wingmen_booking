@@ -21,6 +21,7 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import AddVehicalPopup from '../Components/Popups/AddVehicalPopup'
 import BookingLogin from '../Components/Booking/BookingLogin';
 import BookingDriver from '../Components/Booking/BookingDriver';
+import { Col, Row } from 'reactstrap';
 
 const Booking = () => {
 
@@ -211,12 +212,15 @@ const Booking = () => {
                         onSelectService()
                     } else if (response.data.message === 'User does not exist.' || response.data.success === false) {
                         toast.dark(`User doesn't exist in our database you might enter wrong email.`)
+                        setIsLoading(false)
                     } else if (response.data.message === 'Password is invalid.' || response.data.success === false) {
                         toast.dark(`You have entered wrong password.`)
+                        setIsLoading(false)
                     }
                 })
                 .catch(err => {
                     console.log("error here", err.response)
+                    setIsLoading(false)
                 })
                 .finally(() => {
                     setIsLoading(false)
@@ -225,6 +229,7 @@ const Booking = () => {
             //IF USER IS NOT REGISTER THEN SINGUP
             if (bookingSignin.loginPassword === '' || bookingSignin.loginId === '') {
                 toast.dark('Please fill phone number and password to login.')
+                setIsLoading(false)
             } else {
                 //CHECK USER IF REGISTER
                 axios
@@ -246,6 +251,7 @@ const Booking = () => {
                                         console.log(response, 'Otp');
                                     } else {
                                         toast.warn(response.data.message)
+                                        setIsLoading(false)
                                     }
                                 })
                                 .catch((err) => {
@@ -267,6 +273,7 @@ const Booking = () => {
                                         setBookingView(false)
                                     } else {
                                         toast.warn(response.data.message)
+                                        setIsLoading(false)
                                     }
                                 })
                                 .catch((err) => {
@@ -431,6 +438,11 @@ const Booking = () => {
         }
     }
 
+    const onLogout = () => {
+        localStorage.removeItem("wingmen_booking")
+        window.location = "/"
+    }
+
     //FOR FETCHING FUNCTION AND GETING LAT LNG FROM GEOCODE
     useEffect(() => {
         const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
@@ -461,9 +473,17 @@ const Booking = () => {
                 </div>
             )}
             <div className="booking_ride">
-                <div className="booking_header">
-                    <a href="https://mywngmn.com/"><img src={logo} alt="" /></a>
-                </div>
+                <Row>
+                    <Col md="6" xs="6">
+                        <div className="booking_header">
+                            <a href="https://mywngmn.com/"><img src={logo} alt="" /></a>
+                        </div>
+                    </Col>
+                    <Col md="6" xs="6">
+                        <button className="logout_btn" onClick={() => onLogout()}>Log out</button>
+                    </Col>
+                </Row>
+
                 {/* PICKUP, DROP LOCATION SELECT */}
                 {bookingView &&
                     <div className="select_location">

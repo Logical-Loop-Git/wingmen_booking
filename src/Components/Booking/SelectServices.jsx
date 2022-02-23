@@ -161,7 +161,7 @@ const SelectServices = () => {
             </div>
             {/* VEHICAL TYPE */}
             <div className="car_service">
-                <h2>Select Car</h2>
+                <h2>Select Transmission</h2>
                 <Row>
                     {userVehical.length < 1
                         ? adminVehicle.map((list, index) => {

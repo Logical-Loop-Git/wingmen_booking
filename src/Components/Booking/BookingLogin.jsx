@@ -120,10 +120,12 @@ const BookingLogin = () => {
                     setIsBookingSignup(true)
                 } else {
                     toast.warn(response.data.message)
+                    setIsLoading(false)
                 }
             })
             .catch((err) => {
                 console.log("error here", err);
+                setIsLoading(false)
             })
             .finally(() => {
                 setIsLoading(false)
@@ -173,17 +175,21 @@ const BookingLogin = () => {
                                 setLoginCheck(false)
                             } else {
                                 toast.warn(response.data.message)
+                                setIsLoading(false)
                             }
                         })
                         .catch((err) => {
                             console.log("error here", err);
+                            setIsLoading(false)
                         })
                 } else {
                     toast.warn(response.data.message)
+                    setIsLoading(false)
                 }
             })
             .catch((err) => {
                 console.log("error here", err);
+                setIsLoading(false)
             })
             .finally(() => {
                 setIsLoading(false)
