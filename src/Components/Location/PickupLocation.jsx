@@ -6,11 +6,13 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from "react-cool-onclickoutside";
 import { Context } from '../../Data/context';
 import { useEffect } from 'react';
+import { Col, Row } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 
 const PickupLocation = () => {
 
-    const { setPickupLocation, pickupLocation } = useContext(Context)
+    const { setPickupLocation, pickupLocation, setAddStops, addStops } = useContext(Context)
 
     const { value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
@@ -69,6 +71,13 @@ const PickupLocation = () => {
             );
         });
 
+    const handleAdd = () => {
+        if (addStops >= 4) {
+            toast.warn("You can not add more then four stops")
+        }
+        setAddStops(addStops + 1)
+    }
+
     useEffect(() => {
         setValue(pickupLocation.address)
     }, [])
@@ -76,7 +85,14 @@ const PickupLocation = () => {
 
     return (
         <div ref={ref} className="location_input">
-            <p>Choose your Pickup Location</p>
+            <Row>
+                <Col md="10" xs="10">
+                    <p>Choose your Pickup Location</p>
+                </Col>
+                <Col md="2" xs="2">
+                    <h4 style={{ cursor: "pointer", color: "#05A0E0" }} onClick={handleAdd}>+</h4>
+                </Col>
+            </Row>
             <input
                 value={value}
                 onChange={handleInputPickup}

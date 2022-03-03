@@ -61,7 +61,7 @@ const BookingDetail = () => {
             "dropUpAddress": dropLocation.address,
             "dropUplatitude": dropLocation.latitude,
             "dropUplongitude": dropLocation.longitude,
-            "eta": parseInt(estimateTime),
+            "eta": parseInt(estimateTime, 10),
             "genderType": "NO_PREFRENCE",
             // "paymentMode": "WALLET",
             "pickUpAddress": pickupLocation.address,

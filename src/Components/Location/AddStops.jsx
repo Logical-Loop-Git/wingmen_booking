@@ -1,15 +1,19 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import { Context } from '../../Data/context';
+import { useEffect } from 'react';
+import { Col, Row } from 'reactstrap';
+// import { Context } from '../../Data/context';
+
+// import Select from 'react-select'
 
 
-const DropLocation = () => {
+const AddStops = ({ state, setState }) => {
 
-    const { setDropLocation, dropLocation } = useContext(Context)
+    // const { addStops, setAddStops } = useContext(Context)
 
     const { value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
@@ -24,14 +28,15 @@ const DropLocation = () => {
         clearSuggestions();
     });
 
-    // DROP LOCATION POINT
-    const handleInputDrop = (e) => {
+    //PICKUP LOCATION
+    const handleInputPickup = (e) => {
         // Update the keyword of the input element
         setValue(e.target.value);
+
     };
 
     //GET LAT LNG FROM INPUT
-    const handleSelectDrop = ({ description }) => () => {
+    const handleSelectPickup = ({ description }) => () => {
         // When user selects a place, we can replace the keyword without request data from API
         // by setting the second parameter to "false"
         setValue(description, false);
@@ -41,8 +46,8 @@ const DropLocation = () => {
         getGeocode({ address: description })
             .then((results) => getLatLng(results[0]))
             .then(({ lat, lng }) => {
-                console.log("📍 Drop coordinates: ", { lat, lng });
-                setDropLocation({
+                console.log("📍 Stops: ", { lat, lng });
+                setState({
                     address: description,
                     latitude: lat,
                     longitude: lng
@@ -53,8 +58,8 @@ const DropLocation = () => {
             });
     };
 
-    //SUGGESTION FOR DROP LOCATION
-    const renderSuggestionsDrop = () =>
+    //SUGGESTION FOR PICKUP LOCATION
+    const renderSuggestionsPickup = () =>
         data.map((suggestion) => {
             const {
                 place_id,
@@ -62,29 +67,35 @@ const DropLocation = () => {
             } = suggestion;
 
             return (
-                <li key={place_id} onClick={handleSelectDrop(suggestion)}>
+                <li key={place_id} onClick={handleSelectPickup(suggestion)}>
                     <strong>{main_text}</strong> <small>{secondary_text}</small>
                 </li>
             );
         });
-
     useEffect(() => {
-        setValue(dropLocation.address)
+        setValue(state.address)
     }, [])
 
 
     return (
         <div ref={ref} className="location_input">
-            <p>Choose your Drop Location</p>
-            <input
-                value={value}
-                onChange={handleInputDrop}
-                name="address"
-                placeholder="Enter drop location"
-            />
-            {status === "OK" && <div className="location_suggestion_pickup"><ul>{renderSuggestionsDrop()}</ul></div>}
+            <div>
+                <Row>
+                    <Col md="12">
+                        <p>Choose your Stop Location</p>
+                    </Col>
+                </Row>
+                <input
+                    value={value}
+                    onChange={handleInputPickup}
+                    name="address"
+                    placeholder="Enter stop location"
+                />
+                {status === "OK" && <div className="location_suggestion_pickup"><ul>{renderSuggestionsPickup()}</ul></div>}
+            </div>
+
         </div>
     )
 }
 
-export default DropLocation
+export default AddStops

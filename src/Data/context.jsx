@@ -17,6 +17,26 @@ export const ContextProvider = ({ children }) => {
     latitude: 0,
     longitude: 0,
   });
+  const [stopLocation, setStopLocation] = useState({
+    address: "",
+    latitude: 0,
+    longitude: 0,
+  });
+  const [stopLocationTwo, setStopLocationTwo] = useState({
+    address: "",
+    latitude: 0,
+    longitude: 0,
+  });
+  const [stopLocationThree, setStopLocationThree] = useState({
+    address: "",
+    latitude: 0,
+    longitude: 0,
+  });
+  const [stopLocationFour, setStopLocationFour] = useState({
+    address: "",
+    latitude: 0,
+    longitude: 0,
+  });
   const [selectedVehical, setSelectedVehical] = useState({});
   const [selectedServiceType, setSelectedServiceType] = useState({});
   const [triType, setTriType] = useState("");
@@ -50,8 +70,7 @@ export const ContextProvider = ({ children }) => {
   const [guestOtpId, setGuestOtpId] = useState("")
   const [serviceView, setServiceView] = useState(false)
   const [loginCheck, setLoginCheck] = useState(false)
-
-
+  const [addStops, setAddStops] = useState(0)
 
   return (
     <Context.Provider
@@ -112,12 +131,20 @@ export const ContextProvider = ({ children }) => {
         setUserOtpView,
         guestUser,
         setGuestUser,
-        guestOtpId, 
+        guestOtpId,
         setGuestOtpId,
-        serviceView, 
+        serviceView,
         setServiceView,
-        loginCheck, 
-        setLoginCheck
+        loginCheck,
+        setLoginCheck,
+        addStops,
+        setAddStops,
+        stopLocation,
+        setStopLocation,
+        stopLocationTwo,
+        setStopLocationTwo,
+        stopLocationThree, setStopLocationThree,
+        stopLocationFour, setStopLocationFour
       }}
     >
       {children}

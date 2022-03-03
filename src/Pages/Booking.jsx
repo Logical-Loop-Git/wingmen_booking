@@ -3,7 +3,8 @@ import {
     GoogleMap,
     withGoogleMap,
     withScriptjs,
-    DirectionsRenderer
+    DirectionsRenderer,
+    Marker
 } from "react-google-maps";
 import { withProps, compose, lifecycle } from "recompose";
 import SelectLocation from '../Components/Booking/SelectLocation';
@@ -59,7 +60,11 @@ const Booking = () => {
         serviceView,
         setServiceView,
         loginCheck,
-        setLoginCheck
+        setLoginCheck,
+        stopLocation,
+        stopLocationTwo,
+        stopLocationThree,
+        stopLocationFour
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
@@ -98,12 +103,90 @@ const Booking = () => {
         lifecycle({
             componentDidMount() {
                 const DirectionsService = new google.maps.DirectionsService();
+                console.log(stopLocation)
+                console.log(stopLocationTwo)
+                console.log(stopLocationThree)
+                console.log(stopLocationFour)
                 DirectionsService.route(
-                    {
-                        origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
-                        destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
-                        travelMode: google.maps.TravelMode.DRIVING
-                    },
+                    (stopLocation.address.length > 0 && stopLocationTwo.address === "" && stopLocationThree.address === "" && stopLocationFour.address === "") ?
+                        {
+                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                            waypoints: [
+                                {
+                                    location: new google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
+                                    stopover: true,
+                                },
+
+                            ],
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        } : (stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address === "" && stopLocationFour.address === "") ? {
+                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                            waypoints: [
+                                {
+                                    location: new google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
+                                    stopover: true,
+                                },
+                                {
+                                    location: new google.maps.LatLng(stopLocationTwo.latitude, stopLocationTwo.longitude),
+                                    stopover: true,
+                                },
+
+                            ],
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        } : (stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address.length > 0 && stopLocationFour.address === "") ? {
+                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                            waypoints: [
+                                {
+                                    location: new google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
+                                    stopover: true,
+                                },
+                                {
+                                    location: new google.maps.LatLng(stopLocationTwo.latitude, stopLocationTwo.longitude),
+                                    stopover: true,
+                                },
+                                {
+                                    location: new google.maps.LatLng(stopLocationThree.latitude, stopLocationThree.longitude),
+                                    stopover: true,
+                                },
+
+                            ],
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        } : (stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address.length > 0 && stopLocationFour.address.length > 0) ? {
+                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                            waypoints: [
+                                {
+                                    location: new google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
+                                    stopover: true,
+                                },
+                                {
+                                    location: new google.maps.LatLng(stopLocationTwo.latitude, stopLocationTwo.longitude),
+                                    stopover: true,
+                                },
+                                {
+                                    location: new google.maps.LatLng(stopLocationThree.latitude, stopLocationThree.longitude),
+                                    stopover: true,
+                                },
+                                {
+                                    location: new google.maps.LatLng(stopLocationFour.latitude, stopLocationFour.longitude),
+                                    stopover: true,
+                                }
+
+                            ],
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        } :
+                            {
+                                origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                                destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                                travelMode: google.maps.TravelMode.DRIVING
+                            },
                     (result, status) => {
                         if (status === google.maps.DirectionsStatus.OK) {
                             this.setState({
@@ -120,11 +203,12 @@ const Booking = () => {
         <GoogleMap
             defaultZoom={10}
             defaultCenter={new google.maps.LatLng(latitude, longitude)}
+
         >
+            {props.isMarkerShown && <Marker position={{ lat: latitude, lng: longitude }} />}
             {props.directions && <DirectionsRenderer directions={props.directions} />}
         </GoogleMap>
     ));
-
     const ref = useOnclickOutside(() => {
         if (addVehical) {
             setAddVehical(false);
@@ -351,17 +435,21 @@ const Booking = () => {
         } else {
             const body = {
                 bookingDate: new Date(),
+                dropUpAddressFirst: stopLocation.address,
+                dropUpAddressSecond: stopLocationTwo.address,
+                dropUpAddressThird: stopLocationThree.address,
+                dropUpAddressFour: stopLocationFour.address,
                 dropUpAddress: dropLocation.address,
                 dropUplatitude: dropLocation.latitude,
-                dropUplatitudeFirst: 0,
-                dropUplatitudeFour: 0,
-                dropUplatitudeSecond: 0,
-                dropUplatitudeThird: 0,
+                dropUplatitudeFirst: stopLocation.latitude,
+                dropUplatitudeFour: stopLocationFour.latitude,
+                dropUplatitudeSecond: stopLocationTwo.latitude,
+                dropUplatitudeThird: stopLocationThree.latitude,
                 dropUplongitude: dropLocation.longitude,
-                dropUplongitudeFirst: 0,
-                dropUplongitudeFour: 0,
-                dropUplongitudeSecond: 0,
-                dropUplongitudeThird: 0,
+                dropUplongitudeFirst: stopLocation.longitude,
+                dropUplongitudeFour: stopLocationFour.longitude,
+                dropUplongitudeSecond: stopLocationTwo.longitude,
+                dropUplongitudeThird: stopLocationThree.longitude,
                 eta: estimateTime,
                 genderType: "MALE",
                 isSheduledBooking: false,
@@ -455,8 +543,8 @@ const Booking = () => {
         navigator.geolocation.getCurrentPosition(function (position) {
             setLatitude(position.coords.latitude)
             setLongitude(position.coords.longitude)
-
         });
+
         if (isBookingSignup === true) {
             // onSelectService()
             onOnlyLocationView()
@@ -480,7 +568,10 @@ const Booking = () => {
                         </div>
                     </Col>
                     <Col md="6" xs="6">
-                        <button className="logout_btn" onClick={() => onLogout()}>Log out</button>
+                        {
+                            isAuthentication ?
+                                <button className="logout_btn" onClick={() => onLogout()}>Log out</button> : null
+                        }
                     </Col>
                 </Row>
 
@@ -639,7 +730,7 @@ const Booking = () => {
                 }
             </div>
             {/* MAP */}
-            <MapWithADirectionsRenderer />
+            <MapWithADirectionsRenderer isMarkerShown />
         </section>
     )
 }
