@@ -222,8 +222,8 @@ const BookingLogin = () => {
             {checkPhone &&
                 <div className="login_form">
                     <PhoneInput
-                        country={'in'}
-                        // country={'us'}
+                        // country={'in'}
+                        country={'us'}
                         onChange={onPhoneNumberSignIn}
                     />
                     {checkUserAccountStatus &&
