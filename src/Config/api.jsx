@@ -1,5 +1,5 @@
 // LOCALHOST API
-// const API = "http://192.168.29.89:3000/api/v1/user/"
+// const API = "http://192.168.29.90:3000/api/v1/user/"
 
 // AWS SERVER API
 const API = "http://18.219.159.1:3000/api/v1/user/"

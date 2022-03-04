@@ -6,6 +6,7 @@ import Lottie from 'react-lottie';
 import car from '../../Images/Animation/lf30_editor_qssfdpmp.json'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const BookingDriver = ({ createdBookingId }) => {
 
@@ -46,8 +47,11 @@ const BookingDriver = ({ createdBookingId }) => {
             .post(url, body, config)
             .then((response) => {
                 if (response.data.success === true) {
+                    toast.success("Successfully Cancelled")
                     console.log(response, 'createBookingPaymentCheck');
                     history.push(`/`)
+                } else {
+                    toast.success(response.data.message)
                 }
             })
             .catch((err) => {
