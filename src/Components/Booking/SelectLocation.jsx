@@ -6,6 +6,7 @@ import DropLocation from '../Location/DropLocation';
 import { Context } from '../../Data/context';
 import AddStops from '../Location/AddStops';
 
+//convert classbases components to hooks for every time rendering map
 
 const SelectLocation = () => {
     const { addStops, setStopLocation, stopLocation, stopLocationTwo, setStopLocationTwo, stopLocationThree, setStopLocationThree,

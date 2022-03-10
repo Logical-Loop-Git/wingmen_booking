@@ -10,6 +10,7 @@ import API, { mapKey } from '../../Config/api';
 import { toast } from 'react-toastify';
 import { useContext } from 'react';
 import { Context } from '../../Data/context';
+import { Col, Row } from 'reactstrap';
 
 
 const BookingLogin = () => {
@@ -31,6 +32,7 @@ const BookingLogin = () => {
         setCheckPhone,
         setLoginCheck,
         setServiceView,
+        setGuestOtpId
     } = useContext(Context)
 
     //USER REGIS 
@@ -195,6 +197,56 @@ const BookingLogin = () => {
                 setIsLoading(false)
             })
     }
+
+    const resendQuestCode = () => {
+        let url = API + `sendOtp`;
+        //SEND OTP TO USER PHONE NUMBER
+        const otpBody = {
+            "countryCode": bookingSignin.loginCountryCode,
+            "phone": bookingSignin.loginId,
+            "type": "web",
+        }
+        axios
+            .post(url, otpBody)
+            .then((response) => {
+                if (response.data.success === true) {
+                    setGuestOtpId(response.data.data.otpId)
+                    toast.success("Successfully resend wingmen code")
+                } else {
+                    toast.warn(response.data.message)
+                    setIsLoading(false)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            })
+    }
+
+    const resendCode = () => {
+        let signUp = API + `signUp`;
+
+        const otpBody = {
+            "countryCode": countryCode,
+            "phone": phoneNumber,
+            "type": "web",
+        }
+        axios
+            .post(signUp, otpBody)
+            .then((response) => {
+                if (response.data.success === true) {
+                    setBookingSignin({ loginOtpId: response.data.data.otpId })
+                    toast.success("Successfully resend wingmen code")
+                } else {
+                    toast.warn(response.data.message)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err);
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }
     //FOR FETCHING CALLBACK AND GETING LAT LNG FROM GEOCODE
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -256,11 +308,25 @@ const BookingLogin = () => {
                     </div>
                     {
                         guestUser === true ?
-                            <div className="login_forget float-end">
-                                <button className="btn_brand" onClick={() => onGuestRegister()}>Verified Otp</button>
+                            <div className="login_forget ">
+                                <Row style={{ justifyContent: "space-between" }}>
+                                    <Col md="6" xs="6">
+                                        <button className="btn_verify_brand" onClick={() => resendQuestCode()}>Resend Wingmen Code</button>
+                                    </Col>
+                                    <Col md="6" xs="6">
+                                        <button className="btn_verify_brand" onClick={() => onGuestRegister()}>Verify Wingmen Code</button>
+                                    </Col>
+                                </Row>
                             </div> :
-                            <div className="login_forget float-end">
-                                <button className="btn_brand" onClick={() => onRegister()}>Verified Otp</button>
+                            <div className="login_forget ">
+                                <Row style={{ justifyContent: "space-between" }}>
+                                    <Col md="6" xs="6">
+                                        <button className="btn_verify_brand" onClick={() => resendCode()}>Resend Wingmen Code</button>
+                                    </Col>
+                                    <Col md="6" xs="6">
+                                        <button className="btn_verify_brand" onClick={() => onRegister()}>Verify Wingmen Code</button>
+                                    </Col>
+                                </Row>
                             </div>
                     }
                 </div>

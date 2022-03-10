@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 
 const PickupLocation = () => {
 
-    const { setPickupLocation, pickupLocation, setAddStops, addStops } = useContext(Context)
+    const { setPickupLocation, setStopLocation, pickupLocation, setAddStops, addStops, setStopLocationTwo, setStopLocationThree, setStopLocationFour } = useContext(Context)
 
     const { value, suggestions: { status, data }, setValue, clearSuggestions } = usePlacesAutocomplete({
         requestOptions: {
@@ -72,10 +72,52 @@ const PickupLocation = () => {
         });
 
     const handleAdd = () => {
+        console.log(addStops, "------")
         if (addStops >= 4) {
-            toast.warn("You can not add more then four stops")
+            toast.warn("You can not add any more stops")
+            return 0;
         }
         setAddStops(addStops + 1)
+    }
+
+    const handleClose = () => {
+        if (addStops === 0) {
+            toast.warn("You can not remove any more stops")
+            return 0;
+        }
+        console.log(addStops, "1111111")
+        setAddStops(addStops - 1)
+        removeStops(addStops - 1)
+    }
+
+    const removeStops = (addStops) => {
+        if (addStops === 0) {
+            setStopLocation({
+                address: "",
+                latitude: 0,
+                longitude: 0,
+            })
+        } else if (addStops === 1) {
+            setStopLocationTwo({
+                address: "",
+                latitude: 0,
+                longitude: 0,
+            })
+
+        } else if (addStops === 2) {
+            setStopLocationThree({
+                address: "",
+                latitude: 0,
+                longitude: 0,
+            })
+
+        } else if (addStops === 3) {
+            setStopLocationFour({
+                address: "",
+                latitude: 0,
+                longitude: 0,
+            })
+        }
     }
 
     useEffect(() => {
@@ -84,13 +126,20 @@ const PickupLocation = () => {
 
 
     return (
-        <div ref={ref} className="location_input">
-            <Row>
-                <Col md="10" xs="10">
+        <div ref={ref} className="location_input" style={{ margin: 5 }}>
+            <Row >
+                <Col md="9" xs="9">
                     <p>Choose your Pickup Location</p>
                 </Col>
-                <Col md="2" xs="2">
-                    <h4 style={{ cursor: "pointer", color: "#05A0E0" }} onClick={handleAdd}>+</h4>
+                <Col md="3" xs="3">
+                    <Row>
+                        <Col md="6" xs="6">
+                            <h4 style={{ cursor: "pointer", color: "#05A0E0" }} onClick={handleAdd}>+</h4>
+                        </Col>
+                        <Col md="6" xs="6">
+                            <h4 style={{ cursor: "pointer", color: "#05A0E0" }} onClick={handleClose}>-</h4>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
             <input

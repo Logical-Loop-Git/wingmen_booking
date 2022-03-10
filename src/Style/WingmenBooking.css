@@ -1860,4 +1860,19 @@ ul.tl li .timestamp {
   margin-bottom: 20px;
 }
 
+.btn_verify_brand {
+  border: none;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  font-family: var(--paragraph-text);
+  font-weight: 600;
+  color: var(--white);
+  padding: 8px;
+  width: 150px;
+  margin-bottom: 20px;
+  margin-left: 9px;
+}
+
 /* SCHEDULE BOOKING END */

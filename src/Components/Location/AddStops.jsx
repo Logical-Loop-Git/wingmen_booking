@@ -6,9 +6,6 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from "react-cool-onclickoutside";
 import { useEffect } from 'react';
 import { Col, Row } from 'reactstrap';
-// import { Context } from '../../Data/context';
-
-// import Select from 'react-select'
 
 
 const AddStops = ({ state, setState }) => {
@@ -72,6 +69,8 @@ const AddStops = ({ state, setState }) => {
                 </li>
             );
         });
+
+
     useEffect(() => {
         setValue(state.address)
     }, [])
@@ -81,7 +80,7 @@ const AddStops = ({ state, setState }) => {
         <div ref={ref} className="location_input">
             <div>
                 <Row>
-                    <Col md="12">
+                    <Col md="10" xs="10">
                         <p>Choose your Stop Location</p>
                     </Col>
                 </Row>

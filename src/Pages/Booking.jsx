@@ -14,7 +14,7 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import SelectServices from '../Components/Booking/SelectServices';
 import { Context } from '../Data/context';
 import BookingDetail from '../Components/Booking/BookingDetail';
-import API from '../Config/api';
+import API, { mapKey } from '../Config/api';
 import axios from 'axios';
 import PaymentDetail from '../Components/Booking/PaymentDetail';
 import { toast } from 'react-toastify';
@@ -64,7 +64,8 @@ const Booking = () => {
         stopLocation,
         stopLocationTwo,
         stopLocationThree,
-        stopLocationFour
+        stopLocationFour,
+        addStops
     } = useContext(Context)
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
@@ -87,14 +88,14 @@ const Booking = () => {
         setLoginCheck(false)
     }
 
-    const google = window.google
 
     //MAP VIEW
+    // const google = window.google
 
     const MapWithADirectionsRenderer = compose(
         withProps({
             googleMapURL:
-                "https://maps.googleapis.com/maps/api/js?key=AIzaSyBPnDatU8GFmaTp3-rfJAKmjLS6bPMEjrY&libraries=geometry,drawing,places",
+                `https://maps.googleapis.com/maps/api/js?key=${mapKey}`,
             headers: {
                 "Access-Control-Allow-Origin": '*',
                 "Access-Control-Allow-Methods": 'GET'
@@ -109,10 +110,10 @@ const Booking = () => {
             componentDidMount() {
                 const DirectionsService = new window.google.maps.DirectionsService();
                 DirectionsService.route(
-                    (stopLocation.address.length > 0 && stopLocationTwo.address === "" && stopLocationThree.address === "" && stopLocationFour.address === "") ?
+                    (addStops === 1 && stopLocation.address.length > 0 && stopLocationTwo.address === "" && stopLocationThree.address === "" && stopLocationFour.address === "") ?
                         {
-                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
-                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                            origin: new window.google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new window.google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
                             waypoints: [
                                 {
                                     location: new window.google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
@@ -122,9 +123,9 @@ const Booking = () => {
                             ],
                             optimizeWaypoints: true,
                             travelMode: window.google.maps.TravelMode.DRIVING
-                        } : (stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address === "" && stopLocationFour.address === "") ? {
-                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
-                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                        } : (addStops === 2 && stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address === "" && stopLocationFour.address === "") ? {
+                            origin: new window.google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new window.google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
                             waypoints: [
                                 {
                                     location: new window.google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
@@ -134,13 +135,12 @@ const Booking = () => {
                                     location: new window.google.maps.LatLng(stopLocationTwo.latitude, stopLocationTwo.longitude),
                                     stopover: true,
                                 },
-
                             ],
                             optimizeWaypoints: true,
                             travelMode: window.google.maps.TravelMode.DRIVING
-                        } : (stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address.length > 0 && stopLocationFour.address === "") ? {
-                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
-                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                        } : (addStops === 3 && stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address.length > 0 && stopLocationFour.address === "") ? {
+                            origin: new window.google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new window.google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
                             waypoints: [
                                 {
                                     location: new window.google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
@@ -158,9 +158,9 @@ const Booking = () => {
                             ],
                             optimizeWaypoints: true,
                             travelMode: window.google.maps.TravelMode.DRIVING
-                        } : (stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address.length > 0 && stopLocationFour.address.length > 0) ? {
-                            origin: new google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
-                            destination: new google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
+                        } : (addStops === 4 && stopLocation.address.length > 0 && stopLocationTwo.address.length > 0 && stopLocationThree.address.length > 0 && stopLocationFour.address.length > 0) ? {
+                            origin: new window.google.maps.LatLng(pickupLocation.latitude, pickupLocation.longitude),
+                            destination: new window.google.maps.LatLng(dropLocation.latitude, dropLocation.longitude),
                             waypoints: [
                                 {
                                     location: new window.google.maps.LatLng(stopLocation.latitude, stopLocation.longitude),
@@ -198,6 +198,7 @@ const Booking = () => {
                         }
                     }
                 );
+                window.google.maps.event.addDomListener(window, "load", MapWithADirectionsRenderer);
             }
         })
     )((props) => (
@@ -205,7 +206,7 @@ const Booking = () => {
             defaultZoom={10}
             defaultCenter={new window.google.maps.LatLng(latitude, longitude)}
         >
-            {props.isMarkerShown && <Marker position={{ lat: latitude, lng: longitude }} />}
+            {props.isMarkerShown && <Marker google={window.google} position={{ lat: latitude, lng: longitude }} />}
             {props.directions && <DirectionsRenderer directions={props.directions} />}
         </GoogleMap>
     ));
@@ -282,9 +283,7 @@ const Booking = () => {
             axios
                 .post(signIn, body)
                 .then(response => {
-                    console.log(response);
                     if (response.data.success === true) {
-                        console.log(response);
                         toast.dark('Login done')
                         localStorage.setItem(
                             "wingmen_booking",
@@ -327,12 +326,10 @@ const Booking = () => {
                             axios
                                 .post(url, guestOtpBody)
                                 .then((response) => {
-                                    console.log(response, 'Otp');
                                     if (response.data.success === true) {
                                         setGuestOtpId(response.data.data.otpId)
                                         setGuestUser(true)
                                         setUserOtpView(true)
-                                        console.log(response, 'Otp');
                                     } else {
                                         toast.warn(response.data.message)
                                         setIsLoading(false)
@@ -347,9 +344,7 @@ const Booking = () => {
                             axios
                                 .post(signUp, otpBody)
                                 .then((response) => {
-                                    console.log(response, 'signUp');
                                     if (response.data.success === true) {
-                                        console.log(response, 'signUp');
                                         setBookingSignin({ loginOtpId: response.data.data.otpId })
                                         setCheckPhone(false)
                                         setUserOtpView(true)
@@ -480,8 +475,6 @@ const Booking = () => {
                 .then((response) => {
                     console.log(response, 'createBooking');
                     if (response.data.success === true) {
-                        console.log(response, 'createBooking');
-                        console.log(response.data.data._id, 'createBooking');
                         toast.dark(`Your ride create successfully.`)
                         setCreatedBookingId(response.data.data._id)
                         setDisplayBookingDetail(false)
