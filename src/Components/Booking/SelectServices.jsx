@@ -103,9 +103,10 @@ const SelectServices = () => {
     }
 
     //SELECT VEHICAL TYPE
-    const onSelectVehical = (list) => {
+    const onSelectVehical = (list, index) => {
         console.log(list, 'onSelectVehical');
         setSelectedVehical(list)
+
     }
 
     //SELECT TRIP TYPE
@@ -137,16 +138,17 @@ const SelectServices = () => {
                         ? "No serviceType found :("
                         : serviceType.map((list, index) => {
                             return (
-                                <Col md={4} sm={4} xs={4}>
-                                    <div key={index}>
+                                <Col md={4} sm={4} xs={4} key={index}>
+                                    <div>
                                         <input
                                             className="input-hidden"
                                             type="radio"
                                             name="service"
+                                            // checked={list.serviceName === "Personal Driver"}
                                             id={list._id}
                                             onChange={(id) => onServiceType(list)}
                                         />
-                                        <label for={list._id}>
+                                        <label htmlFor={list._id}>
                                             <img
                                                 src={`${imageUrl}${list.image}` || car}
                                                 alt="I'm sad" />
@@ -164,18 +166,18 @@ const SelectServices = () => {
                 <h2>Select Transmission</h2>
                 <Row>
                     {userVehical.length < 1
-                        ? adminVehicle.map((list, index) => {
+                        ? adminVehicle.slice(0).reverse().map((list, index) => {
                             return (
-                                <Col md={4} sm={4} xs={4}>
-                                    <div key={index}>
+                                <Col md={4} sm={4} xs={4} key={index}>
+                                    <div>
                                         <input
                                             className="input-hidden"
                                             type="radio"
                                             name="vehical"
                                             id={list._id}
-                                            onChange={(id) => onSelectVehical(list)}
+                                            onChange={(id) => onSelectVehical(list, index)}
                                         />
-                                        <label for={list._id}>
+                                        <label htmlFor={list._id}>
                                             <img
                                                 src={`${imageUrl}${list.vehicleImage}`}
                                                 alt="I'm sad" />
@@ -188,8 +190,8 @@ const SelectServices = () => {
                         })
                         : userVehical.map((list, index) => {
                             return (
-                                <Col md={4} sm={4} xs={4}>
-                                    <div key={index}>
+                                <Col md={4} sm={4} xs={4} key={index}>
+                                    <div >
                                         <input
                                             className="input-hidden"
                                             type="radio"
@@ -197,7 +199,7 @@ const SelectServices = () => {
                                             id={list._id}
                                             onChange={(id) => onSelectVehical(list)}
                                         />
-                                        <label for={list._id}>
+                                        <label htmlFor={list._id}>
                                             <img
                                                 src={`${imageUrl}${list.vehicleImage}`}
                                                 alt="I'm sad" />
@@ -233,7 +235,7 @@ const SelectServices = () => {
                     value="SINGLETRIP"
                     onChange={(e) => onTripType(e.target.value)}
                 />
-                <label for="oneway">
+                <label htmlFor="oneway">
                     <img
                         src={oneway}
                         alt="I'm sad" />
@@ -247,7 +249,7 @@ const SelectServices = () => {
                     value="ROUNDTRIP"
                     onChange={(e) => onTripType(e.target.value)}
                 />
-                <label for="returnjourney">
+                <label htmlFor="returnjourney">
                     <img
                         src={returnjourney}
                         alt="I'm sad" />

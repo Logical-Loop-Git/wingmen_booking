@@ -25,6 +25,7 @@ const PaymentDetail = () => {
     const [userCard, setUserCard] = useState([])
     const [promoC, setPromoC] = useState('')
     const [promoAmount, setPromoAmount] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     //API CALL FOR USER PROFILE
     const fetchUserProfile = useCallback(() => {
@@ -67,6 +68,7 @@ const PaymentDetail = () => {
 
     //APPLY FOR PROMO CODE
     const onPromoCheck = () => {
+        setLoading(true)
         //API CALL FOR PROMO CHECK
         const body = {
             "promoCode": promoC,
@@ -87,13 +89,18 @@ const PaymentDetail = () => {
                     setPromoAmount(response.data.data.promoAmount)
                     setPromoCode(promoC)
                     toast.success(`Your promo code applied successfully.`)
+                    setLoading(false)
                 } else {
                     toast.warn(response.data.message)
+                    setLoading(false)
                 }
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+                setLoading(false)
+            }).finally(() => {
+                setLoading(false)
+            })
     }
 
     useEffect(() => {
@@ -171,11 +178,18 @@ const PaymentDetail = () => {
                     value={promoC}
                     onChange={(e) => setPromoC(e.target.value)}
                 />
-                <button
-                    onClick={() => onPromoCheck()}
-                >
-                    <FontAwesomeIcon icon={faCheck} />
-                </button>
+                {
+                    loading === true ? <button>
+                        <div class="spinner-border text-white" role="status" style={{ height: 20, width: 20 }}>
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </button> : <button
+                        onClick={() => onPromoCheck()}
+                    >
+                        <FontAwesomeIcon icon={faCheck} />
+                    </button>
+                }
+
             </div>
             <div className="display_total">
                 <div className="d-flex justify-content-between">
@@ -188,7 +202,7 @@ const PaymentDetail = () => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <h3>Total</h3>
-                    <p>$ {parseInt(bookingAmount - promoAmount, 0)}</p>
+                    <p>$ {bookingAmount - promoAmount}</p>
                 </div>
             </div>
         </div>

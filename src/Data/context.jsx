@@ -38,7 +38,7 @@ export const ContextProvider = ({ children }) => {
     longitude: 0,
   });
   const [selectedVehical, setSelectedVehical] = useState({});
-  const [selectedServiceType, setSelectedServiceType] = useState({});
+  const [selectedServiceType, setSelectedServiceType] = useState({ serviceName: "Personal Driver" });
   const [triType, setTriType] = useState("");
   const [selectedCard, setSelectedCard] = useState("");
   const [bookingNote, setBookingNote] = useState("");

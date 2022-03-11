@@ -79,6 +79,8 @@ const Booking = () => {
     const [bookingDriverView, setBookingDriverView] = useState(false)
     const [userCreateStatusBtn, setUserCreateStatusBtn] = useState(true)
 
+    const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
+
     const onOnlyLocationView = () => {
         setBookingView(true)
         setDisplayBookingDetail(false)
@@ -562,7 +564,7 @@ const Booking = () => {
                     </Col>
                     <Col md="6" xs="6">
                         {
-                            isAuthentication ?
+                            authData ?
                                 <button className="logout_btn" onClick={() => onLogout()}>Log out</button> : null
                         }
                     </Col>

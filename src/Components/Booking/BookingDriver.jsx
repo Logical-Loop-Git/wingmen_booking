@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import API, { imageUrl } from '../../Config/api';
 import user_pr from '../../Images/Icon/user.png'
 import Lottie from 'react-lottie';
@@ -7,10 +7,12 @@ import car from '../../Images/Animation/lf30_editor_qssfdpmp.json'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Context } from '../../Data/context';
 
 const BookingDriver = ({ createdBookingId }) => {
 
     const history = useHistory()
+    const { isLoading, setIsLoading } = useContext(Context)
     const [driverDetails, setDriverDetails] = useState({})
     const [showDriver, setShowDriver] = useState(false)
     const [stopWhenDataGet, setStopWhenDataGet] = useState(6000)
@@ -26,13 +28,14 @@ const BookingDriver = ({ createdBookingId }) => {
     };
 
     //LOGOUT 
-    const onLogout = () => {
-        localStorage.removeItem("wingmen_booking")
-        window.location = "/"
-    }
+    // const onLogout = () => {
+    //     localStorage.removeItem("wingmen_booking")
+    //     window.location = "/"
+    // }
 
     //CANCLE BOOKING
     const onCancleBooking = () => {
+        setIsLoading(true)
         const authData = JSON.parse(localStorage.getItem("wingmen_booking"));
         let url = API + `cancelBooking`;
         const config = {
@@ -49,14 +52,21 @@ const BookingDriver = ({ createdBookingId }) => {
                 if (response.data.success === true) {
                     toast.success("Successfully Cancelled")
                     console.log(response, 'createBookingPaymentCheck');
+                    setIsLoading(false)
                     history.push(`/`)
+                    window.location = "/"
                 } else {
                     toast.success(response.data.message)
+                    setIsLoading(false)
                 }
             })
             .catch((err) => {
                 console.log("error here", err);
-            });
+                setIsLoading(false)
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
 
     //API CALL FOR BOOKING DETAILS
@@ -99,7 +109,7 @@ const BookingDriver = ({ createdBookingId }) => {
 
     return (
         <div className='driver_display'>
-            {showDriver ? <div>
+            {showDriver ? [<div>
                 <h2>Your Wingmen.</h2>
                 <div className='d-grid w-100'>
                     <div className='driver_data'>
@@ -107,11 +117,17 @@ const BookingDriver = ({ createdBookingId }) => {
                         <h2>{driverDetails.firstName} {driverDetails.lastName}</h2>
                         <p>{driverDetails.countryCode} {driverDetails.phone}</p>
                     </div>
-                    <div className='m-auto'>
+                    {/* <div className='m-auto'>
                         <button className='btn_brand' onClick={() => onLogout()}>Logout</button>
-                    </div>
+                    </div> */}
                 </div>
-            </div>
+            </div>, <div className='m-auto'>
+                {isLoading === true ? <button className="btn_brand">
+                    <div class="spinner-border text-white" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </button> : <button className='btn_brand' onClick={() => onCancleBooking()}>Cancel Booking</button>}
+            </div>]
                 : <div>
                     <h2>Your Wingmen Is On The Way.</h2>
                     <Lottie options={defaultOptions}
@@ -119,7 +135,11 @@ const BookingDriver = ({ createdBookingId }) => {
                         width={250}
                     />
                     <div className='m-auto'>
-                        <button className='btn_brand' onClick={() => onCancleBooking()}>Cancle Booking</button>
+                        {isLoading === true ? <button className="btn_brand">
+                            <div class="spinner-border text-white" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button> : <button className='btn_brand' onClick={() => onCancleBooking()}>Cancel Booking</button>}
                     </div>
                 </div>
             }
