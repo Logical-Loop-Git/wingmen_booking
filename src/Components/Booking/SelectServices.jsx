@@ -143,12 +143,14 @@ const SelectServices = () => {
                                         <input
                                             className="input-hidden"
                                             type="radio"
-                                            name="service"
-                                            // checked={list.serviceName === "Personal Driver"}
+                                            checked={list._id}
                                             id={list._id}
-                                            onChange={(id) => onServiceType(list)}
+                                            value={list._id}
+                                            onChange={
+                                                onServiceType(list)
+                                            }
                                         />
-                                        <label htmlFor={list._id}>
+                                        <label defaultChecked htmlFor={list._id}>
                                             <img
                                                 src={`${imageUrl}${list.image}` || car}
                                                 alt="I'm sad" />

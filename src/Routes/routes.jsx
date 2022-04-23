@@ -13,6 +13,9 @@ import ContactUs from "../Pages/ContactUs";
 import API from "../Config/api";
 import Tips from "../Pages/Tips";
 import ScheduleBooking from "../Pages/ScheduleBooking";
+import EventBooking from "../Pages/EventBooking";
+import EventDetails from "../Pages/EventDetails";
+import EventTeamBookingDetails from "../Pages/EventTeamBookingDetails";
 
 
 const Routes = () => {
@@ -68,6 +71,7 @@ const Routes = () => {
             {/* NORMAL ROUTES */}
             <Route exact path="/home" component={Landing} />
             <Route exact path="/booking" component={Booking} />
+            <Route exact path="/eventbooking" component={EventBooking} />
             <Route exact path="/" component={Booking} />
             {/* <Route exact path="/login" component={Login} /> */}
             <Route exact path="/signup" component={Signup} />
@@ -76,6 +80,8 @@ const Routes = () => {
             <Route exact path="/contact" component={ContactUs} />
             <Route exact path="/tips/:bookingid/:userid/:cardid" component={Tips} />
             <Route exact path="/schedulebooking/:bookingId" component={ScheduleBooking} />
+            <Route exact path="/eventbooking/:eventId" component={EventDetails} />
+            <Route exact path="/eventteambooking/:eventId" component={EventTeamBookingDetails} />
             {/* NORMAL ROUTES END */}
 
 

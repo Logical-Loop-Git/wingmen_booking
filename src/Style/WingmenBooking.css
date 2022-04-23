@@ -1876,3 +1876,76 @@ ul.tl li .timestamp {
 }
 
 /* SCHEDULE BOOKING END */
+
+/* EVENT CARD */
+
+.strip_add_card_event label {
+  color: var(--black);
+  width: 100%;
+}
+
+.strip_add_card_event input,
+.StripeElement {
+  display: block;
+  margin: 5px 0 20px 0;
+  max-width: 700px;
+  height: 46px;
+  padding: 10px 14px;
+  font-size: 1em;
+  font-family: var(--paragraph-text);
+  box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
+    rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
+  border: 1px solid var(--brand-blue);
+  outline: 0;
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.strip_add_card_event input::placeholder {
+  color: var(--brand-gray);
+}
+
+.strip_add_card_event input:focus,
+.StripeElement--focus {
+  box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
+    rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+.StripeElement.IdealBankElement,
+.StripeElement.FpxBankElement,
+.StripeElement.PaymentRequestButton {
+  padding: 0;
+}
+
+.StripeElement.PaymentRequestButton {
+  height: 40px;
+}
+
+.btn_event_brand {
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  color: var(--white);
+  width: 100px;
+  border-radius: 10px;
+}
+
+.event_btn {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  background-color: var(--brand-blue);
+  font-family: var(--paragraph-text);
+  font-weight: 700;
+  color: var(--white);
+  padding: 10px;
+  width: 100px;
+}
+
+/* END EVENT CARD */

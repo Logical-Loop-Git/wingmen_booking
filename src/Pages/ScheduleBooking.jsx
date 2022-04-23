@@ -221,8 +221,8 @@ const ScheduleBooking = () => {
                                 <h5 style={{ marginBottom: 20 }}>Booking Details</h5>
                                 <h6>Pick Up Address: <span>{bookingData.pickUpAddress}</span></h6>
                                 <h6>Drop Up Address: <span>{bookingData.dropUpAddress}</span></h6>
-                                <h6>Booking Date: <span>{bookingData.bookingDate ? moment(bookingData.bookingDate).format('MMMM Do YYYY') : ""}</span></h6>
-                                <h6>Booking Time: <span>{bookingData.bookingDate ? moment(bookingData.bookingDate).format('h:mm:ss a') : ""}</span></h6>
+                                <h6>Booking Date: <span>{bookingData.bookingDate ? moment.utc(bookingData.bookingDate).format('MMMM DD YYYY') : ""}</span></h6>
+                                <h6>Booking Time: <span>{bookingData.bookingDate ? moment.utc(bookingData.bookingDate).format('hh:mm:ss a') : ""}</span></h6>
                             </div>
                             <div>
                                 {!bookingData.driverId ?
