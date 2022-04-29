@@ -71,6 +71,8 @@ export const ContextProvider = ({ children }) => {
   const [serviceView, setServiceView] = useState(false)
   const [loginCheck, setLoginCheck] = useState(false)
   const [addStops, setAddStops] = useState(0)
+  const [totalPayment, setTotalPayment] = useState(0)
+  const [eventId, setEventId] = useState("")
 
   return (
     <Context.Provider
@@ -144,7 +146,9 @@ export const ContextProvider = ({ children }) => {
         stopLocationTwo,
         setStopLocationTwo,
         stopLocationThree, setStopLocationThree,
-        stopLocationFour, setStopLocationFour
+        stopLocationFour, setStopLocationFour,
+        totalPayment, setTotalPayment,
+        eventId, setEventId
       }}
     >
       {children}

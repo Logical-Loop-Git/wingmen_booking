@@ -109,6 +109,7 @@ const EventDetails = () => {
                                         <h6>Event Address: <span>{eventData.pickUpAddress}</span></h6>
                                         <h6>Drivers: <span>{eventData.driver}</span></h6>
                                         <h6>Co-drivers: <span>{eventData.coDriver}</span></h6>
+                                        <h6>Booking No.: <span>{eventData.bookingNo}</span></h6>
                                         <h6>Booking Date: <span>{eventData.bookingDate ? moment.utc(eventData.bookingDate).format('MMMM DD YYYY') : ""}</span></h6>
                                         <h6>Booking Time: <span>{eventData.bookingDate ? moment.utc(eventData.bookingDate).format('hh:mm:ss a') : ""}</span></h6>
                                     </div>

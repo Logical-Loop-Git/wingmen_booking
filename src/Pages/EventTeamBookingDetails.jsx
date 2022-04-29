@@ -142,6 +142,7 @@ const EventTeamBookingDetails = () => {
                                         <h6>Driver Name: <span style={{ fontWeight: 450 }}>{driverData.firstName} {driverData.lastName}</span></h6>
                                         <h6>Phone No.: <span style={{ fontWeight: 450 }}>{driverData.countryCode} {driverData.phone}</span></h6>
                                         <h5 style={{ paddingTop: 20 }}>Ride Details</h5>
+                                        <h6>Booking No. <span style={{ fontWeight: 450 }}>{bookingData.bookingNo}</span></h6>
                                         <h6>Ride Distance: <span style={{ fontWeight: 450 }}>{parseFloat(bookingData.totalDistanceInKm).toFixed(5)} Km</span></h6>
                                     </div>
                                 </ModalBody>
