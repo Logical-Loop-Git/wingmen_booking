@@ -45,11 +45,10 @@ const useOptions = () => {
 
 const EventBooking = () => {
 
-    const { totalPayment, eventId, isLoading } = useContext(Context)
+    const { totalPayment } = useContext(Context)
     const [date, setDate] = useState(moment().format("YYYY-MM-DD hh:mm:ss"));
     const [eventInfo, setEventInfo] = useState(false);
     const [eventCardInfo, setEventCardInfo] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [show, setShow] = useState(false);
     const [pickUpLocation, setPickUpLocation] = useState({
         address: "",
@@ -156,6 +155,10 @@ const EventBooking = () => {
             eventBooking.phone === "" ||
             eventBooking.driver === "" ||
             eventBooking.eventName === "" ||
+            eventBooking.noOfHours === "" ||
+            pickUpLocation.address === "" ||
+            pickUpLocation.latitude === "" ||
+            pickUpLocation.longitude === "" ||
             date === ""
         ) {
             toast.warn("Some fields are missing");
@@ -170,30 +173,9 @@ const EventBooking = () => {
     };
 
     const BookRide = async () => {
-        setLoading(true);
-        const url = API + `confirmEventBooking`;
-        const body = {
-            eventId: eventId,
-        };
-        await axios
-            .post(url, body)
-            .then((response) => {
-                if (response.data.success === true) {
-                    toast.success(`Your event created successfully.`);
-                    setLoading(false);
-                    window.location = "/eventbooking";
-                } else {
-                    toast.warn(response.data.message);
-                    setLoading(false);
-                }
-            })
-            .catch((err) => {
-                console.log("error here", err);
-                setLoading(false);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        toast.success(`Your event created successfully.`);
+        setShow(false);
+        window.location = "/eventbooking"
     };
 
     useEffect(() => {
@@ -214,7 +196,7 @@ const EventBooking = () => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="m-1">
-                                                <Label>First Name</Label>
+                                                <Label>First Name<span className='text-danger'>*</span></Label>
                                                 <input
                                                     type="text"
                                                     id="fname"
@@ -232,7 +214,7 @@ const EventBooking = () => {
                                         </Col>
                                         <Col md={6}>
                                             <div className="m-1">
-                                                <Label>Last Name</Label>
+                                                <Label>Last Name<span className='text-danger'>*</span></Label>
                                                 <input
                                                     type="text"
                                                     id="lname"
@@ -252,7 +234,7 @@ const EventBooking = () => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="m-1">
-                                                <Label>Email</Label>
+                                                <Label>Email<span className='text-danger'>*</span></Label>
                                                 <input
                                                     type="text"
                                                     id="email"
@@ -270,7 +252,7 @@ const EventBooking = () => {
                                         </Col>
                                         <Col md={6}>
                                             <div ref={ref} className="m-1">
-                                                <Label>Location</Label>
+                                                <Label>Location<span className='text-danger'>*</span></Label>
                                                 <input
                                                     value={value}
                                                     onChange={handleInputDrop}
@@ -291,7 +273,7 @@ const EventBooking = () => {
                                     <Row>
                                         <Col md={6} className="phone_input">
                                             <div className="m-1">
-                                                <Label>Phone No.</Label>
+                                                <Label>Phone No.<span className='text-danger'>*</span></Label>
                                                 <PhoneInput
                                                     country={"us"}
                                                     onChange={onPhoneNumberSignIn}
@@ -313,7 +295,7 @@ const EventBooking = () => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="m-1">
-                                                <Label>How many driver you want ?</Label>
+                                                <Label>How many driver you want ?<span className='text-danger'>*</span></Label>
                                                 <input
                                                     type="number"
                                                     id="adress"
@@ -331,7 +313,7 @@ const EventBooking = () => {
                                         </Col>
                                         <Col md={6}>
                                             <div className="m-1 ">
-                                                <Label>Date &amp; Time</Label>
+                                                <Label>Date &amp; Time<span className='text-danger'>*</span></Label>
                                                 <Flatpickr
                                                     data-enable-time
                                                     value={date}
@@ -344,7 +326,7 @@ const EventBooking = () => {
                                     <Row>
                                         <Col md={6}>
                                             <div className="m-1">
-                                                <Label>Event Name</Label>
+                                                <Label>Event Name<span className='text-danger'>*</span></Label>
                                                 <input
                                                     type="text"
                                                     id="adress"
@@ -362,7 +344,7 @@ const EventBooking = () => {
                                         </Col>
                                         <Col md={6}>
                                             <div className="m-1">
-                                                <Label>No of Hour</Label>
+                                                <Label>No of Hour<span className='text-danger'>*</span></Label>
                                                 <input
                                                     type="number"
                                                     id="adress"
@@ -383,18 +365,12 @@ const EventBooking = () => {
                                         style={{ marginTop: 20 }}
                                         className="d-flex justify-content-between"
                                     >
-                                        {isLoading === true ? (
-                                            <button className="booking_next">
-                                                <div class="spinner-border text-white" role="status">
-                                                    <span class="visually-hidden">Loading...</span>
-                                                </div>
-                                            </button>
-                                        ) : (
-                                            <button className="booking_next" onClick={handleNext}>
-                                                next
-                                                <FontAwesomeIcon icon={faArrowRight} />
-                                            </button>
-                                        )}
+
+                                        <button className="booking_next" onClick={handleNext}>
+                                            next
+                                            <FontAwesomeIcon icon={faArrowRight} />
+                                        </button>
+
                                     </div>
                                 </div>
                             </Col>
@@ -414,6 +390,9 @@ const EventBooking = () => {
                             </Col>
                         </Row>
                         <div className="contact_form">
+                            <Row >
+                                <h6 style={{ margin: "0px 0px 20px 0px" }}>Credit card will not be charged until the request is confirmed.</h6>
+                            </Row>
                             <div className="strip_add_card_event">
                                 <Elements stripe={stripePromise} style={{ height: 400 }}>
                                     <EventCardForm eventBooking={eventBooking} pickUpLocation={pickUpLocation} date={date} />
@@ -453,18 +432,12 @@ const EventBooking = () => {
                             {" "}
                             Cancel
                         </button>
-                        {loading === true ? (
-                            <button className="event_btn ms-2">
-                                <div class="spinner-border text-white" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </button>
-                        ) : (
-                            <button className="event_btn ms-2" onClick={BookRide}>
-                                {" "}
-                                Confirm
-                            </button>
-                        )}
+
+                        <button className="event_btn ms-2" onClick={BookRide}>
+                            {" "}
+                            Confirm
+                        </button>
+
                     </div>
                 </ModalBody>
             </Modal>
@@ -594,7 +567,7 @@ const EventCardForm = ({ eventBooking, pickUpLocation, date }) => {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-                Card details
+                Card details<span className='text-danger'>*</span>
                 <Row>
                     <Col md="10" >
                         <CardElement

@@ -10,10 +10,13 @@ const EventTeamBookingDetails = () => {
     const { eventId } = useParams()
     const [teamBookingData, setTeamBookingData] = useState([])
     const [bookingData, setBookingData] = useState([])
+    const [eventData, setEventData] = useState([])
+    const [amount, setAmount] = useState([])
     const [driverData, setDriverData] = useState([])
     const [paymentDone, setPaymentDone] = useState("")
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
+    const [show, setShow] = useState(false)
 
     const handleBookingData = (list) => {
         setBookingData(list)
@@ -41,6 +44,27 @@ const EventTeamBookingDetails = () => {
                 console.log("error here", err)
             })
     }
+    const fetchEventData = () => {
+        const url = API + `getEventBookingById/${eventId}`
+
+        axios
+            .get(url)
+            .then(async (response) => {
+                if (response.data.success === true) {
+                    setEventData(response.data.data)
+                    setAmount(response.data.data.totalAmount / 2)
+                } else {
+                    toast.warn(response.data.message)
+                }
+            })
+            .catch((err) => {
+                console.log("error here", err)
+            })
+    }
+
+    const handleOpen = () => {
+        setShow(true)
+    }
 
     const handleAllPay = () => {
         setLoading(true)
@@ -55,6 +79,7 @@ const EventTeamBookingDetails = () => {
                 if (response.data.success === true) {
                     toast.success(response.data.message)
                     setLoading(false)
+                    setShow(false)
                     fetchData()
                 } else {
                     toast.warn(response.data.message)
@@ -70,15 +95,11 @@ const EventTeamBookingDetails = () => {
     }
 
     useEffect(() => {
-        // const authData = JSON.parse(localStorage.getItem("eventToken"))
-
-        // const config = {
-        //     headers: {
-        //         Authorization: authData
-        //     }
-        // }
         fetchData()
+        fetchEventData()
     }, [])
+
+
     return (
         <section>
             <div className="header_padd">
@@ -92,18 +113,12 @@ const EventTeamBookingDetails = () => {
                                 {
                                     paymentDone === "Payment Successfull" ? null : (<Col xs={4} md={4}>
                                         {
-                                            loading === true ? <button className="btn_event_brand mb-2" style={{ backgroundColor: "#05a0e0", border: "none" }}>
-                                                <div class="spinner-border text-white" role="status">
-                                                    <span class="visually-hidden">Loading...</span>
-                                                </div>
-                                            </button> : <button onClick={handleAllPay} className="btn_event_brand mb-2" style={{ backgroundColor: "#05a0e0", border: "none" }} variant="contained">
+                                            <button onClick={handleOpen} className="btn_event_brand mb-2" style={{ backgroundColor: "#05a0e0", border: "none" }} variant="contained">
                                                 Pay
                                             </button>
                                         }
-
                                     </Col>)
                                 }
-
                             </Row>
                             {
                                 teamBookingData.map((item, index) => {
@@ -145,6 +160,38 @@ const EventTeamBookingDetails = () => {
                                         <h6>Booking No. <span style={{ fontWeight: 450 }}>{bookingData.bookingNo}</span></h6>
                                         <h6>Ride Distance: <span style={{ fontWeight: 450 }}>{parseFloat(bookingData.totalDistanceInKm).toFixed(5)} Km</span></h6>
                                     </div>
+                                </ModalBody>
+                            </Modal>
+                            <Modal isOpen={show} toggle={() => setShow(!show)} className='modal-dialog-centered modal-lg'>
+                                <ModalBody className='px-sm-5 mx-50 pb-4'>
+                                    <Row>
+                                        <Col md="10" xs="10">
+                                            <h4 className="m-2">Total Pay</h4>
+                                        </Col>
+                                        <Col md="2" xs="2">
+                                            <span type="text" color="primary" style={{ cursor: "pointer" }} className=" m-2" aria-label="Close" onClick={() => setShow(!show)}>
+                                                <span aria-hidden="true" style={{ FontSize: 15 }} >&times;</span>
+                                            </span>
+                                        </Col>
+                                    </Row>
+                                    <Row className='m-1'>
+                                        <h6>Other half of the total price is {amount}$</h6>
+                                        <h6>Extra hours charge is {eventData.extraAmount}$</h6>
+                                        <h6>Total Amount deducted will be {eventData.extraAmount + amount}$</h6>
+                                    </Row>
+                                    <Row>
+                                        <Col md="4" xs="4">
+                                            {
+                                                loading === true ? <button className="btn_event_brand mb-2" style={{ backgroundColor: "#05a0e0", border: "none" }}>
+                                                    <div class="spinner-border text-white" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </button> : <button className="btn_event_brand" onClick={handleAllPay}>
+                                                    Pay
+                                                </button>
+                                            }
+                                        </Col>
+                                    </Row>
                                 </ModalBody>
                             </Modal>
                         </div>
