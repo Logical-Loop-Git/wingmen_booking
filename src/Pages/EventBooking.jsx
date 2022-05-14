@@ -55,6 +55,7 @@ const EventBooking = () => {
         latitude: 0,
         longitude: 0,
     });
+    const [addCard, setAddCard] = useState(false)
     const stripePromise = loadStripe(stripLiveKey);
     const [eventBooking, setEventBooking] = useState({
         firstName: "",
@@ -173,9 +174,13 @@ const EventBooking = () => {
     };
 
     const BookRide = async () => {
-        toast.success(`Your event created successfully.`);
-        setShow(false);
-        window.location = "/eventbooking"
+        if (addCard === true) {
+            toast.success(`Your event created successfully.`);
+            setShow(false);
+            window.location = "/eventbooking"
+        } else {
+            toast.warn(`Add Card`);
+        }
     };
 
     useEffect(() => {
@@ -395,7 +400,7 @@ const EventBooking = () => {
                             </Row>
                             <div className="strip_add_card_event">
                                 <Elements stripe={stripePromise} style={{ height: 400 }}>
-                                    <EventCardForm eventBooking={eventBooking} pickUpLocation={pickUpLocation} date={date} />
+                                    <EventCardForm eventBooking={eventBooking} pickUpLocation={pickUpLocation} date={date} setAddCard={setAddCard} />
                                 </Elements>
                                 <div style={{ marginTop: 20 }} className="d-flex">
                                     {[
@@ -445,7 +450,7 @@ const EventBooking = () => {
     );
 };
 
-const EventCardForm = ({ eventBooking, pickUpLocation, date }) => {
+const EventCardForm = ({ eventBooking, pickUpLocation, date, setAddCard }) => {
 
     const stripe = useStripe();
     const elements = useElements();
@@ -537,6 +542,7 @@ const EventCardForm = ({ eventBooking, pickUpLocation, date }) => {
                                 if (response.data.success === true) {
                                     toast.success(`Your card added successfully.`);
                                     toast.success(`Your event created successfully.`);
+                                    setAddCard(true)
                                     setLoading(false)
                                 } else {
                                     toast.dark(`Having some trouble to add card.`);
